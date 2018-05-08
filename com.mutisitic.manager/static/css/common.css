@@ -1,0 +1,82 @@
+/* 通用CSS */
+
+/*
+CSS参考手册： http://www.css88.com/book/css/quicksearch.htm
+CSS3参考手册：http://www.css88.com/book/css/css3-quicksearch.htm
+
+   list-style-type：复合属性。设置列表项目相关内容 http://www.css88.com/book/css/properties/list/index.htm
+   border-bottom：复合属性。设置对象边框的特性 http://www.css88.com/book/css/properties/border/index.htm
+   text-align：外设置或检索对象中内容的水平对齐方式 http://www.css88.com/book/css/properties/text/index.htm
+*/
+
+/* 水平对齐方式 text-align */
+.text-left{text-align:left;}
+.text-right{text-align:right;}
+.text-center{text-align:center;}
+
+/*字体 font */
+.fontWRYH {font-family: '微软雅黑';}
+.fontHWCY {font-family: '华文彩云';}
+
+/*左侧导航栏 left navigation */
+.left-navigation {
+
+}
+
+/*外边距 margin*/
+.mt5   {margin-top: 5px;}
+.mt-10  {margin-top: 10px;}
+.mt-15  {margin-top: 15px;}
+
+
+.ml-5   {margin-left: 5px;}
+.ml-10  {margin-left: 10px;}
+.ml-15  {margin-left: 15px;}
+.ml-a   {margin-left: auto;}
+.ml-45-p   {margin-left: 45%;}
+
+/*内边距 padding*/
+.pt-5   {padding-top: 5px;}
+.pt-10  {padding-top: 10px;}
+.pt-15  {padding-top: 15px;}
+
+.pl-5   {padding-left: 5px;}
+.pl-10  {padding-left: 10px;}
+.pl-15  {padding-left: 15px;}
+.pl-25  {padding-left: 25px;}
+.pl-80  {padding-left: 80px;}
+.pl-100  {padding-left: 100px;}
+/*.pl45p   {padding-left: 45%;}*/
+
+/*颜色 color*/
+.red { color: red;}
+
+/* 菜单 menu css */
+/*.menu {
+    list-style-type: none;
+    border-bottom: 0.1em solid black;
+    margin-bottom: 2em;
+    padding: 0 0 0.5em;
+}*/
+
+/*.menu:before {*/
+/*content: "[";*/
+/*}*/
+
+/*.menu:after {*/
+/*content: "]";*/
+/*}*/
+
+/*.menu > li {*/
+/*display: inline;*/
+/*}*/
+
+/*.menu > li:before {*/
+/*content: "|";*/
+/*padding-right: 0.3em;*/
+/*}*/
+
+/*.menu > li:nth-child(1):before {*/
+/*content: "";*/
+/*padding: 0;*/
+/*}*/

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title></title>
+
+    <link rel="stylesheet" href="static/css/app.css"/>
+    <link rel="stylesheet" href="static/css/common.css"/>
+
+    <script type="text/javascript" src="static/lib/angular/angular.js"></script>
+    <script type="text/javascript" src="static/app/index/headModel.js"></script>
+
+</head>
+
+
+<body ng-app="headModel" ng-controller="headController">
+
+<div class="ml15 mt10">
+    <h3 id="headNavigation" ng-model="headNavigation"></h3>
+    <br>
+    <audio id="backMusic" src="static/music/ThroughYourEyes.mp3">您的浏览器不支持audio，请升级</audio>
+    {{headNavigation}}<br/>{{name}}
+</div>
+
+</body>
+</html>

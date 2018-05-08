@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>不语:上善无言 不语大德</title>
+
+    <!-- 新 Bootstrap4 核心 CSS 文件 -->
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.1.0/css/bootstrap.min.css">
+
+    <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+    <!-- popper.min.js 用于弹窗、提示、下拉菜单 -->
+    <script src="https://cdn.bootcss.com/popper.js/1.14.0/umd/popper.min.js"></script>
+    <!-- 最新的 Bootstrap4 核心 JavaScript 文件 -->
+    <script src="https://cdn.bootcss.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+
+
+    <!-- Font Awesome 是一套绝佳的图标字体库和CSS框架 -->
+    <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css">
+
+    <link rel="stylesheet" href="static/css/main.css"/>
+    <link rel="stylesheet" href="static/css/common.css"/>
+
+    <!--<link rel="stylesheet" href="static/css/bootstrap.min.css">-->
+    <!--<link rel="stylesheet" href="static/css/font-awesome.css">-->
+
+    <script type="text/javascript" src="static/lib/angular/angular.js"></script>
+    <script type="text/javascript" src="static/app/index/loginModel.js"></script>
+</head>
+
+<body ng-app="indexModel" ng-controller="indexController">
+
+<div>
+    <div class="bg"></div>
+    <!--<div class="bg-overlay"></div>-->
+    <header class="header">
+        头顶啊<i class="fa fa-car"></i>
+    </header>
+
+    <div class="center" style="width: 99%; height: 842px; margin-top: 10px;">
+        <div class="row" style="height: 100%">
+
+            <!--按钮-->
+            <div class="col-sm-2" style="height: 100%;">
+                <ul class="main-menu" style="margin-left: 10px;">
+                    <li><button id="btnHome" ng-click="clickBtnHome()" class="btn backHome fa fa-home fa-3x" title="主页"></button></li>
+                </ul>
+            </div>
+
+
+            <div class="col-sm-8" style="height: 100%;">
+               登录
+            </div>
+
+            <div class="col-sm-2" style="height: 100%;">
+                <p>主页:Hello Word!</p>
+                <p>照片:文件服务器,分页</p>
+                <p>Tips：知识积累</p>
+                <p>BUG：遇到的BUG</p>
+                <p>读书：读书感悟</p>
+                <p>项目：登录\物流系统\文件上传</p>
+                <p>关于我们：简历</p>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <a href="" ng-click="clickDisc()">免责声明</a>
+    </footer>
+</div>
+
+</body>
+</html>
