@@ -2,6 +2,6 @@
 /.settings
 /.svn
 /.git
-/bin
+bin/
 !/com.mutistic.lib
-.class
+*.class
