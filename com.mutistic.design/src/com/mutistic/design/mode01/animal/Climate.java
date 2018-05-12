@@ -8,4 +8,19 @@ package com.mutistic.design.mode01.animal;
  */
 public class Climate {
 
+	/**
+	 * 天气
+	 */
+	public String weather;
+
+	/**
+	 * 构造器
+	 * @param weather 天气
+	 */
+	public Climate(String weather) {
+		super();
+		this.weather = weather;
+		System.out.println(this.weather);
+	}
+	
 }

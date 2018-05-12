@@ -44,10 +44,12 @@ public class OpeartionFactory {
 	 * @author yc.yin
 	 * @date 2018年5月12日
 	 */
-	private static void opeartionFactory() {
-		// Opeartion Factory
-		System.out.println("Test-测试运行Operation简单工厂模式：");
+	public static void opeartionFactory() {
+		System.out.println("运行Operation简单工厂模式：");
+		
+		// Opeartion 简单工厂对象
 		OpeartionFactory ofactory = new OpeartionFactory();
+		
 		// add
 		Opeartion add = ofactory.createrOpeartion(OpearterEnum.ADDITION.getKey());
 		add.setNumberA(2);
