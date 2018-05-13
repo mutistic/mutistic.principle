@@ -6,7 +6,7 @@ package com.mutistic.design.mode01.animal;
  * @author yc.yin
  * @date 2018年5月12日
  */
-public class DonaldDuck extends Duck {
+public class DonaldDuck extends Duck implements ILanguage {
 
 	@Override
 	public void metabolism(Oxygen oxygen, Water water) {
@@ -26,11 +26,7 @@ public class DonaldDuck extends Duck {
 		System.out.println("唐老鸭正在下蛋");
 	}
 	
-	/**
-	 * @description 说话 
-	 * @author yc.yin
-	 * @date 2018年5月12日
-	 */
+	@Override
 	public void speak(){
 		System.out.println("唐老鸭正在说：hello word!");
 	}
