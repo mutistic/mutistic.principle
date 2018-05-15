@@ -12,7 +12,7 @@ public class CashRebate extends CashSuper{
 	/**
 	 * 折扣比例
 	 */
-	public double rebate;
+	public double rebate = 1d;
 	
 	/**
 	 * 构造器

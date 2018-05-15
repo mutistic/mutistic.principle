@@ -11,11 +11,11 @@ public class CashReturn extends CashSuper {
 	/**
 	 * 满减最低金额
 	 */
-	public double minxMoney;
+	public double minxMoney = 0d;
 	/**
 	 * 返现金额
 	 */
-	public double returnMoney;
+	public double returnMoney = 0d;
 
 	public CashReturn(double minxMoney, double returnMoney) {
 		super();

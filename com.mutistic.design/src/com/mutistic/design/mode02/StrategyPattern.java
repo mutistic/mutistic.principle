@@ -10,7 +10,7 @@ import com.mutistic.design.mode02.structure.Context;
  * @author yc.yin
  * @date 2018年5月14日
  */
-public class StrategyMode {
+public class StrategyPattern {
 
 	public static void main(String[] args) {
 		Context.strategyMain();

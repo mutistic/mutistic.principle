@@ -10,7 +10,7 @@ import com.mutistic.design.mode01.opeartion.OpeartionFactory;
  * @author yc.yin
  * @date 2018年5月8日
  */
-public class SimpleFactoryMode {
+public class SimpleFactoryPattern {
 	
 	public static void main(String[] args) {
 		
