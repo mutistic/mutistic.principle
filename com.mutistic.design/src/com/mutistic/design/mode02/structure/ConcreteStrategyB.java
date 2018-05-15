@@ -14,7 +14,7 @@ public class ConcreteStrategyB extends Strategy {
 	@Override
 	public void algorithmInterface() {
 		// TODO Auto-generated method stub
-		
+		System.out.println("继承 Strategy类的具体策略类：ConcreteStrategyB");
 	}
-	
+
 }

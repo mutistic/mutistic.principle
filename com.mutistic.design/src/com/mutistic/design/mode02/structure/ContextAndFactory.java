@@ -58,4 +58,31 @@ public class ContextAndFactory {
 		}
 	}
 
+	public final static String STRATEGY_A = "A";
+	public final static String STRATEGY_B = "B";
+	public final static String STRATEGY_C = "C";
+
+	/**
+	 * @description 运行策略模式
+	 * @author yc.yin
+	 * @date 2018年5月15日
+	 */
+	public static void strategyMain() {
+		System.out.println("运行Strategy+Factory策略模式");
+
+		ContextAndFactory context = new ContextAndFactory(STRATEGY_A);
+		context.contextInterface();
+
+		ContextAndFactory context2 = new ContextAndFactory(STRATEGY_B);
+		context2.contextInterface();
+
+		ContextAndFactory context3 = new ContextAndFactory(STRATEGY_C);
+		context3.contextInterface();
+
+	}
+
+	public static void main(String[] args) {
+		strategyMain();
+	}
+
 }
