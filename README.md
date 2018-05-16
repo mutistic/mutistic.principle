@@ -5,10 +5,10 @@
 4、基本验证工具类<br/>
 
 ## mutisitc.design：设计模式
-### 设计原则(https://github.com/ycyin/mutistic.exercise/blob/master/com.mutistic.design/notes/principle)
+### [设计原则](https://github.com/ycyin/mutistic.exercise/blob/master/com.mutistic.design/notes/principle)
     面向对象设计五个基本原则（SOLID）之一 
 P1、单一职责原则[SRP，Single Responsibility Principle]：[思维导图](https://github.com/ycyin/mutistic.exercise/blob/master/com.mutistic.design/notes/principle/P1_SRP.xmind)<br/>
-P2、开闭原则、<br/>
+P2、开闭原则[OCP，Open Closed Principle]：[思维导图](https://github.com/ycyin/mutistic.exercise/blob/master/com.mutistic.design/notes/principle/P1_OCP.xmind)<br/>
 
 ### [设计模式](https://github.com/ycyin/mutistic.exercise/blob/master/com.mutistic.design/notes/mode)
     三种类型，共二十三种、
