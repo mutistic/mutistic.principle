@@ -12,7 +12,7 @@ P2、开闭原则[OCP，Open Closed Principle]：[思维导图](https://github.c
 P3、里氏替换原则[LSP，Liskov Substitution Principle]：[思维导图](https://github.com/ycyin/mutistic.exercise/blob/master/com.mutistic.design/notes/principle/P3_LSP.xmind)<br/>
 P4、接口隔离原则[ISP，Interface Segregation Principle]：[思维导图](https://github.com/ycyin/mutistic.exercise/blob/master/com.mutistic.design/notes/principle/P4_ISP.xmind)<br/>
 P5、依赖倒置原则[DIP，Dependence Inversion Principle]：[思维导图](https://github.com/ycyin/mutistic.exercise/blob/master/com.mutistic.design/notes/principle/P5_DIP.xmind)<br/>
-P6、迪米特法则[DIP，Dependence Inversion Principle]：[思维导图](https://github.com/ycyin/mutistic.exercise/blob/master/com.mutistic.design/notes/principle/P6_DIP.xmind)<br/>
+P6、迪米特法则[LoD，Law of Demeter，最少知识原则[LKP，Least Knowledge Principle]]：[思维导图](https://github.com/ycyin/mutistic.exercise/blob/master/com.mutistic.design/notes/principle/P6_LoD.xmind)<br/>
 
 ### [设计模式](https://github.com/ycyin/mutistic.exercise/blob/master/com.mutistic.design/notes/mode)
     三种类型，共二十三种：
