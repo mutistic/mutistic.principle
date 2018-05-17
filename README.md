@@ -6,10 +6,13 @@
 
 ## mutisitc.design：设计模式
 ### [设计原则](https://github.com/ycyin/mutistic.exercise/blob/master/com.mutistic.design/notes/principle)
-    面向对象设计五个基本原则（SOLID）
+    [面向对象设计原则(SOLID)](https://github.com/ycyin/mutistic.exercise/blob/master/com.mutistic.design/notes/principle/P0_SOLID.xmind)、迪米特法则
 P1、单一职责原则[SRP，Single Responsibility Principle]：[思维导图](https://github.com/ycyin/mutistic.exercise/blob/master/com.mutistic.design/notes/principle/P1_SRP.xmind)<br/>
 P2、开闭原则[OCP，Open Closed Principle]：[思维导图](https://github.com/ycyin/mutistic.exercise/blob/master/com.mutistic.design/notes/principle/P2_OCP.xmind)<br/>
 P3、里氏替换原则[LSP，Liskov Substitution Principle]：[思维导图](https://github.com/ycyin/mutistic.exercise/blob/master/com.mutistic.design/notes/principle/P3_LSP.xmind)<br/>
+P4、接口隔离原则[ISP，Interface Segregation Principle]：[思维导图](https://github.com/ycyin/mutistic.exercise/blob/master/com.mutistic.design/notes/principle/P4_ISP.xmind)<br/>
+P5、依赖倒置原则[DIP，Dependence Inversion Principle]：[思维导图](https://github.com/ycyin/mutistic.exercise/blob/master/com.mutistic.design/notes/principle/P5_DIP.xmind)<br/>
+P6、迪米特法则[DIP，Dependence Inversion Principle]：[思维导图](https://github.com/ycyin/mutistic.exercise/blob/master/com.mutistic.design/notes/principle/P6_DIP.xmind)<br/>
 
 ### [设计模式](https://github.com/ycyin/mutistic.exercise/blob/master/com.mutistic.design/notes/mode)
     三种类型，共二十三种：
