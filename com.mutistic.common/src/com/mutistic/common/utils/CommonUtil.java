@@ -28,7 +28,7 @@ public class CommonUtil {
 			return null;
 		}
 
-		if(ValidateUtil.isEmpty(tager)){
+		if(ValidateUtil.isBlank(tager)){
 			tager = ",";
 		}
 

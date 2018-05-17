@@ -104,7 +104,7 @@ public class DateUtil {
 	 * @throws Exception
 	 */
 	public static Date parse(String _dateStr) throws Exception {
-		if(ValidateUtil.isEmpty(_dateStr)) return null;
+		if(ValidateUtil.isBlank(_dateStr)) return null;
 		
 		return new SimpleDateFormat(DateFromatEnum.DEFAULT.getKey()).parse(_dateStr);
 	}
@@ -119,7 +119,7 @@ public class DateUtil {
 	 * @throws Exception
 	 */
 	public static Date parseDate(String dateStr, DateFromatEnum format) throws Exception {
-		if(ValidateUtil.isEmpty(dateStr) || ValidateUtil.isEmpty(format)) return null;
+		if(ValidateUtil.isBlank(dateStr) || ValidateUtil.isEmpty(format)) return null;
 		
 		return new SimpleDateFormat(format.getKey()).parse(dateStr);
 	}
@@ -133,7 +133,7 @@ public class DateUtil {
 	 * @throws Exception
 	 */
 	public static Date parseSimple(String dataStr) throws Exception {
-		if(ValidateUtil.isEmpty(dataStr)) return null;
+		if(ValidateUtil.isBlank(dataStr)) return null;
 		
 		return new SimpleDateFormat(DateFromatEnum.SIMPLE.getKey()).parse(dataStr);
 	}
@@ -147,7 +147,7 @@ public class DateUtil {
 	 * @throws Exception
 	 */
 	public static Date parseTime(String dataStr) throws Exception {
-		if(ValidateUtil.isEmpty(dataStr)) return null;
+		if(ValidateUtil.isBlank(dataStr)) return null;
 		
 		return new SimpleDateFormat(DateFromatEnum.TIME.getKey()).parse(dataStr);
 	}
@@ -262,7 +262,7 @@ public class DateUtil {
 			tStr = dateToString(source, false);
 		}
 		
-		if(ValidateUtil.isEmpty(dStr) || ValidateUtil.isEmpty(tStr)){
+		if(ValidateUtil.isBlank(dStr) || ValidateUtil.isBlank(tStr)){
 			return null;
 		}
 		return parse(dStr + " " + tStr);
@@ -281,7 +281,7 @@ public class DateUtil {
 		if(time == null) return null;
 		
 		String newDate =  dateToString(commob, true) +" "+ formatTime(time);
-		if(ValidateUtil.isEmpty(newDate)) {
+		if(ValidateUtil.isBlank(newDate)) {
 			 return null;
 		}
 		return parseSimple(newDate);
@@ -300,7 +300,7 @@ public class DateUtil {
 		if(date == null) return null;
 		
 		String newDate =  formatSimple(date) + " " + dateToString(commob, false);
-		if(ValidateUtil.isEmpty(newDate)) {
+		if(ValidateUtil.isBlank(newDate)) {
 			 return null;
 		}
 		return parseSimple(newDate);
