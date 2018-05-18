@@ -4,5 +4,6 @@
 /.git
 bin/
 !/com.mutistic.lib
-*.clas
+*.class
 *.ldb
+.classpatch
