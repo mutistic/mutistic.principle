@@ -6,4 +6,3 @@ bin/
 !/com.mutistic.lib
 *.class
 *.ldb
-.classpatch
