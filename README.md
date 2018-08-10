@@ -34,12 +34,12 @@
 即：设计模式就是这些设计原则的一些具体体现
 ```
 
-三种类型，共二十三种：<br/>
+三种类型：<br/>
 ```
 1、创建型模式：抽象了对象实例化的过程，用来帮助创建对象的实例
-	单例模式、抽象工厂模式、建造者模式、工厂模式、原型模式
+	单例模式、抽象工厂模式、建造者模式、工厂模式[Simple Factory Pattern]、原型模式
 2、结构型模式：描述如何组合类和对对象以获得更大的结构
-	适配器模式、桥接模式、装饰模式、组合模式、外观模式、享元模式、代理模式
+	适配器模式[Adapter Pattern]、桥接模式、装饰模式、组合模式、外观模式、享元模式、代理模式
 3、行为型模式：描述算法和对象间的职责的分配
 	模版方法模式、命令模式、迭代器模式、观察者模式、中介者模式、备忘录模式、
 	解释器模式[Interpreter模式]、状态模式、策略模式、职责链模式[责任链模式]、访问者模式。
@@ -55,11 +55,12 @@
 7. <a href="#a_Lod">迪米特法则[LoD：Law of Demeter，最少知识原则：LKP：Least Knowledge Principle]</a>
 8. <a href="#a_simple">简单工厂模式[Simple Factory Method Pattern]</a>
 9. <a href="#a_facade">外观模式[Facade Pattern]</a>
-
+10. <a href="#a_adapter">适配器模式[Adapter Pattern]</a>
 
 9. <a href="#a_strategy">策略模式[Strategy Pattern]</a>
 
-
+97. <a href="#a_xmind">思维导图</a>
+98. <a href="#a_ea">EA</a>
 99. <a href="#a_down">down</a>
 
 
@@ -468,9 +469,8 @@ Setter方法传递依赖对象：在类中通过Setter方法声明依赖关系�
 ```
 
 ## [设计模式](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.design/notes/mode)
-### <a href="#a_simple">八、简单工厂模式[Simple Factory Method Pattern]</a> <a href="#a_Lod">last</a> <a href="#a_facade">next</a>
-[思维导图](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.design/notes/mode/M1_FactoryMethodPattern.xmind)<br/>
-[结构图、类图](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.design/notes/mode/M1_FactoryMethodPattern.eap)<br/>
+### <a id="#a_simple">八、简单工厂模式[Simple Factory Method Pattern]</a> <a href="#a_Lod">last</a> <a href="#a_facade">next</a>
+[结构图、类图、时序图](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.design/notes/mode/M1_FactoryMethodPattern.eap)<br/>
 
 一、定义：
 ```
@@ -602,13 +602,13 @@ public class ImplB extends API {
 ```
 
 ---
-### <a href="#a_facade">外观模式[Facade Pattern]</a> <a href="#a_strategy">last</a> <a href="#">next</a>
-[结构图、类图](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.design/notes/mode/M2_FacadePattern.eap)<br/>
-[思维导图](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.design/notes/mode/M2_FacadePattern.xmind)<br/>
+### <a id="#a_facade">九、外观模式[Facade Pattern]</a> <a href="#a_strategy">last</a> <a href="#a_adapter">next</a>
+[结构图、类图、时序图](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.design/notes/mode/M2_FacadePattern.eap)<br/>
 
 一、定义：
 ```
 定义：为系统中的一组接口提供一个一致的界面。Facade模式定义高层接口，这个接口使得客户端容易使用这一系统。
+本质：封装交互、简化调用
 ```
 
 二、结构和说明：
@@ -619,30 +619,287 @@ Facade：定义系统的多个模块对外的高层接口，通常是需要调�
 
 三、理解：
 ```
+1、外观模式的目的：
+	外观模式的目的不是给系统添加新的功能接口，而是减少客户端和系统内的模块的交互，松散耦合，从而让客户端能
+	够更简单的使用系统
+2、使用外观模式区别：
+	Facade翻遍了客户端的调用、封装了系统内部的实现细节、实现功能的共享和复用
+3、外观模式不是强制要求使用的。
+4、外观模式提供了默认的功能实现。
+5、外观模式体现了迪米特法则[LoD：Law of Demeter，最少知识原则：LKP：Least Knowledge Principle]
 ```
 
 四、写法：
 ```
+1、把外观类作为一个辅助工具类实现
+2、Facade可以实现为接口，组合其他设计模式，比如工厂模式
+	时限为interface可以有选择性的暴露接口方法，减少模块对子系统提供的接口方法。
+3、Facade的方法实现
+	Facade的方法实现中，一般是转发客户端的请求给到具体模块进行处理。Facade本身不建议进行功能处理，只是实现了一个功能的组合调用。
 ```
 
 五、优点：
 ```
+1、松散耦合
+2、简单易用
+3、更好的划分访问层次
 ```
 
 六、缺点：
 ```
+1、过多的或者不太合理的Facade会降低易读性，容易让人迷惑。
+2、Facade声明过的接口会造成客户端调用时的一定复杂度。
 ```
 
 七、使用场景：
 ```
+1、如果为一个调用复杂的子系统提供一个简单接口的时候，可以考虑使用外观模式，使用外观对象来实现大部分客户端需要的功能，从而简化客户端的使用
+2、如果需要客户端和抽象类实现部分松散耦合，可以考虑使用外观模式，使用外观对象来将这个系统与客户端分离开来，从而提高系统的独立性和可移植性
+3、如果构建多层结构的系统，可以考虑使用外观模式，使用外观对象作为每层的入口，这样可以简单层间的调用，也可以松散层次之间的依赖关系。
+```
+
+Client.java：
+```Java
+package com.mutistic.design.facade.structure;
+import com.mutistic.common.utils.PrintUtil;
+// Client客户端 
+public class Client {
+	public static void main(String[] args) {
+		PrintUtil.printOne("外观模式：Facade Pattern：本质：选择实现。");
+		PrintUtil.printTwo("定义", "为系统中的一组接口提供一个一致的界面。Facade模式定义高层接口，这个接口使得客户端容易使用这一系统。");
+		
+		Facade.test();
+	}
+}
+```
+Facade.java：
+```Java
+package com.mutistic.design.facade.structure;
+import com.mutistic.common.utils.PrintUtil;
+// 外观模式-核心类
+public class Facade {
+	// Facade模式定义的高层接口 （不一定要声明为static）
+	public static void test() {
+		PrintUtil.printTwo("Facade-test", "Facade：定义系统的多个模块对外的高层接口，通常是需要调用内部多个模块，从而把客户的请求代理给适当的系统对象");
+		
+		new ModeA().testA();
+		new ModeB().testB();
+		new ModeC().testC();
+	}
+}
+```
+ModeA.java：
+```Java
+package com.mutistic.design.facade.structure;
+import com.mutistic.common.utils.PrintUtil;
+// 具体模块
+public class Modea {
+	// 具体模块具体业务
+	public void testa() {
+		PrintUtil.printTwo("ModeA-testA", "模块：接受Facade对象的委派，真正实现功能，各个模块之前按可能有交互，注意，Facade对象知道各个模块，但是各个模块不应该知道Facade对象");
+	}
+}
+```
+ModeB.java：
+```Java
+package com.mutistic.design.facade.structure;
+import com.mutistic.common.utils.PrintUtil;
+// 具体模块
+public class ModeB {
+	// 具体模块具体业务
+	public void testB() {
+		PrintUtil.printTwo("ModeB-testB", "模块：接受Facade对象的委派，真正实现功能，各个模块之前按可能有交互，注意，Facade对象知道各个模块，但是各个模块不应该知道Facade对象");
+	}
+}
+```
+ModeC.java：
+```Java
+package com.mutistic.design.facade.structure;
+import com.mutistic.common.utils.PrintUtil;
+// 具体模块
+public class ModeC {
+	// 具体模块具体业务
+	public void testC() {
+		PrintUtil.printTwo("ModeC-testC", "模块：接受Facade对象的委派，真正实现功能，各个模块之前按可能有交互，注意，Facade对象知道各个模块，但是各个模块不应该知道Facade对象");
+	}
+}
+```
+
+---
+### <a id="#a_adapter">十、适配器模式[Adapter Pattern]</a> <a href="#a_strategy">last</a> <a href="#">next</a>
+[结构图、类图、时序图](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.design/notes/mode/M3_AdapterPattern.eap)<br/>
+
+一、定义：
+```
+定义：将一个类的接口转换客户端希望的另外一个接口。适配器模式使得原本由于接口不兼容而能一起工作的那些类可以一起工作。
+本质：转换匹配，复用功能
+```
+
+二、结构和说明：
+```
+Client：客户端，调用自己需要的领域接口Target
+Target：定义客户端需要的跟特定领域相关的接口(或类或子类或抽象类)
+Existing：已经存在的接口(或类或子类或抽象类)，但与客户端要求的特定领域接口不一致，需要被适配目标
+Adapter：适配器，把Existing适配成Client需要的Target，本身是实现或基层Target
+```
+
+三、理解：
+```
+1、适配器模式的功能：
+	适配器模式的主要功能是进行转换匹配，目的是复用已有的功能，而不是来实现新的接口
+	适配器里面也可以实现功能，称这种适配器为智能适配器
+2、Existing和Target的关系
+	适配器模式中被适配的接口Existing和适配成为的接口Target是没有任何关联的
+3、对象适配器：其实现依赖于对象组合。
+4、类适配器：其实现采用多重继承对一个接口与另一个接口进行匹配。由于Java不支持多重继承，所以不涉及类适配器。
+	但是可以通过继承类，实现接口的方式来实现类似 类适配器
+5、类适配器和对象适配器的权衡：
+	5.1、从实现上：
+		类适配器使用对象继承的方式，是静态的定义方式。而对象适配器使用对象组合的方式，是动态组合的方式。
+	5.2、从处理子类上：
+		5.2.1、类适配器：由于适配器直接继承了Existing，使得适配器不能和Existing的子类一起工作，因为继承是个静态关系，
+		当适配器继承了Existing后，就不能去处理Existing的子类了。
+		5.2.2、对象适配器：允许一个Existing和多个Existing，包括Existing和她所有的子类一起工作。因为对象适配器采用对象组合的关系。
+		只要对象类型正确，是不是子类都无所谓。
+	5.3、从方法覆盖上：
+		5.3.1、对于类适配器：适配器可以重新定义Existing的部分行为，相当于子类覆盖父类的部分实现方法。
+		5.3.2、对于对象适配器：要重定义Existing的行为比较困难，这种情况下，需要定义Existing的子类来实现重定义，然后让适配器组合子类。
+	5.4、从引用上：
+		5.4.1、对于类适配器：仅仅引入了一个对象，不需要额外的引用来间接得到Existing
+		5.4.2、对于对象适配器：需要额外的引用来间接得到Existing
+```
+
+四、写法：
+```
+1、适配器的常见实现：
+	适配器通常是一个类，一般会让适配器类去实现或继承Target接口，然后在适配器的具体实现类里面去调用Existing
+2、智能适配器：
+	可以在适配器的实现里面，加入新功能的实现
+3、适配多个Existing
+4、适配器Adapter实现的复杂程度，取决于Target和Existing的相似度，相似度越低复杂度越高
+5、默认适配：为一个接口提供默认实现
+6、双向适配：适配器也可以实现双向的适配，适配器可以同时适配Target和Existing
+```
+
+五、优点：
+```
+1、更好的复用性
+2、更好的可扩展性
+```
+
+六、缺点：
+```
+1、过多的使用适配器，会导致系统非常凌乱、不容易整体进行把握。
+2、Target和Existing的相似度非常低，如果仍然采用适配器模式，会导致复杂度过高。建议重构而且适配器模式。
+```
+
+七、使用场景：
+```
+1、如果需要使用一个已经存在的类，但接口并不符合需求，可以使用适配器模式，来吧已有的实现转成需要的接口。
+2、如果需要创建一个可复用的类，这个类可能和一些不兼容的类一起工作，可以使用适配器模式，按需适配。
+3、如果需要使用一些存在的子类，不能采用对每个子类适配，可以使用对象适配器，直接适配这些子类的父类。
+```
+
+Client.java：
+```Java
+package com.mutistic.design.adapter.structure;
+import com.mutistic.common.utils.PrintUtil;
+// Client：客户端，调用自己需要的领域接口Target 
+public class Client {
+	public static void main(String[] args) {
+		PrintUtil.printOne("适配器模式 Adapter Pattern：本质：");
+		PrintUtil.printTwo("定义", "将一个类的接口转换客户端希望的另外一个接口。适配器模式使得原本由于接口不兼容而能一起工作的那些类可以一起工作。");
+		
+		Existing existing = new Existing();
+		PrintUtil.printOne("Client：客户端，调用Target接口信息");
+		Target target = new Adapter(existing);
+		target.test();
+		
+		PrintUtil.printOne("Client：客户端，调用适配类接口信息");
+		Adapter adapter = new Adapter(existing);
+		adapter.test();
+		adapter.testExisting();
+	}
+}
+```
+Adapter.java：
+```Java
+package com.mutistic.design.adapter.structure;
+import com.mutistic.common.utils.PrintUtil;
+// 适配器：核心类：(对象适配器) 
+// Adapter：适配器，把Existing适配成Client需要的Target，本身是实现或基层Target
+public class Adapter implements Target {
+	// 被适配目标类
+	private Existing existing;
+	// 构造器（传入被适配目标实例）
+	public Adapter(Existing existing) {
+		super();
+		this.existing = existing;
+		PrintUtil.printTwo("Adapter(Existing)", "构造器（传入被适配目标Existing实例）");
+	}
+
+	/**
+	 * Target特定领域的业务功能，根据Target类型是否重写
+	 * @see com.mutistic.design.adapter.structure.Target#test()
+	 */
+	@Override
+	public void test() {
+		PrintUtil.printTwo("Adapter-test()", "Target特定领域的业务功能，根据Target类型是否重写");
+	}
+	
+	// Existing接口功能，非必须项，根据实际需要是否添加
+	public void testExisting() {
+		PrintUtil.printTwo("Adapter-testExisting()", "Existing接口功能，非必须项，根据实际需要是否添加");
+		
+		this.existing.testExisting();
+	}
+}
+```
+Target.java：
+```Java
+package com.mutistic.design.adapter.structure;
+// Target：定义客户端需要的跟特定领域相关的接口或类
+public interface Target {
+	// 特定领域的业务功能
+	void test();
+}
+
+```
+Existing.java：
+```Java
+package com.mutistic.design.adapter.structure;
+import com.mutistic.common.utils.PrintUtil;
+// Existing：已经存在的接口，但与客户端要求的特定领域接口不一致，需要被适配目标 
+public class Existing {
+	/// Existing的具体业务
+	public void testExisting() {
+		PrintUtil.printTwo("Existing-testExisting", "已经存在的接口，但与客户端要求的特定领域接口不一致，需要被适配目标 ");
+	}
+}
 ```
 
 
 ---
-### <a href="#a_strategy">策略模式[Strategy Pattern]</a> <a href="#a_SOLID">last</a> <a href="#">next</a>
+### <a id="#a_strategy">策略模式[Strategy Pattern]</a> <a href="#">last</a> <a href="#">next</a>
 [结构图、类图](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.design/notes/mode/M2_StrategyPattern.eap)<br/>
 [思维导图](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.design/notes/mode/M2_StrategyPattern.xmind)<br/>
 
+---
+### <a id="#a_xmind">[思维导图](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.design/notes/principle) </a> <a href="#">last</a> <a href="#a_ea">next</a>
+[P0-面向对象设计原则：SOLID](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.design/notes/principle/P0_SOLID.xmind)<br/>
+[P1-单一职责原则[SR：Single Responsibility Principle]](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.design/notes/principle/P1_SRP.xmind)<br/>
+[P2-开闭原则[OCP：Open Closed Principle]](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.design/notes/principle/P2_OCP.xmind)<br/>
+[P3-里氏替换原则[LSP：Liskov Substitution Principle]](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.design/notes/principle/P3_LSP.xmind)<br/>
+[P4-接口隔离原则[ISP：Interface Segregation Principle]](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.design/notes/principle/P4_ISP.xmind)<br/>
+[P6-依赖倒置原则[DIP：Dependence Inversion Principle]](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.design/notes/principle/P5_DIP.xmind)<br/>
+[P7-迪米特法则[LoD：Law of Demeter，最少知识原则：LKP：Least Knowledge Principle]](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.design/notes/principle/P6_LoD.xmind)<br/>
+
+
+---
+### <a id="#a_ea">[EA](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.design/notes/mode) </a> <a href="#a_xmind">last</a> <a href="#a_down">next</a>
+[M0-简单工厂模式[Simple Factory Method Pattern]](https://github.com/mutistic/mutistic.exercise/tree/master/com.mutistic.design/notes/mode/M1_FactoryMethodPattern.eap)<br/>
+[M1-外观模式[Facade Pattern]](https://github.com/mutistic/mutistic.exercise/tree/master/com.mutistic.design/notes/mode/M2_FacadePattern.eap)<br/>
+[M2-适配器模式[Adapter Pattern]](https://github.com/mutistic/mutistic.exercise/tree/master/com.mutistic.design/notes/mode/M3_AdapterPattern.eap)<br/>
 
 ---
 <a id="a_down"></a>  
