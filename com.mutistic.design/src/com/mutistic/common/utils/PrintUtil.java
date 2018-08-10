@@ -1,7 +1,5 @@
 package com.mutistic.common.utils;
 
-import java.util.List;
-
 /**
  * @program 打印工具类 
  * @description 

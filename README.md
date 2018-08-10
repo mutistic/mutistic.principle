@@ -54,6 +54,9 @@
 6. <a href="#a_DIP">依赖倒置原则[DIP：Dependence Inversion Principle]</a>
 7. <a href="#a_Lod">迪米特法则[LoD：Law of Demeter，最少知识原则：LKP：Least Knowledge Principle]</a>
 8. <a href="#a_simple">简单工厂模式[Simple Factory Method Pattern]</a>
+9. <a href="#a_facade">外观模式[Facade Pattern]</a>
+
+
 9. <a href="#a_strategy">策略模式[Strategy Pattern]</a>
 
 
@@ -465,24 +468,25 @@ Setter方法传递依赖对象：在类中通过Setter方法声明依赖关系�
 ```
 
 ## [设计模式](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.design/notes/mode)
-### <a href="#a_simple">八、简单工厂模式[Simple Factory Method Pattern]</a> <a href="#a_Lod">last</a> <a href="#a_strategy">next</a>
+### <a href="#a_simple">八、简单工厂模式[Simple Factory Method Pattern]</a> <a href="#a_Lod">last</a> <a href="#a_facade">next</a>
 [思维导图](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.design/notes/mode/M1_FactoryMethodPattern.xmind)<br/>
 [结构图、类图](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.design/notes/mode/M1_FactoryMethodPattern.eap)<br/>
 
 一、定义：
 ```
-提供一个创建对象实例的功能，无需关心其具体的实现。被创建时间的类型可以是接口、抽象类，也可以是具体的类
+定义：提供一个创建对象实例的功能，无需关心其具体的实现。被创建时间的类型可以是接口、抽象类，也可以是具体的类.
+本质：选择实现
 ```
 
 二、结构和说明：
 ```
 API：定义客户所需要的功能接口。简单工厂模式所创建的所有对象的父类，它负责描述所有实例所共有的公共接口。
-Impl：具体实现APA的实现类，可能会有多个。简单工厂模式的创建目标，所有创建的对象都是充当这个角色的某个具体类的实例。
-Factory：工厂，选择合适的实现类来创建API接口对象。简单工厂模式的核心，它负责实现创建所有实例的内部逻辑。工厂类的创建产品类的方法可以被外界直接调用，创建所需的产品对象。
+Impl：具体实现API的实现类，可能会有多个。简单工厂模式的创建目标，所有创建的对象都是充当这个角色的某个具体类的实例。
+Factory：工厂，选择合适的实现类来创建API接口对象。简单工厂模式的核心，它负责实现创建所有实例的内部逻辑。工厂类的创建产品类的方法可以被外界直接调用，创建所需的产品对象
 Client：客户端，通过Factory去获取API接口对象，然后面向API接口编程。由一个工厂类根据传入的参数，动态决定应该创建哪一个子类（这些子类继承自一个父类或接口）的实例
 ```
 
-三、认识简单工厂：
+三、理解：
 ```
 1、简单工厂的功能：
 	可用来创建的接口、抽象类或者是普通类的实例
@@ -525,8 +529,122 @@ PS：客户端在调用工厂的时候，传入选择的参数，这就说明客
 3、由于简单工厂很容易违反高内聚责任分配原则，因此一般只在很简单的情况下应用。
 ```
 
----
-### <a href="#a_strategy">九、策略模式[Strategy Pattern]</a> <a href="#a_SOLID">last</a> <a href="#">next</a>
-[结构图、类图](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.design/notes/mode/M2_StrategyPattern.eap)<br/>
-[思维导图](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.design/notes/mode/M2_StrategyPattern.xmind)。
+Client.java：
+```Java
+package com.mutistic.design.simplefactory.structure;
+// Client客户端 
+public class Client {
+	public static void main(String[] args) {
+		Factory.createrAPI(1);
+		Factory.createrAPI(2);
+	}
+}
+```
+Factory.java：
+```Java
+package com.mutistic.design.simplefactory.structure;
+// 简单工厂模式核心类，工厂类
+// 负责实现创建所有实例的内部逻辑
+public class Factory {
+	/**
+	 * 根据条件创建所需的产品对象 
+	 * @param condition 条件
+	 * @return 具体API的实例
+	 */
+	public static API createrAPI(int condition) {
+		switch (condition) {
+		case 1:
+			return new ImplA();
+		case 2:
+			return new ImplB();
+		default:
+			return null;
+		}
+	}
+}
+```
+API.java：
+```Java
+package com.mutistic.design.simplefactory.structure;
+// API-简单工厂模式所创建的所有对象的父类或接口
+public abstract class API {
+	// 定义所有具体实例所共有的公共接口
+	public abstract void operation();
+}
+```
+ImplA.java：
+```Java
+package com.mutistic.design.simplefactory.structure;
+import com.mutistic.common.utils.PrintUtil;
+// 具体实现API的实现类
+// 是简单工厂模式的创建目标
+public class ImplA extends API {
+	// 具体实现方法
+	@Override
+	public void operation() {
+		PrintUtil.printTwo("ImplA", "具体实现API的实现类，可能会有多个。简单工厂模式的创建目标，所有创建的对象都是充当这个角色的某个具体类的实例");
+	}
+}
+```
+ImplB.java：
+```Java
+package com.mutistic.design.simplefactory.structure;
+import com.mutistic.common.utils.PrintUtil;
+// 具体实现API的实现类
+// 是简单工厂模式的创建目标
+public class ImplB extends API {
+	// 具体实现方法
+	@Override
+	public void operation() {
+		PrintUtil.printTwo("ImplB", "具体实现API的实现类，可能会有多个。简单工厂模式的创建目标，所有创建的对象都是充当这个角色的某个具体类的实例");
+	}
+}
+```
 
+---
+### <a href="#a_facade">外观模式[Facade Pattern]</a> <a href="#a_strategy">last</a> <a href="#">next</a>
+[结构图、类图](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.design/notes/mode/M2_FacadePattern.eap)<br/>
+[思维导图](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.design/notes/mode/M2_FacadePattern.xmind)<br/>
+
+一、定义：
+```
+定义：为系统中的一组接口提供一个一致的界面。Facade模式定义高层接口，这个接口使得客户端容易使用这一系统。
+```
+
+二、结构和说明：
+```
+Facade：定义系统的多个模块对外的高层接口，通常是需要调用内部多个模块，从而把客户的请求代理给适当的系统对象
+模块：接受Facade对象的委派，真正实现功能，各个模块之前按可能有交互，注意，Facade对象知道各个模块，但是各个模块不应该知道Facade对象
+```
+
+三、理解：
+```
+```
+
+四、写法：
+```
+```
+
+五、优点：
+```
+```
+
+六、缺点：
+```
+```
+
+七、使用场景：
+```
+```
+
+
+---
+### <a href="#a_strategy">策略模式[Strategy Pattern]</a> <a href="#a_SOLID">last</a> <a href="#">next</a>
+[结构图、类图](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.design/notes/mode/M2_StrategyPattern.eap)<br/>
+[思维导图](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.design/notes/mode/M2_StrategyPattern.xmind)<br/>
+
+
+---
+<a id="a_down"></a>  
+<a href="#a_top">Top</a> 
+<a href="#a_catalogue">Catalogue</a>

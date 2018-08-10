@@ -151,13 +151,4 @@ public class ValidateUtil {
 		return array == null || array.length == 0;
 	}
 
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		try {
-			Object a = new ArrayList();
-			System.out.println(isEmpty(a));
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
 }
