@@ -14,6 +14,7 @@ public class Client {
 		PrintUtil.printOne("外观模式：Facade Pattern：本质：封装交互、简化调用");
 		PrintUtil.printTwo("定义", "为系统中的一组接口提供一个一致的界面。Facade模式定义高层接口，这个接口使得客户端容易使用这一系统");
 		
+		PrintUtil.printOne("Client：客户端调用信息");
 		Facade.test();
 	}
 }

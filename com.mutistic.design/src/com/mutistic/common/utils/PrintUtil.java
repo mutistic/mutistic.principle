@@ -20,6 +20,10 @@ public class PrintUtil {
 		System.out.println();
 	}
 
+	public static void println(Object str) {
+		System.out.println(str);
+	}
+	
 	public static String printErr(Object str) {
 		String val = LINE_LONG_LN + (str == null ? "" : str);
 		System.err.println(val);
