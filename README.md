@@ -76,7 +76,7 @@ MVC 模式[MVC Pattern]、业务代表模式[Business Delegate Pattern]、
 10. <a href="#a_adapter">适配器模式[Adapter Pattern]</a>
 11. <a href="#a_signleton">单例模式[Signleton Pattern]</a>
 12. <a href="#a_factory">工厂模式[Factory Pattern]</a>
-
+13. <a href="#a_abstract">抽象工厂模式[Abstract Factory Pattern]</a>
 
 9. <a href="#a_strategy">策略模式[Strategy Pattern]</a>
 97. <a href="#a_xmind">思维导图</a>
@@ -1266,7 +1266,7 @@ public enum SignletonByEnum {
 ```
 
 ---
-### <a id="a_factory">十二、工厂模式[Factory Pattern]</a> <a href="#a_signleton">last</a> <a href="#">next</a>
+### <a id="a_factory">十二、工厂模式[Factory Pattern]</a> <a href="#a_signleton">last</a> <a href="#a_abstract">next</a>
 [结构图、类图、时序图](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.design/notes/mode/M4_FactoryPattern.eap)<br/>
 一、定义: 
 ```
@@ -1300,6 +1300,9 @@ ConcreteCreator: 具体的创建对象，覆盖实现Creator定义的工厂方�
 
 4、工厂方法的实现中：可能需要参数，以便于决定选用哪一种具体的实现。（此时也简单工厂模式的核心是重合的）
 	一般工厂方法返回的是被创建对象的接口对象，当然也可以是抽象类或者一个具体的类。
+
+PS: 简单工厂模式的最大优点在于工厂类包含了必要的逻辑判断，根据客户端的选择条件动态实例化相关的类，
+对于客户端来说，去除了与具体产品的依赖
 ```
 
 四、写法: 
@@ -1409,6 +1412,67 @@ public class ConcreteCreator extends Creator {
 		return new ConcreteProduce();
 	}
 }
+```
+
+---
+### <a id="a_abstract">十三、抽象工厂模式[Abstract Factory Pattern]</a> <a href="#a_factory">last</a> <a href="#">next</a>
+[结构图、类图、时序图](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.design/notes/mode/M4_AbstractFactoryPattern.eap)<br/>
+一、定义: 
+```
+定义: 提供一个创建一系列相关或相互依赖对象的接口，而无需指定它们具体的类
+本质: 
+原则: 
+```
+
+二、结构和说明: 
+```
+AbstractFactory: 抽象工厂，定义创建一系列产品对象的操作接口
+
+ConcreteFactory: 具体的工厂，实现抽象工厂定义的方法，具体实现一系列产品对象的创建
+
+AbstractProduct: 定义一类产品对象的接口
+
+ConcreteProduct: 具体的产品实现对象，通过在具体工厂里面，
+	会选择具体的产品实现对象来创建符合抽象工厂定义的方法返回的产品的对象。
+
+Clien: 客户端，主要使用抽象工厂来获取一些列所需要的产品对象，
+	然后面对这些产品对象的接口变成，以实现需要的功能
+```
+
+三、理解: 
+```
+主要解决：主要解决接口选择的问题。
+如何解决：在一个产品族里面，定义多个产品。 
+
+1、
+```
+
+四、写法: 
+```
+```
+
+五、优点: 
+```
+```
+
+六、缺点: 
+```
+```
+
+七、使用场景: 
+```
+
+具体场景：
+生成不同操作系统的程序
+```
+
+八、注意事项: 
+```
+产品族难扩展，产品等级易扩展
+```
+
+Client.java: 
+```Java
 ```
 
 ---
