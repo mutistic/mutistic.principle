@@ -39,8 +39,8 @@
 设计模式的三种类型: <br/>
 ```
 1、创建型模式[Creational Patterns]: 抽象了对象实例化的过程，用来帮助创建对象的实例
-    工厂模式[Factory Pattern]、抽象工厂模式[Abstract Factory Pattern]、单例模式[Singleton Pattern]、
-    建造者模式[Builder Pattern]、原型模式[Prototype Pattern]
+    (简单工厂模式[Simple Factory Pattern])、工厂模式[Factory Pattern]、抽象工厂模式[Abstract Factory Pattern]、
+    单例模式[Singleton Pattern]、建造者模式[Builder Pattern]、原型模式[Prototype Pattern]
 
 2、结构型模式[Structural Patterns]: 描述如何组合类和对对象以获得更大的结构
 	适配器模式[Adapter Pattern]、桥接模式[Bridge Pattern]、过滤器模式[Filter、Criteria Pattern]、
@@ -75,6 +75,7 @@ MVC 模式[MVC Pattern]、业务代表模式[Business Delegate Pattern]、
 9. <a href="#a_facade">外观模式[Facade Pattern]</a>
 10. <a href="#a_adapter">适配器模式[Adapter Pattern]</a>
 11. <a href="#a_signleton">单例模式[Signleton Pattern]</a>
+12. <a href="#a_factory">工厂模式[Factory Pattern]</a>
 
 
 9. <a href="#a_strategy">策略模式[Strategy Pattern]</a>
@@ -604,13 +605,13 @@ Client: 客户端，通过Factory去获取API接口对象，然后面向API接�
 
 三、理解: 
 ```
-主要解决: 主要解决接口选择的问题。
-如何解决: 让其子类实现工厂接口，返回的也是一个抽象的产品。
+PS：简单工厂模式是属于创建型模式，又叫做静态工厂方法（Static Factory Method）模式，但不属于23种GOF设计模式之一
 
-1、简单工厂的功能: 可用来创建的接口、抽象类或者是普通类的实例
+1、简单工厂的功能: 可用来创建的接口、抽象类或者是普通类的实例，
 2、静态工厂: 	通常把简单工厂类实现成一个工具类，直接使用静态方法，也就是说简单工厂的方法通常都是静态的，所以也称为静态工厂
 3、万能工厂: 一个简单工厂理论上可以用来构造任何对象，所以又称之为万能工厂
 4、简单工厂创建对象的范围: 建议控制在一个独立的组建级别或者一个模块级别
+5、简单工厂模式是工厂模式家族中最简单实用的模式，可以理解为是不同工厂模式的一个特殊实现
 ```
 
 四、写法: 
@@ -639,6 +640,8 @@ PS: 客户端在调用工厂的时候，传入选择的参数，这就说明客�
 2、当系统中的具体产品类不断增多时候，可能会出现要求工厂类根据不同条件创建不同实例的需求．
 这种对条件的判断和对具体产品类型的判断交错在一起，很难避免模块功能的蔓延，对系统的维护和扩展非常不利；
 
+3、简单工厂模式的扩展是违背了开闭原则[OCP: Open Closed Principle]的
+
 PS、这些缺点在工厂方法模式中得到了一定的克服
 ```
 
@@ -647,16 +650,6 @@ PS、这些缺点在工厂方法模式中得到了一定的克服
 1、工厂类负责创建的对象比较少；
 2、客户只知道传入工厂类的参数，对于如何创建对象（逻辑）不关心；
 3、由于简单工厂很容易违反高内聚责任分配原则，因此一般只在很简单的情况下应用。
-
-具体场景:
-1、日志记录器: 记录可能记录到本地硬盘、系统事件、远程服务器等，用户可以选择记录日志到什么地方。 2、数据库访问，当用户不知道最后系统采用哪一类数据库，以及数据库可能有变化时。 3、设计一个连接服务器的框架，需要三个协议，"POP3"、"IMAP"、"HTTP"，可以把这三个作为产品类，共同实现一个接口
-```
-
-八、注意事项: 
-```
-作为一种创建类模式，在任何需要生成复杂对象的地方，都可以使用工厂方法模式。
-有一点需要注意的地方就是复杂对象适合使用工厂模式，而简单对象，特别是只需要通过 new 就可以完成创建的对象，无需使用工厂模式。
-如果使用工厂模式，就需要引入一个工厂类，会增加系统的复杂度
 ```
 
 Client.java: 
@@ -732,13 +725,14 @@ public class ImplB extends API {
 ```
 
 ---
-### <a id="a_facade">九、外观模式[Facade Pattern]</a> <a href="#a_strategy">last</a> <a href="#a_adapter">next</a>
+### <a id="a_facade">九、外观模式[Facade Pattern]</a> <a href="#a_simple">last</a> <a href="#a_adapter">next</a>
 [结构图、类图、时序图](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.design/notes/mode/M2_FacadePattern.eap)<br/>
 
 一、定义和本质: 
 ```
 定义: 为系统中的一组接口提供一个一致的界面。Facade模式定义高层接口，这个接口使得客户端容易使用这一系统。
 本质: 封装交互、简化调用
+原则：外观模式体现了迪米特法则[LoD: Law of Demeter，最少知识原则: LKP: Least Knowledge Principle]
 ```
 
 二、结构和说明: 
@@ -758,7 +752,6 @@ Facade: 定义系统的多个模块对外的高层接口，通常是需要调用
 2、使用外观模式区别: Facade翻遍了客户端的调用、封装了系统内部的实现细节、实现功能的共享和复用
 3、外观模式不是强制要求使用的。
 4、外观模式提供了默认的功能实现。
-5、外观模式体现了迪米特法则[LoD: Law of Demeter，最少知识原则: LKP: Least Knowledge Principle]
 ```
 
 四、写法: 
@@ -780,7 +773,7 @@ Facade: 定义系统的多个模块对外的高层接口，通常是需要调用
 ```
 1、过多的或者不太合理的Facade会降低易读性，容易让人迷惑。
 2、Facade声明过的接口会造成客户端调用时的一定复杂度。
-3、不符合开闭原则，如果要改东西很麻烦，继承重写都不合适
+3、不符合开闭原则[OCP: Open Closed Principle]，如果要改东西很麻烦，继承重写都不合适
 ```
 
 七、使用场景: 
@@ -1035,7 +1028,7 @@ public class Existing {
 ```
 
 ---
-### <a href="#a_signleton">十一、单例模式[Signleton Pattern]</a> <a href="#a_adapter">last</a> <a href="#">next</a>
+### <a id="a_signleton">十一、单例模式[Signleton Pattern]</a> <a href="#a_adapter">last</a> <a href="#a_factory">next</a>
 [结构图、类图、时序图](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.design/notes/mode/M4_SignletonPattern.eap)<br/>
 
 一、定义和本质: 
@@ -1269,6 +1262,152 @@ public enum SignletonByEnum {
 	uniqueIntance;
 	// 其他业务功能 
 	public void signletonOpeartion() { }
+}
+```
+
+---
+### <a id="a_factory">十二、工厂模式[Factory Pattern]</a> <a href="#a_signleton">last</a> <a href="#">next</a>
+[结构图、类图、时序图](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.design/notes/mode/M4_FactoryPattern.eap)<br/>
+一、定义: 
+```
+定义: 定义一个用于创建对象的接口，让子类决定实例化哪一个类，Factory Method使一个类的实例化延迟到子类
+本质: 延迟到子类来选择实现
+原则：工厂模式体现了依赖倒置原则[DIP: Dependence Inversion Principle]
+```
+
+二、结构和说明: 
+```
+Product: 定义工厂方法所创建的对象的接口，也就是实际需要使用的对象的接口。
+
+ConcreteProduce: 具体的Product接口的实现对象
+
+Creator: 创建器，声明工厂的抽象方法
+
+ConcreteCreator: 具体的创建对象，覆盖实现Creator定义的工厂方法，返回具体的Product实例
+```
+
+三、理解: 
+```
+主要解决: 主要解决接口选择的问题。
+如何解决: 让其子类实现工厂接口，返回的也是一个抽象的产品。
+
+1、工厂模式的功能：让父类在不知道具体实现的情况下，完成自身的功能调用，而具体的实现延迟到子类来实现
+2、实现成抽象类：工厂方法的实现中，通常父类会死一个抽象类，里面包含创建所需对象的抽象方法，
+	这些抽象方法就是工厂方法。
+
+3、实现成具体类：可以把父类是县城一个具体的类，这种情况下，通常是在父类中提供获取所需要对象的默认实现方法，
+	这样就算没有具体的子类，也能运行
+
+4、工厂方法的实现中：可能需要参数，以便于决定选用哪一种具体的实现。（此时也简单工厂模式的核心是重合的）
+	一般工厂方法返回的是被创建对象的接口对象，当然也可以是抽象类或者一个具体的类。
+```
+
+四、写法: 
+```
+1、在工厂方法模式里面：应该是由Creator中的其他业务方法，使用工厂方法facaotryMethod创建的对象
+2、客户端应该 使用Creator对象，或者是使用由Creator创建出来的对象，这时工厂方法创建的对象，是Creator中的某些方法使用
+3、在某些情况下，客户端可能会使用由Creator创建出来的对象，这个时候工厂方法创建的对象，是构成客户端需要的对象的一部分。
+
+在工厂方法模式中，客户端要么使用Creator对象，要么使用Creator创建的对象，一般不直接使用工厂方法factoryMethod。
+虽然可以吧工厂方法暴露给客户端操作，但是一般不这么做
+```
+
+五、优点: 
+```
+1、屏蔽产品的具体实现，调用者只关心产品的接口
+2、扩展性高，如果想增加一个产品，只要扩展一个工厂类就可以
+3、连接平行的类层次
+```
+
+六、缺点: 
+```
+1、具体产品对象和工厂方法的耦合性
+2、次增加一个产品时，都需要增加一个具体类和对象实现工厂，使得系统中类的个数成倍增加，
+在一定程度上增加了系统的复杂度，同时也增加了系统具体类的依赖
+```
+
+七、使用场景: 
+```
+1、如果一个类需要创建某个接口的对象，但又不知道具体的实现，可以选用工厂模式把创建对象的工作延迟到子类去实现。
+2、如果一个类本身就需要由它的子类来创建所需要的对象，就应该使用工厂模式
+
+具体场景：
+1、日志记录器：记录可能记录到本地硬盘、系统事件、远程服务器等，用户可以选择记录日志到什么地方。 2、数据库访问，当用户不知道最后系统采用哪一类数据库，以及数据库可能有变化时。 3、设计一个连接服务器的框架，需要三个协议，"POP3"、"IMAP"、"HTTP"，可以把这三个作为产品类，共同实现一个接口
+```
+
+八、注意事项: 
+```
+作为一种创建类模式，在任何需要生成复杂对象的地方，都可以使用工厂方法模式。
+有一点需要注意的地方就是复杂对象适合使用工厂模式，
+而简单对象，特别是只需要通过 new 就可以完成创建的对象，无需使用工厂模式。
+如果使用工厂模式，就需要引入一个工厂类，会增加系统的复杂度
+```
+
+Client.java: 
+```Java
+package com.mutistic.design.factory.structure;
+// Client客户端
+public class Client {
+	public static void main(String[] args) {
+		Creator creator = new ConcreteCreator();
+		creator.operation();
+	}
+}
+```
+Product.java: 
+```Java
+package com.mutistic.design.factory.structure;
+// Product: 定义工厂方法所创建的对象的接口，也就是实际需要使用的对象的接口
+public interface Product {
+	// Product具体业务接口 
+	void operation();
+}
+```
+ConcreteProduce.java: 
+```Java
+package com.mutistic.design.factory.structure;
+import com.mutistic.design.utils.PrintUtil;
+// ConcreteProduce: 具体的Product接口的实现对象
+public class ConcreteProduce implements Product {
+	// Product具体业务实现
+	@Override
+	public void operation() {
+		PrintUtil.printTwo("ConcreteProduce-operation", "Product具体业务实现");
+	}
+}
+```
+Creator.java: 
+```Java
+package com.mutistic.design.factory.structure;
+import com.mutistic.design.utils.PrintUtil;
+// Creator: 创建器，声明工厂的抽象方法
+public abstract class Creator {
+	// 创建Product的抽象工厂方法
+	public abstract Product factoryMethod();
+	// 具体业务逻辑 
+	public void operation() {
+		PrintUtil.printTwo("Creator-operation", "具体业务逻辑 ");
+		Product product = factoryMethod();
+		product.operation();
+	}
+}
+```
+ConcreteCreator.java: 
+```Java
+package com.mutistic.design.factory.structure;
+import com.mutistic.design.utils.PrintUtil;
+// ConcreteCreator: 具体的创建对象，覆盖实现Creator定义的工厂方法，返回具体的Product实例
+public class ConcreteCreator extends Creator {
+	/**
+	 * 创建Product的工厂方法的具体实现（创建Product的具体实例ConcreteProduce）
+	 * @return
+	 * @see com.mutistic.design.factory.Creator#factoryMethod()
+	 */
+	@Override
+	public Product factoryMethod() {
+		PrintUtil.printTwo("ConcreteCreator-factoryMethod()", "创建Product的具体实例ConcreteProduce");
+		return new ConcreteProduce();
+	}
 }
 ```
 
