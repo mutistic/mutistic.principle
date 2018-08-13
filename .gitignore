@@ -25,4 +25,5 @@ bin/
 *.ldb
 target/
 
-!/com.mutistic.lib
+!.project
+!.classpath
