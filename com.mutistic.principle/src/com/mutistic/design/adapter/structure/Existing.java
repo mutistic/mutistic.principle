@@ -1,6 +1,6 @@
 package com.mutistic.design.adapter.structure;
 
-import com.mutistic.common.utils.PrintUtil;
+import com.mutistic.design.utils.PrintUtil;
 
 /**
  * @program Existing：已经存在的接口，但与客户端要求的特定领域接口不一致，需要被适配目标 

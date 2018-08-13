@@ -1,6 +1,6 @@
 package com.mutistic.design.adapter.structure;
 
-import com.mutistic.common.utils.PrintUtil;
+import com.mutistic.design.utils.PrintUtil;
 
 /**
  * @program 适配器：核心类：(对象适配器) 

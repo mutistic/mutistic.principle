@@ -1,6 +1,6 @@
 package com.mutistic.design.adapter.structure;
 
-import com.mutistic.common.utils.PrintUtil;
+import com.mutistic.design.utils.PrintUtil;
 
 /**
  * @program Client：客户端，调用自己需要的领域接口Target 

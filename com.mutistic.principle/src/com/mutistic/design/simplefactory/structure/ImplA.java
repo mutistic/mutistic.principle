@@ -1,6 +1,6 @@
 package com.mutistic.design.simplefactory.structure;
 
-import com.mutistic.common.utils.PrintUtil;
+import com.mutistic.design.utils.PrintUtil;
 
 /**
  * @program 具体实现API的实现类

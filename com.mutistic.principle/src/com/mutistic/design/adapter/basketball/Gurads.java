@@ -1,6 +1,6 @@
 package com.mutistic.design.adapter.basketball;
 
-import com.mutistic.common.utils.PrintUtil;
+import com.mutistic.design.utils.PrintUtil;
 
 /**
  * @program 后卫 

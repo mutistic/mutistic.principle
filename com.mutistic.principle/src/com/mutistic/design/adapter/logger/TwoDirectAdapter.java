@@ -2,7 +2,7 @@ package com.mutistic.design.adapter.logger;
 
 import java.util.List;
 
-import com.mutistic.common.utils.PrintUtil;
+import com.mutistic.design.utils.PrintUtil;
 
 /**
  * @program 双向适配器

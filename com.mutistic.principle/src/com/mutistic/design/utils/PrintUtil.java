@@ -1,4 +1,4 @@
-package com.mutistic.common.utils;
+package com.mutistic.design.utils;
 
 /**
  * @program 打印工具类 
