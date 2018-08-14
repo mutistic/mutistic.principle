@@ -1,5 +1,5 @@
 # <a id="a_top">Java设计模式</a> <a href="#a_catalogue">Catalogue</a> <a href="#a_down">Down</a>
-## [设计原则](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.design/notes/principle)
+## [设计原则](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.principle/notes/principle)
 面向对象设计原则: SOLID<br/>
 单一职责原则[SR: Single Responsibility Principle]<br/>
 开闭原则[OCP: Open Closed Principle]<br/>
@@ -8,8 +8,8 @@
 依赖倒置原则[DIP: Dependence Inversion Principle]<br/>
 迪米特法则[LoD: Law of Demeter，最少知识原则: LKP: Least Knowledge Principle]<br/>
 
-## [设计模式](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.design/notes/mode)
-[设计模式关系图](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.design/notes/mode/MO_DesignPatterDiagrams.jpg)<br/>
+## [设计模式](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.principle/notes/mode)
+[设计模式关系图](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.principle/notes/mode/MO_DesignPatterDiagrams.jpg)<br/>
 
 设计模式是在软件开发中，经过验证的，用于解决在特定环境下、重复出现的、特定问题的解决方案<br/>
 --引用[百度百科](https://baike.baidu.com/item/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/1212549): 
@@ -71,7 +71,7 @@ MVC 模式[MVC Pattern]、业务代表模式[Business Delegate Pattern]、
 5. <a href="#a_ISP">接口隔离原则[ISP: Interface Segregation Principle]</a>
 6. <a href="#a_DIP">依赖倒置原则[DIP: Dependence Inversion Principle]</a>
 7. <a href="#a_Lod">迪米特法则[LoD: Law of Demeter，最少知识原则: LKP: Least Knowledge Principle]</a>
-8. <a href="#a_simple">简单工厂模式[Simple Factory Method Pattern]</a>
+8. <a href="#a_simple">简单工厂模式[Simple Factory Pattern]</a>
 9. <a href="#a_facade">外观模式[Facade Pattern]</a>
 10. <a href="#a_adapter">适配器模式[Adapter Pattern]</a>
 11. <a href="#a_signleton">单例模式[Signleton Pattern]</a>
@@ -85,9 +85,9 @@ MVC 模式[MVC Pattern]、业务代表模式[Business Delegate Pattern]、
 99. <a href="#a_down">down</a>
 
 
-## [设计原则](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.design/notes/principle)
+## [设计原则](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.principle/notes/principle)
 ### <a id="a_SOLID">一、面向对象设计原则: SOLID</a> <a href="#a_catalogue">last</a> <a href="#a_SRP">next</a>
-1.1、[思维导图](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.design/notes/principle/P0_SOLID.xmind)<br/>
+1.1、[思维导图](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.principle/notes/principle/P0_SOLID.xmind)<br/>
 
 1.2、面对对象编程[Object Oriented Programming，OOP，面向对象程序设计]: 
 ```
@@ -117,7 +117,7 @@ A: 面向对象设计原则由此而来，其规范了设计一个对象因遵�
 
 ---
 ### <a id="a_SRP">二、单一职责原则[SR: Single Responsibility Principle]</a> <a href="#a_SOLID">last</a> <a href="#a_OCP">next</a>
-[思维导图](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.design/notes/principle/P1_SRP.xmind)<br/>
+[思维导图](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.principle/notes/principle/P1_SRP.xmind)<br/>
 一、定义和本质: 单一职责原则（SRP: Single responsibility principle，单一功能原则]: 
 ```
 规定一个类应该只有一个发生变化的原因。或者说一个类只负责一个功能领域中的相应职责。
@@ -194,7 +194,7 @@ A: 面向对象设计原则由此而来，其规范了设计一个对象因遵�
 
 ---
 ### <a id="a_OCP">三、开闭原则[OCP: Open Closed Principle]</a> <a href="#a_SRP">last</a> <a href="#a_LSP">next</a>
-[思维导图](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.design/notes/principle/P2_OCP.xmind)<br/>
+[思维导图](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.principle/notes/principle/P2_OCP.xmind)<br/>
 一、定义和本质: 开闭原则[OCP: Open Closed Principle]: 
 ```
 对于扩展是开放的（Open for extension），对于修改是关闭的（Closed for modification），意味着模块的行为是可以扩展的。
@@ -283,7 +283,7 @@ EVP要求在做系统设计的时候，对系统所有可能发生变化的部�
 
 ---
 ### <a id="a_LSP">四、里氏替换原则[LSP: Liskov Substitution Principle]</a> <a href="#a_OCP">last</a> <a href="#a_ISP">next</a>
-[思维导图](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.design/notes/principle/P3_LSP.xmind)<br/>
+[思维导图](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.principle/notes/principle/P3_LSP.xmind)<br/>
 一、定义和本质: 里氏替换原则[LSP: Liskov Substitution Principle]: 
 ```
 继承必须确保超类所拥有的性质在子类中仍然成立。或者说任何超类可以出现的地方，子类一定可以出现。
@@ -362,7 +362,7 @@ DbC从形式化方法中借鉴了一套确保对象行为和自身状态的方�
 
 ---
 ### <a id="a_ISP">五、接口隔离原则[ISP: Interface Segregation Principle]</a> <a href="#a_LSP">last</a> <a href="#a_DIP">next</a>
-[思维导图](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.design/notes/principle/P4_ISP.xmind)<br/>
+[思维导图](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.principle/notes/principle/P4_ISP.xmind)<br/>
 
 一、定义和本质: 接口隔离原则[ISP: Interface Segregation Principle]: 
 ```
@@ -443,7 +443,7 @@ DbC从形式化方法中借鉴了一套确保对象行为和自身状态的方�
 
 ---
 ### <a id="a_DIP">六、依赖倒置原则[DIP: Dependence Inversion Principle]</a> <a href="#a_ISP">last</a> <a href="#a_Lod">next</a>
-[思维导图](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.design/notes/principle/P5_DIP.xmind)<br/>
+[思维导图](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.principle/notes/principle/P5_DIP.xmind)<br/>
 
 一、定义和本质: 依赖倒转原则[DIP: Dependence Inversion Principle，依赖倒置原则]: 
 ```
@@ -513,7 +513,7 @@ Setter方法传递依赖对象: 在类中通过Setter方法声明依赖关系，
 
 ---
 ### <a id="a_Lod">七、迪米特法则[LoD: Law of Demeter，最少知识原则: LKP: Least Knowledge Principle]</a> <a href="#a_DIP">last</a> <a href="#a_simple">next</a>
-[思维导图](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.design/notes/principle/P6_LoD.xmind)
+[思维导图](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.principle/notes/principle/P6_LoD.xmind)
 
 一、定义和本质: 
 ```
@@ -581,9 +581,9 @@ Setter方法传递依赖对象: 在类中通过Setter方法声明依赖关系，
 设计模式中: 外观模式[Facade]、调停者模式[Mediator]实际上就是迪米特法则的应用
 ```
 
-## [设计模式](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.design/notes/mode)
-### <a id="a_simple">八、简单工厂模式[Simple Factory Method Pattern]</a> <a href="#a_Lod">last</a> <a href="#a_facade">next</a>
-[结构图、时序图](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.design/notes/mode/M1_FactoryMethodPattern.eap)<br/>
+## [设计模式](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.principle/notes/mode)
+### <a id="a_simple">八、简单工厂模式[Simple Factory Pattern]</a> <a href="#a_Lod">last</a> <a href="#a_facade">next</a>
+[结构图、时序图](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.principle/notes/mode/M1_FactoryMethodPattern.eap)<br/>
 
 一、定义和本质: 
 ```
@@ -727,7 +727,7 @@ public class ImplB extends API {
 
 ---
 ### <a id="a_facade">九、外观模式[Facade Pattern]</a> <a href="#a_simple">last</a> <a href="#a_adapter">next</a>
-[结构图、时序图](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.design/notes/mode/M2_FacadePattern.eap)<br/>
+[结构图、时序图](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.principle/notes/mode/M2_FacadePattern.eap)<br/>
 
 一、定义和本质: 
 ```
@@ -858,7 +858,7 @@ public class ModeC {
 
 ---
 ### <a id="a_adapter">十、适配器模式[Adapter Pattern]</a> <a href="#a_strategy">last</a> <a href="#a_signleton">next</a>
-[结构图、时序图](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.design/notes/mode/M3_AdapterPattern.eap)<br/>
+[结构图、时序图](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.principle/notes/mode/M3_AdapterPattern.eap)<br/>
 
 一、定义和本质: 
 ```
@@ -1030,7 +1030,7 @@ public class Existing {
 
 ---
 ### <a id="a_signleton">十一、单例模式[Signleton Pattern]</a> <a href="#a_adapter">last</a> <a href="#a_factory">next</a>
-[结构图、时序图](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.design/notes/mode/M4_SignletonPattern.eap)<br/>
+[结构图、时序图](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.principle/notes/mode/M4_SignletonPattern.eap)<br/>
 
 一、定义和本质: 
 ```
@@ -1268,7 +1268,7 @@ public enum SignletonByEnum {
 
 ---
 ### <a id="a_factory">十二、工厂模式[Factory Pattern]</a> <a href="#a_signleton">last</a> <a href="#a_abstract">next</a>
-[结构图、时序图](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.design/notes/mode/M4_FactoryPattern.eap)<br/>
+[结构图、时序图](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.principle/notes/mode/M4_FactoryPattern.eap)<br/>
 一、定义: 
 ```
 定义: 定义一个用于创建对象的接口，让子类决定实例化哪一个类，Factory Method使一个类的实例化延迟到子类
@@ -1417,7 +1417,7 @@ public class ConcreteCreator extends Creator {
 
 ---
 ### <a id="a_abstract">十三、抽象工厂模式[Abstract Factory Pattern]</a> <a href="#a_factory">last</a> <a href="#a_builder">next</a>
-[结构图、时序图](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.design/notes/mode/M4_AbstractFactoryPattern.eap)<br/>
+[结构图、时序图](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.principle/notes/mode/M4_AbstractFactoryPattern.eap)<br/>
 一、定义: 
 ```
 定义: 提供一个创建一系列相关或相互依赖对象的接口，而无需指定它们具体的类
@@ -1629,7 +1629,7 @@ public class ConcreteFactory2 implements AbstractFactory {
 
 ---
 ### <a id="a_builder">十四、建造者模式[Builder Pattern]</a> <a href="#a_abstract">last</a> <a href="#">next</a>
-[结构图、时序图](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.design/notes/mode/M4_AbstractFactoryPattern.eap)<br/>
+[结构图、时序图](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.principle/notes/mode/M4_AbstractFactoryPattern.eap)<br/>
 一、定义: 
 ```
 定义: 将一个复杂对象的构建与它的表示分离，是的同样的构建过程可以创建不同的表示
@@ -1809,23 +1809,30 @@ public interface Product { }
 
 ---
 ### <a id="a_strategy">策略模式[Strategy Pattern]</a> <a href="#">last</a> <a href="#">next</a>
-[结构图、时序图](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.design/notes/mode/M2_StrategyPattern.eap)<br/>
+[结构图、时序图](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.principle/notes/mode/M2_StrategyPattern.eap)<br/>
 
 ---
-### <a id="a_xmind">[思维导图](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.design/notes/principle) </a> <a href="#">last</a> <a href="#a_ea">next</a>
-[P0-面向对象设计原则: SOLID](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.design/notes/principle/P0_SOLID.xmind)<br/>
-[P1-单一职责原则[SR: Single Responsibility Principle]](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.design/notes/principle/P1_SRP.xmind)<br/>
-[P2-开闭原则[OCP: Open Closed Principle]](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.design/notes/principle/P2_OCP.xmind)<br/>
-[P3-里氏替换原则[LSP: Liskov Substitution Principle]](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.design/notes/principle/P3_LSP.xmind)<br/>
-[P4-接口隔离原则[ISP: Interface Segregation Principle]](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.design/notes/principle/P4_ISP.xmind)<br/>
-[P6-依赖倒置原则[DIP: Dependence Inversion Principle]](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.design/notes/principle/P5_DIP.xmind)<br/>
-[P7-迪米特法则[LoD: Law of Demeter，最少知识原则: LKP: Least Knowledge Principle]](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.design/notes/principle/P6_LoD.xmind)<br/>
+### <a id="a_xmind">[思维导图](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.principle/notes/principle) </a> <a href="#">last</a> <a href="#a_ea">next</a>
+[P0-面向对象设计原则: SOLID](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.principle/notes/principle/P0_SOLID.xmind)<br/>
+[P1-单一职责原则[SR: Single Responsibility Principle]](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.principle/notes/principle/P1_SRP.xmind)<br/>
+[P2-开闭原则[OCP: Open Closed Principle]](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.principle/notes/principle/P2_OCP.xmind)<br/>
+[P3-里氏替换原则[LSP: Liskov Substitution Principle]](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.principle/notes/principle/P3_LSP.xmind)<br/>
+[P4-接口隔离原则[ISP: Interface Segregation Principle]](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.principle/notes/principle/P4_ISP.xmind)<br/>
+[P6-依赖倒置原则[DIP: Dependence Inversion Principle]](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.principle/notes/principle/P5_DIP.xmind)<br/>
+[P7-迪米特法则[LoD: Law of Demeter，最少知识原则: LKP: Least Knowledge Principle]](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.principle/notes/principle/P6_LoD.xmind)<br/>
 
 ---
-### <a id="a_ea">[EA](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.design/notes/mode) </a> <a href="#a_xmind">last</a> <a href="#a_down">next</a>
-[M0-简单工厂模式[Simple Factory Method Pattern]](https://github.com/mutistic/mutistic.exercise/tree/master/com.mutistic.design/notes/mode/M1_FactoryMethodPattern.eap)<br/>
-[M1-外观模式[Facade Pattern]](https://github.com/mutistic/mutistic.exercise/tree/master/com.mutistic.design/notes/mode/M2_FacadePattern.eap)<br/>
-[M2-适配器模式[Adapter Pattern]](https://github.com/mutistic/mutistic.exercise/tree/master/com.mutistic.design/notes/mode/M3_AdapterPattern.eap)<br/>
+### <a id="a_ea">[EA](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.principle/notes/mode) </a> <a href="#a_xmind">last</a> <a href="#a_down">next</a>
+[M1-简单工厂模式[Simple Factory Pattern]](https://github.com/mutistic/mutistic.principle/blob/master/com.mutistic.principle/notes/mode/M1_FactoryMethodPattern.eap)<br/>
+[M2-外观模式[Facade Pattern]](https://github.com/mutistic/mutistic.principle/blob/master/com.mutistic.principle/notes/mode/M2_FacadePattern.eap)<br/>
+[M3-适配器模式[Adapter Pattern]](https://github.com/mutistic/mutistic.principle/blob/master/com.mutistic.principle/notes/mode/M3_AdapterPattern.eap)<br/>
+[M4-单例模式[Signleton Pattern]](https://github.com/mutistic/mutistic.principle/blob/master/com.mutistic.principle/notes/mode/M4_SignletonPattern.eap)<br/>
+[M5-工厂模式[Factory Pattern]](https://github.com/mutistic/mutistic.principle/blob/master/com.mutistic.principle/notes/mode/M5_FactoryPattern.eap)<br/>
+[M6-抽象工厂模式[Abstract Factory Pattern]](https://github.com/mutistic/mutistic.principle/blob/master/com.mutistic.principle/notes/mode/M6_AbstractFactoryPattern.eap)<br/>
+[M7-建造者模式[Builder Pattern]](https://github.com/mutistic/mutistic.principle/blob/master/com.mutistic.principle/notes/mode/M7_BuilderPattern.eap)<br/>
+
+
+[M11-策略模式[Strategy Pattern]](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.principle/notes/mode/M11_StrategyPattern.eap)<br/>
 
 ---
 <a id="a_down"></a>  
