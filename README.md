@@ -582,7 +582,7 @@ Setter方法传递依赖对象: 在类中通过Setter方法声明依赖关系，
 
 ## [设计模式](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.design/notes/mode)
 ### <a id="a_simple">八、简单工厂模式[Simple Factory Method Pattern]</a> <a href="#a_Lod">last</a> <a href="#a_facade">next</a>
-[结构图、类图、时序图](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.design/notes/mode/M1_FactoryMethodPattern.eap)<br/>
+[结构图、时序图](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.design/notes/mode/M1_FactoryMethodPattern.eap)<br/>
 
 一、定义和本质: 
 ```
@@ -726,7 +726,7 @@ public class ImplB extends API {
 
 ---
 ### <a id="a_facade">九、外观模式[Facade Pattern]</a> <a href="#a_simple">last</a> <a href="#a_adapter">next</a>
-[结构图、类图、时序图](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.design/notes/mode/M2_FacadePattern.eap)<br/>
+[结构图、时序图](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.design/notes/mode/M2_FacadePattern.eap)<br/>
 
 一、定义和本质: 
 ```
@@ -857,7 +857,7 @@ public class ModeC {
 
 ---
 ### <a id="a_adapter">十、适配器模式[Adapter Pattern]</a> <a href="#a_strategy">last</a> <a href="#a_signleton">next</a>
-[结构图、类图、时序图](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.design/notes/mode/M3_AdapterPattern.eap)<br/>
+[结构图、时序图](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.design/notes/mode/M3_AdapterPattern.eap)<br/>
 
 一、定义和本质: 
 ```
@@ -1029,7 +1029,7 @@ public class Existing {
 
 ---
 ### <a id="a_signleton">十一、单例模式[Signleton Pattern]</a> <a href="#a_adapter">last</a> <a href="#a_factory">next</a>
-[结构图、类图、时序图](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.design/notes/mode/M4_SignletonPattern.eap)<br/>
+[结构图、时序图](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.design/notes/mode/M4_SignletonPattern.eap)<br/>
 
 一、定义和本质: 
 ```
@@ -1267,7 +1267,7 @@ public enum SignletonByEnum {
 
 ---
 ### <a id="a_factory">十二、工厂模式[Factory Pattern]</a> <a href="#a_signleton">last</a> <a href="#a_abstract">next</a>
-[结构图、类图、时序图](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.design/notes/mode/M4_FactoryPattern.eap)<br/>
+[结构图、时序图](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.design/notes/mode/M4_FactoryPattern.eap)<br/>
 一、定义: 
 ```
 定义: 定义一个用于创建对象的接口，让子类决定实例化哪一个类，Factory Method使一个类的实例化延迟到子类
@@ -1416,12 +1416,11 @@ public class ConcreteCreator extends Creator {
 
 ---
 ### <a id="a_abstract">十三、抽象工厂模式[Abstract Factory Pattern]</a> <a href="#a_factory">last</a> <a href="#">next</a>
-[结构图、类图、时序图](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.design/notes/mode/M4_AbstractFactoryPattern.eap)<br/>
+[结构图、时序图](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.design/notes/mode/M4_AbstractFactoryPattern.eap)<br/>
 一、定义: 
 ```
 定义: 提供一个创建一系列相关或相互依赖对象的接口，而无需指定它们具体的类
-本质: 
-原则: 
+本质: 选择产品簇的实现
 ```
 
 二、结构和说明: 
@@ -1441,43 +1440,195 @@ Clien: 客户端，主要使用抽象工厂来获取一些列所需要的产品�
 
 三、理解: 
 ```
-主要解决：主要解决接口选择的问题。
-如何解决：在一个产品族里面，定义多个产品。 
+主要解决: 主要解决接口选择的问题。
+如何解决: 在一个产品族里面，定义多个产品。 
 
-1、
+1、抽象工厂模式: 是为了一系列相关对象或相互依赖的对象创建的一个接口。
+	从某种意义上看，抽象工厂其实是一个产品系列，或者产品簇
+
+2、实现成接口: AbstractFactory在Java中通常实现成为接口。当然也可以实现成为抽象类。
+
+3、使用工厂方法: AbstractFactory定义了创建产品所需要的接口，具体的实现是在实现类中。
+	通常在实现类里面就需要选择多种更具体的实现，所以AbstractFactory定义的创建产品的方法可以看成是工厂方法
+	而这些工厂方法的具体实现就延迟到了具体的工厂里面。也就是说使用工厂方法来实现抽象工厂
+
+4、切换产品簇: 抽象工厂定义了一个产品簇，因此切换产品簇的时候提供不同的抽象工厂即可。
 ```
 
 四、写法: 
 ```
+1、定义可扩展的工厂: 抽象工厂里面不是通过定义很多创建产品的方法。而是定义一个方法，
+	通过参数的方式来判断具体创建什么产品对象（简单工厂模式）。由于只有一个方法，
+	返回类型只能定义成所有产品都实现的某个接口或Object，会存在类型转换错误的问题。
+
+2、J2EE中的数据访问对象模式[Data Access Object Pattern]的设计思想是采用了抽象工厂模式
 ```
 
 五、优点: 
 ```
+1、分离接口和实现
+2、是的切换产品簇变得容易
+3、当一个产品簇中的多个对象被设计成一起工作时，它能保证客户端始终只使用同一个产品簇中的对象
 ```
 
 六、缺点: 
 ```
+1、不太容易扩展新的产品: 添加新的产品会导致所有的ConcreteFactory都要重新实现该产品。
+2、容易造成类层次复杂
 ```
 
 七、使用场景: 
 ```
+1、系统独立于它的产品的创建、组合和表示的时候，即：系统只知道产品的接口，而不关心具体实现
+2、系统要由多个产品系统中的一个来配置时，即：可以动态切换产品簇时
+3、强调一些列相关产品的接口，以便联合使用它们时
 
 具体场景：
-生成不同操作系统的程序
+1、生成不同操作系统的程序
+2、J2EE中的数据访问对象模式[Data Access Object Pattern]
 ```
 
 八、注意事项: 
 ```
-产品族难扩展，产品等级易扩展
+产品簇难扩展，产品等级易扩展
 ```
 
 Client.java: 
 ```Java
+package com.mutistic.design.abstractfactory.structure;
+import com.mutistic.design.utils.PrintUtil;
+// Clien: 客户端
+// 主要使用抽象工厂来获取一些列所需要的产品对象，然后面对这些产品对象的接口变成，以实现需要的功能
+public class Client {
+	public static void main(String[] args) {
+		AbstractFactory factory1 = new ConcreteFactory1();
+		factory1.ceraterProductA().operationA();
+		factory1.ceraterProductB().operationB();
+		
+		PrintUtil.println();
+		
+		AbstractFactory factory2 = new ConcreteFactory2();
+		factory2.ceraterProductA().operationA();
+		factory2.ceraterProductB().operationB();
+	}
+}
+```
+AbstractProductA.java: 
+```Java
+package com.mutistic.design.abstractfactory.structure;
+// AbstractProduct: 定义一类产品对象的接口
+public interface AbstractProductA {
+	// Product具体业务接口
+	void operationA();
+}
+```
+ProductA1.java: 
+```Java
+package com.mutistic.design.abstractfactory.structure;
+import com.mutistic.design.utils.PrintUtil;
+// ConcreteProduct: 具体的产品实现对象，
+// 通过在具体工厂里面，会选择具体的产品实现对象来创建符合抽象工厂定义的方法返回的产品的对象。
+public class ProductA1 implements AbstractProductA {
+	/** 
+	 * 具体的产品实现对象的功能
+	 * @see com.mutistic.design.abstractfactory.structure.AbstractProductA#operationA()
+	 */
+	@Override
+	public void operationA() {
+		PrintUtil.printThree("ProductA1", "operationA");
+	}
+}
+```
+ProductA2.java: 
+```Java
+package com.mutistic.design.abstractfactory.structure;
+import com.mutistic.design.utils.PrintUtil;
+public class ProductA2 implements AbstractProductA { 
+	@Override public void operationA() { PrintUtil.printThree("ProductA2", "operationA"); } 
+}
+```
+AbstractProductB.java: 
+```Java
+package com.mutistic.design.abstractfactory.structure;
+public interface AbstractProductB { void operationB(); }
+```
+ProductB1.java: 
+```Java
+package com.mutistic.design.abstractfactory.structure;
+import com.mutistic.design.utils.PrintUtil;
+public class ProductB1 implements AbstractProductB { 
+	@Override public void operationB() { PrintUtil.printThree("ProductB1", "operationB"); } 
+}
+```
+ProductB2.java: 
+```Java
+package com.mutistic.design.abstractfactory.structure;
+import com.mutistic.design.utils.PrintUtil;
+public class ProductB2 implements AbstractProductB { 
+	@Override public void operationB() { PrintUtil.printThree("ProductB2", "operationB"); } 
+}
+```
+AbstractFactory.java: 
+```Java
+package com.mutistic.design.abstractfactory.structure;
+// AbstractFactory: 抽象工厂，定义创建一系列产品对象的操作接口
+public interface AbstractFactory {
+	// 定义创建一系列产品对象的操作接口:AbstractProductA
+	AbstractProductA ceraterProductA();
+	// 定义创建一系列产品对象的操作接口:AbstractProductA
+	AbstractProductB ceraterProductB();
+}
+```
+ConcreteFactory1.java: 
+```Java
+package com.mutistic.design.abstractfactory.structure;
+import com.mutistic.design.utils.PrintUtil;
+// ConcreteFactory: 具体的工厂，实现抽象工厂定义的方法，具体实现一系列产品对象的创建
+public class ConcreteFactory1 implements AbstractFactory {
+
+	/**
+	 * 具体实现一系列产品对象的创建:ProductA1
+	 * @return
+	 * @see com.mutistic.design.abstractfactory.structure.AbstractFactory#ceraterProductA()
+	 */
+	@Override
+	public AbstractProductA ceraterProductA() {
+		PrintUtil.printThree("ConcreteFactoryA", "ceraterProductA");
+		return new ProductA1();
+	}
+	/**
+	 * 具体实现一系列产品对象的创建:ProductB1
+	 * @return
+	 * @see com.mutistic.design.abstractfactory.structure.AbstractFactory#ceraterProductB()
+	 */
+	@Override
+	public AbstractProductB ceraterProductB() {
+		PrintUtil.printThree("ConcreteFactoryA", "ceraterProductB");
+		return new ProductB1();
+	}
+}
+```
+ConcreteFactory2.java: 
+```Java
+package com.mutistic.design.abstractfactory.structure;
+import com.mutistic.design.utils.PrintUtil;
+public class ConcreteFactory2 implements AbstractFactory {
+	@Override
+	public AbstractProductA ceraterProductA() {
+		PrintUtil.printThree("ConcreteFactoryB", "ceraterProductA");
+		return new ProductA2();
+	}
+	@Override
+	public AbstractProductB ceraterProductB() {
+		PrintUtil.printThree("ConcreteFactoryB", "ceraterProductB");
+		return new ProductB2();
+	}
+}
 ```
 
 ---
 ### <a id="a_strategy">策略模式[Strategy Pattern]</a> <a href="#">last</a> <a href="#">next</a>
-[结构图、类图](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.design/notes/mode/M2_StrategyPattern.eap)<br/>
+[结构图、时序图](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.design/notes/mode/M2_StrategyPattern.eap)<br/>
 
 ---
 ### <a id="a_xmind">[思维导图](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.design/notes/principle) </a> <a href="#">last</a> <a href="#a_ea">next</a>
