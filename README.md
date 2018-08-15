@@ -696,7 +696,7 @@ PS、这些缺点在工厂方法模式中得到了一定的克服
 
 Client.java: 
 ```Java
-package com.mutistic.design.simplefactory.structure;
+package com.mutistic.principle.simplefactory.structure;
 // Client客户端 
 public class Client {
 	public static void main(String[] args) {
@@ -707,7 +707,7 @@ public class Client {
 ```
 Factory.java: 
 ```Java
-package com.mutistic.design.simplefactory.structure;
+package com.mutistic.principle.simplefactory.structure;
 // 简单工厂模式核心类，工厂类
 // 负责实现创建所有实例的内部逻辑
 public class Factory {
@@ -730,7 +730,7 @@ public class Factory {
 ```
 API.java: 
 ```Java
-package com.mutistic.design.simplefactory.structure;
+package com.mutistic.principle.simplefactory.structure;
 // API-简单工厂模式所创建的所有对象的父类或接口
 public abstract class API {
 	// 定义所有具体实例所共有的公共接口
@@ -739,7 +739,7 @@ public abstract class API {
 ```
 ImplA.java: 
 ```Java
-package com.mutistic.design.simplefactory.structure;
+package com.mutistic.principle.simplefactory.structure;
 import com.mutistic.common.utils.PrintUtil;
 // 具体实现API的实现类
 // 是简单工厂模式的创建目标
@@ -753,7 +753,7 @@ public class ImplA extends API {
 ```
 ImplB.java: 
 ```Java
-package com.mutistic.design.simplefactory.structure;
+package com.mutistic.principle.simplefactory.structure;
 import com.mutistic.common.utils.PrintUtil;
 // 具体实现API的实现类
 // 是简单工厂模式的创建目标
@@ -870,8 +870,8 @@ Singleton: 负责创建Singleton类自己的唯一实例，并提供一个getIns
 
 Client.java: 
 ```Java
-package com.mutistic.design.signleton.structure;
-import com.mutistic.design.utils.PrintUtil;
+package com.mutistic.principle.signleton.structure;
+import com.mutistic.principle.utils.PrintUtil;
 // Client客户端 
 public class Client {
 	public static void main(String[] args) {
@@ -887,7 +887,7 @@ public class Client {
 ```
 SignletonByHungry.java - 单例模式-饿汉式: 
 ```Java
-package com.mutistic.design.signleton.structure;
+package com.mutistic.principle.signleton.structure;
 //  单例模式: 饿汉式
 public class SignletonByHungry {
 	// 1、声明 Signleton 成员变量- 直接创建好实例完成初始化
@@ -905,7 +905,7 @@ public class SignletonByHungry {
 ```
 Signleton.java - 单例模式: 懒汉式（线程不安全）: 
 ```Java
-package com.mutistic.design.signleton.structure;
+package com.mutistic.principle.signleton.structure;
 // 单例模式: 懒汉式（线程不安全）
 public class Signleton {
 	// 1、声明 Signleton 成员变量
@@ -926,7 +926,7 @@ public class Signleton {
 ```
 SignletonBySynchronized.java - 单例模式-懒汉式（使用synchronized保证线程安全）: 
 ```Java
-package com.mutistic.design.signleton.structure;
+package com.mutistic.principle.signleton.structure;
 // 单例模式: 懒汉式（使用synchronized保证线程安全）
 public class SignletonBySynchronized {
 	// 1、声明 Signleton 成员变量
@@ -948,7 +948,7 @@ public class SignletonBySynchronized {
 ```
 SignletonByVolatile.java - 单例模式-懒汉式（通过双重检查枷锁的方式实现线程安全）: 
 ```Java
-package com.mutistic.design.signleton.structure;
+package com.mutistic.principle.signleton.structure;
 // 单例模式: 懒汉式（通过双重检查枷锁的方式实现线程安全）
 public class SignletonByVolatile {
 	// 1、声明 Signleton 成员变量
@@ -974,7 +974,7 @@ public class SignletonByVolatile {
 ```
 SignletonByLazzClass.java - 单例模式-懒汉式（通过 Lazy initialization holder class模式）: 
 ```Java
-package com.mutistic.design.signleton.structure;
+package com.mutistic.principle.signleton.structure;
 // 单例模式: 懒汉式（通过 Lazy initialization holder class模式）
 public class SignletonByLazzClass {
 	// 1、在私有内部类中SignletonHead 声明 Signleton 静态成员变量，且在调用时，完成初始化
@@ -994,7 +994,7 @@ public class SignletonByLazzClass {
 ```
 SignletonByEnum.java - 单例模式-懒汉式（通过单元素枚举）: 
 ```Java
-package com.mutistic.design.signleton.structure;
+package com.mutistic.principle.signleton.structure;
 // 单例模式: 懒汉式（通过单元素枚举）
 public enum SignletonByEnum {
 	// 1、声明 Signleton 单元素枚举，实现单例模式
@@ -1087,7 +1087,7 @@ PS: 简单工厂模式的最大优点在于工厂类包含了必要的逻辑判�
 
 Client.java: 
 ```Java
-package com.mutistic.design.factory.structure;
+package com.mutistic.principle.factory.structure;
 // Client客户端
 public class Client {
 	public static void main(String[] args) {
@@ -1098,7 +1098,7 @@ public class Client {
 ```
 Product.java: 
 ```Java
-package com.mutistic.design.factory.structure;
+package com.mutistic.principle.factory.structure;
 // Product: 定义工厂方法所创建的对象的接口，也就是实际需要使用的对象的接口
 public interface Product {
 	// Product具体业务接口 
@@ -1107,8 +1107,8 @@ public interface Product {
 ```
 ConcreteProduce.java: 
 ```Java
-package com.mutistic.design.factory.structure;
-import com.mutistic.design.utils.PrintUtil;
+package com.mutistic.principle.factory.structure;
+import com.mutistic.principle.utils.PrintUtil;
 // ConcreteProduce: 具体的Product接口的实现对象
 public class ConcreteProduce implements Product {
 	// Product具体业务实现
@@ -1120,8 +1120,8 @@ public class ConcreteProduce implements Product {
 ```
 Creator.java: 
 ```Java
-package com.mutistic.design.factory.structure;
-import com.mutistic.design.utils.PrintUtil;
+package com.mutistic.principle.factory.structure;
+import com.mutistic.principle.utils.PrintUtil;
 // Creator: 创建器，声明工厂的抽象方法
 public abstract class Creator {
 	// 创建Product的抽象工厂方法
@@ -1136,14 +1136,14 @@ public abstract class Creator {
 ```
 ConcreteCreator.java: 
 ```Java
-package com.mutistic.design.factory.structure;
-import com.mutistic.design.utils.PrintUtil;
+package com.mutistic.principle.factory.structure;
+import com.mutistic.principle.utils.PrintUtil;
 // ConcreteCreator: 具体的创建对象，覆盖实现Creator定义的工厂方法，返回具体的Product实例
 public class ConcreteCreator extends Creator {
 	/**
 	 * 创建Product的工厂方法的具体实现（创建Product的具体实例ConcreteProduce）
 	 * @return
-	 * @see com.mutistic.design.factory.Creator#factoryMethod()
+	 * @see com.mutistic.principle.factory.Creator#factoryMethod()
 	 */
 	@Override
 	public Product factoryMethod() {
@@ -1234,8 +1234,8 @@ Clien: 客户端，主要使用抽象工厂来获取一些列所需要的产品�
 
 Client.java: 
 ```Java
-package com.mutistic.design.abstractfactory.structure;
-import com.mutistic.design.utils.PrintUtil;
+package com.mutistic.principle.abstractfactory.structure;
+import com.mutistic.principle.utils.PrintUtil;
 // Clien: 客户端
 // 主要使用抽象工厂来获取一些列所需要的产品对象，然后面对这些产品对象的接口变成，以实现需要的功能
 public class Client {
@@ -1254,7 +1254,7 @@ public class Client {
 ```
 AbstractProductA.java: 
 ```Java
-package com.mutistic.design.abstractfactory.structure;
+package com.mutistic.principle.abstractfactory.structure;
 // AbstractProduct: 定义一类产品对象的接口
 public interface AbstractProductA {
 	// Product具体业务接口
@@ -1263,14 +1263,14 @@ public interface AbstractProductA {
 ```
 ProductA1.java: 
 ```Java
-package com.mutistic.design.abstractfactory.structure;
-import com.mutistic.design.utils.PrintUtil;
+package com.mutistic.principle.abstractfactory.structure;
+import com.mutistic.principle.utils.PrintUtil;
 // ConcreteProduct: 具体的产品实现对象，
 // 通过在具体工厂里面，会选择具体的产品实现对象来创建符合抽象工厂定义的方法返回的产品的对象。
 public class ProductA1 implements AbstractProductA {
 	/** 
 	 * 具体的产品实现对象的功能
-	 * @see com.mutistic.design.abstractfactory.structure.AbstractProductA#operationA()
+	 * @see com.mutistic.principle.abstractfactory.structure.AbstractProductA#operationA()
 	 */
 	@Override
 	public void operationA() {
@@ -1280,36 +1280,36 @@ public class ProductA1 implements AbstractProductA {
 ```
 ProductA2.java: 
 ```Java
-package com.mutistic.design.abstractfactory.structure;
-import com.mutistic.design.utils.PrintUtil;
+package com.mutistic.principle.abstractfactory.structure;
+import com.mutistic.principle.utils.PrintUtil;
 public class ProductA2 implements AbstractProductA { 
 	@Override public void operationA() { PrintUtil.printThree("ProductA2", "operationA"); } 
 }
 ```
 AbstractProductB.java: 
 ```Java
-package com.mutistic.design.abstractfactory.structure;
+package com.mutistic.principle.abstractfactory.structure;
 public interface AbstractProductB { void operationB(); }
 ```
 ProductB1.java: 
 ```Java
-package com.mutistic.design.abstractfactory.structure;
-import com.mutistic.design.utils.PrintUtil;
+package com.mutistic.principle.abstractfactory.structure;
+import com.mutistic.principle.utils.PrintUtil;
 public class ProductB1 implements AbstractProductB { 
 	@Override public void operationB() { PrintUtil.printThree("ProductB1", "operationB"); } 
 }
 ```
 ProductB2.java: 
 ```Java
-package com.mutistic.design.abstractfactory.structure;
-import com.mutistic.design.utils.PrintUtil;
+package com.mutistic.principle.abstractfactory.structure;
+import com.mutistic.principle.utils.PrintUtil;
 public class ProductB2 implements AbstractProductB { 
 	@Override public void operationB() { PrintUtil.printThree("ProductB2", "operationB"); } 
 }
 ```
 AbstractFactory.java: 
 ```Java
-package com.mutistic.design.abstractfactory.structure;
+package com.mutistic.principle.abstractfactory.structure;
 // AbstractFactory: 抽象工厂，定义创建一系列产品对象的操作接口
 public interface AbstractFactory {
 	// 定义创建一系列产品对象的操作接口:AbstractProductA
@@ -1320,15 +1320,15 @@ public interface AbstractFactory {
 ```
 ConcreteFactory1.java: 
 ```Java
-package com.mutistic.design.abstractfactory.structure;
-import com.mutistic.design.utils.PrintUtil;
+package com.mutistic.principle.abstractfactory.structure;
+import com.mutistic.principle.utils.PrintUtil;
 // ConcreteFactory: 具体的工厂，实现抽象工厂定义的方法，具体实现一系列产品对象的创建
 public class ConcreteFactory1 implements AbstractFactory {
 
 	/**
 	 * 具体实现一系列产品对象的创建:ProductA1
 	 * @return
-	 * @see com.mutistic.design.abstractfactory.structure.AbstractFactory#ceraterProductA()
+	 * @see com.mutistic.principle.abstractfactory.structure.AbstractFactory#ceraterProductA()
 	 */
 	@Override
 	public AbstractProductA ceraterProductA() {
@@ -1338,7 +1338,7 @@ public class ConcreteFactory1 implements AbstractFactory {
 	/**
 	 * 具体实现一系列产品对象的创建:ProductB1
 	 * @return
-	 * @see com.mutistic.design.abstractfactory.structure.AbstractFactory#ceraterProductB()
+	 * @see com.mutistic.principle.abstractfactory.structure.AbstractFactory#ceraterProductB()
 	 */
 	@Override
 	public AbstractProductB ceraterProductB() {
@@ -1349,8 +1349,8 @@ public class ConcreteFactory1 implements AbstractFactory {
 ```
 ConcreteFactory2.java: 
 ```Java
-package com.mutistic.design.abstractfactory.structure;
-import com.mutistic.design.utils.PrintUtil;
+package com.mutistic.principle.abstractfactory.structure;
+import com.mutistic.principle.utils.PrintUtil;
 public class ConcreteFactory2 implements AbstractFactory {
 	@Override
 	public AbstractProductA ceraterProductA() {
@@ -1468,7 +1468,7 @@ Product: 产品，表示被建造者构建的复杂对象，包含多个组件
 
 Builder.java: 
 ```Java
-package com.mutistic.design.builder.strutrue;
+package com.mutistic.principle.builder.strutrue;
 // Client 客户端
 public class Clinet {
 	public static void main(String[] args) {
@@ -1491,7 +1491,7 @@ public class Clinet {
 ```
 Builder.java: 
 ```Java
-package com.mutistic.design.builder.strutrue;
+package com.mutistic.principle.builder.strutrue;
 // Builder
 // 建造者接口，定义创建一个Product对象所需要的各个组件的操作
 public interface Builder {
@@ -1501,7 +1501,7 @@ public interface Builder {
 ```
 ConcreteBuilder.java: 
 ```Java
-package com.mutistic.design.builder.strutrue;
+package com.mutistic.principle.builder.strutrue;
 // ConcreteBuilder
 // 具体的建造者实现，实现各个组件的创建，并负责组装Product对象的各个组件，同时还提供一个让客户端获取组装完成后的产品对象的方法
 public class ConcreteBuilder implements Builder {
@@ -1509,7 +1509,7 @@ public class ConcreteBuilder implements Builder {
 	private Product resultProduct;
 	/**
 	 * 创建一个Product对象所需要的各个组件的操作的具体实现
-	 * @see com.mutistic.design.builder.strutrue.Builder#builderPart()
+	 * @see com.mutistic.principle.builder.strutrue.Builder#builderPart()
 	 */
 	@Override
 	public void builderPart() {
@@ -1521,7 +1521,7 @@ public class ConcreteBuilder implements Builder {
 ```
 Director.java: 
 ```Java
-package com.mutistic.design.builder.strutrue;
+package com.mutistic.principle.builder.strutrue;
 // Director
 // 指导者，也称为导向者，主要用来使用Builder接口，以一个统一的过程来构建所需要的Product对象
 public class Director {
@@ -1540,7 +1540,7 @@ public class Director {
 ```
 Product.java: 
 ```Java
-package com.mutistic.design.builder.strutrue;
+package com.mutistic.principle.builder.strutrue;
 // Product: 产品，表示被建造者构建的复杂对象，包含多个组件
 public interface Product { }
 ```
@@ -1642,8 +1642,8 @@ Client: 使用原型的客户端，首先要获取到原型实例对象，然后
 
 Client.java: 
 ```Java
-package com.mutistic.design.prototype.structrue;
-import com.mutistic.design.utils.PrintUtil;
+package com.mutistic.principle.prototype.structrue;
+import com.mutistic.principle.utils.PrintUtil;
 // Client
 // 使用原型的客户端，首先要获取到原型实例对象，然后通过原型实例克隆自身来创建新的对象实例
 public class Client {
@@ -1677,7 +1677,7 @@ public class Client {
 ```
 Prototype.java: 
 ```Java
-package com.mutistic.design.prototype.structrue;
+package com.mutistic.principle.prototype.structrue;
 // Prototype
 // 声明一个克隆自身的接口，用来约束想要克隆自己的类，要求他们都要实现这里定义的克隆方法
 public interface Prototype {
@@ -1687,7 +1687,7 @@ public interface Prototype {
 ```
 ConcretePrototype.java: 
 ```Java
-package com.mutistic.design.prototype.structrue;
+package com.mutistic.principle.prototype.structrue;
 // ConcretePrototype
 // 实现Prototype接口的类，这些类真正实现克隆自身的功能
 public class ConcretePrototype implements Prototype {
@@ -1774,7 +1774,7 @@ Facade: 定义系统的多个模块对外的高层接口，通常是需要调用
 
 Client.java: 
 ```Java
-package com.mutistic.design.facade.structure;
+package com.mutistic.principle.facade.structure;
 import com.mutistic.common.utils.PrintUtil;
 // Client客户端 
 public class Client {
@@ -1788,7 +1788,7 @@ public class Client {
 ```
 Facade.java: 
 ```Java
-package com.mutistic.design.facade.structure;
+package com.mutistic.principle.facade.structure;
 import com.mutistic.common.utils.PrintUtil;
 // 外观模式-核心类
 public class Facade {
@@ -1804,7 +1804,7 @@ public class Facade {
 ```
 ModeA.java: 
 ```Java
-package com.mutistic.design.facade.structure;
+package com.mutistic.principle.facade.structure;
 import com.mutistic.common.utils.PrintUtil;
 // 具体模块
 public class Modea {
@@ -1816,7 +1816,7 @@ public class Modea {
 ```
 ModeB.java: 
 ```Java
-package com.mutistic.design.facade.structure;
+package com.mutistic.principle.facade.structure;
 import com.mutistic.common.utils.PrintUtil;
 // 具体模块
 public class ModeB {
@@ -1828,7 +1828,7 @@ public class ModeB {
 ```
 ModeC.java: 
 ```Java
-package com.mutistic.design.facade.structure;
+package com.mutistic.principle.facade.structure;
 import com.mutistic.common.utils.PrintUtil;
 // 具体模块
 public class ModeC {
@@ -1935,7 +1935,7 @@ Adapter: 适配器，把Existing适配成Client需要的Target，本身是实现
 
 Client.java: 
 ```Java
-package com.mutistic.design.adapter.structure;
+package com.mutistic.principle.adapter.structure;
 import com.mutistic.common.utils.PrintUtil;
 // Client: 客户端，调用自己需要的领域接口Target 
 public class Client {
@@ -1957,7 +1957,7 @@ public class Client {
 ```
 Adapter.java: 
 ```Java
-package com.mutistic.design.adapter.structure;
+package com.mutistic.principle.adapter.structure;
 import com.mutistic.common.utils.PrintUtil;
 // 适配器: 核心类: (对象适配器) 
 // Adapter: 适配器，把Existing适配成Client需要的Target，本身是实现或基层Target
@@ -1973,7 +1973,7 @@ public class Adapter implements Target {
 
 	/**
 	 * Target特定领域的业务功能，根据Target类型是否重写
-	 * @see com.mutistic.design.adapter.structure.Target#test()
+	 * @see com.mutistic.principle.adapter.structure.Target#test()
 	 */
 	@Override
 	public void test() {
@@ -1990,7 +1990,7 @@ public class Adapter implements Target {
 ```
 Target.java: 
 ```Java
-package com.mutistic.design.adapter.structure;
+package com.mutistic.principle.adapter.structure;
 // Target: 定义客户端需要的跟特定领域相关的接口或类
 public interface Target {
 	// 特定领域的业务功能
@@ -2000,7 +2000,7 @@ public interface Target {
 ```
 Existing.java: 
 ```Java
-package com.mutistic.design.adapter.structure;
+package com.mutistic.principle.adapter.structure;
 import com.mutistic.common.utils.PrintUtil;
 // Existing: 已经存在的接口，但与客户端要求的特定领域接口不一致，需要被适配目标 
 public class Existing {
@@ -2132,14 +2132,14 @@ public class Existing {
 
 ---
 ## <a id="a_ea">[EA](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.principle/notes/mode) </a> <a href="#a_xmind">last</a> <a href="#a_down">next</a>
-创建型模式[Creational Patterns]: <br/>
+<a href="#a_creational">创建型模式[Creational Patterns]: </a><br/>
 [M1-简单工厂模式[Simple Factory Pattern]](https://github.com/mutistic/mutistic.principle/blob/master/com.mutistic.principle/notes/mode/M1_FactoryMethodPattern.eap)<br/>
 [M2-单例模式[Signleton Pattern]](https://github.com/mutistic/mutistic.principle/blob/master/com.mutistic.principle/notes/mode/M2_SignletonPattern.eap)<br/>
 [M3-工厂模式[Factory Pattern]](https://github.com/mutistic/mutistic.principle/blob/master/com.mutistic.principle/notes/mode/M3_FactoryPattern.eap)<br/>
 [M4-抽象工厂模式[Abstract Factory Pattern]](https://github.com/mutistic/mutistic.principle/blob/master/com.mutistic.principle/notes/mode/M4_AbstractFactoryPattern.eap)<br/>
 [M5-建造者模式[Builder Pattern]](https://github.com/mutistic/mutistic.principle/blob/master/com.mutistic.principle/notes/mode/M5_BuilderPattern.eap)<br/>
 [M6-原型模式[Prototype Pattern]](https://github.com/mutistic/mutistic.exercise/tree/master/com.mutistic.principle/notes/mode/M6_PrototypePattern.eap)<br/>
-结构型模式[Structural Patterns]: <br/>
+<a href="#a_structural">结构型模式[Structural Patterns]: </a><br/>
 [M7-外观模式[Facade Pattern]](https://github.com/mutistic/mutistic.principle/blob/master/com.mutistic.principle/notes/mode/M7_FacadePattern.eap)<br/>
 [M8-适配器模式[Adapter Pattern]](https://github.com/mutistic/mutistic.principle/blob/master/com.mutistic.principle/notes/mode/M8_AdapterPattern.eap)<br/>
 [M9-代理模式[Proxy Pattern]](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.principle/notes/mode/M9_ProxyPattern.eap)<br/>
@@ -2148,7 +2148,7 @@ public class Existing {
 [M12-享元模式[Flyweight Pattern]](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.principle/notes/mode/M12_FlyweightPattern.eap)<br/>
 [M13-桥接模式[Bridge Pattern]](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.principle/notes/mode/M13_BridgePattern.eap)<br/>
 [M14-过滤器模式[Filter Pattern]](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.principle/notes/mode/M14_FilterPattern.eap)<br/>
-行为型模式[Behavioral Patterns]: <br/>
+<a href="#a_behavioral">行为型模式[Behavioral Patterns]: </a><br/>
 [M15-中介者模式[Mediator Pattern]](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.principle/notes/mode/M15_MediatorPattern.eap)<br/>
 [M16-观察者模式[Observer Pattern]](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.principle/notes/mode/M16_ObserverPattern.eap)<br/>
 [M17-命令模式[Command Pattern]](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.principle/notes/mode/M17_CommandPattern.eap)<br/>
@@ -2161,7 +2161,7 @@ public class Existing {
 [M24-责任链模式[Chain of Responsibility Pattern]](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.principle/notes/mode/M24_ChainofResponsibilityPattern.eap)<br/>
 [M25-访问者模式[Visitor Pattern]](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.principle/notes/mode/M25_a_visitorPattern.eap)<br/>
 [M26-空对象模式[Null Object Pattern]](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.principle/notes/mode/M26_NullObjectPattern.eap)<br/>
-J2EE 设计模式[J2EE Patterns]: <br/>
+<a href="#a_j2ee">J2EE 设计模式[J2EE Patterns]: </a><br/>
 [M27-MVC 模式[MVC Pattern]](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.principle/notes/mode/M27_MVCPattern.eap)<br/>
 [M28-业务代表模式[Business Delegate Pattern]](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.principle/notes/mode/M28_BusinessDelegatePattern.eap)<br/>
 [M29-组合实体模式[Composite Entity Pattern]](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.principle/notes/mode/M29_CompositeEntityPattern.eap)<br/>
@@ -2175,10 +2175,10 @@ J2EE 设计模式[J2EE Patterns]: <br/>
 <a id="a_down"></a>  
 <a href="#a_top">Top</a> 
 <a href="#a_catalogue">Catalogue</a><br/>
-<a href="#a_design">设计原则</a>
-<a href="#a_creational">创建型模式[Creational Patterns]</a>
-<a href="#a_structural">结构型模式[Structural Patterns]</a>
-<a href="#a_behavioral">行为型模式[Behavioral Patterns]</a>
+<a href="#a_design">设计原则</a><br/>
+<a href="#a_creational">创建型模式[Creational Patterns]</a><br/>
+<a href="#a_structural">结构型模式[Structural Patterns]</a><br/>
+<a href="#a_behavioral">行为型模式[Behavioral Patterns]</a><br/>
 <a href="#a_j2ee">J2EE 设计模式[J2EE Patterns]</a><br/>
-<a href="#a_xmind">[思维导图</a>
+<a href="#a_xmind">思维导图</a>
 <a href="#a_ea">EA</a>
