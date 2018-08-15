@@ -7,14 +7,12 @@ package com.mutistic.utils;
  * @date 2018年8月9日
  */
 public class PrintUtil {
-	public final static String UTF8 = "UTF-8";
-
-	public final static String T_LEFT = "【";
-	public final static String T_RIGTH = "】";
-	public final static String LINE_LONG = "------------------------";
-	public final static String LINE_LONG_LN = "\n" + LINE_LONG;
-	public final static String LINE_SHORT = "----------------";
-	public final static String LINE_SHORT_LN = "\n" + LINE_SHORT;
+	private final static String T_LEFT = "【";
+	private final static String T_RIGTH = "】";
+	private final static String LINE_LONG = "------------------------";
+	private final static String LINE_LONG_LN = "\n" + LINE_LONG;
+	private final static String LINE_SHORT = "----------------";
+	private final static String LINE_SHORT_LN = "\n" + LINE_SHORT;
 
 	public static void println() {
 		System.out.println();
