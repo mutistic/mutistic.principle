@@ -74,7 +74,7 @@ MVC 模式[MVC Pattern]、业务代表模式[Business Delegate Pattern]、
 
 ---
 ### <a id="a_catalogue">目录</a>: 
-1. <a href="#a_design">设计原则</a>
+1. <a href="#a_design">#设计原则#</a>
 2. <a href="#a_SOLID">面向对象设计原则: SOLID</a>
 3. <a href="#a_SRP">单一职责原则[SR: Single Responsibility Principle]</a>
 4. <a href="#a_OCP">开闭原则[OCP: Open Closed Principle]</a>
@@ -82,14 +82,14 @@ MVC 模式[MVC Pattern]、业务代表模式[Business Delegate Pattern]、
 6. <a href="#a_ISP">接口隔离原则[ISP: Interface Segregation Principle]</a>
 7. <a href="#a_DIP">依赖倒置原则[DIP: Dependence Inversion Principle]</a>
 8. <a href="#a_Lod">迪米特法则[LoD: Law of Demeter，最少知识原则: LKP: Least Knowledge Principle]</a>
-9. <a href="#a_creational">创建型模式[Creational Patterns]</a>
+9. <a href="#a_creational">#创建型模式[Creational Patterns]#</a>
 10. <a href="#a_simple">简单工厂模式[Simple Factory Pattern]</a>
 11. <a href="#a_signleton">单例模式[Signleton Pattern]</a>
 12. <a href="#a_factory">工厂模式[Factory Pattern]</a>
 13. <a href="#a_abstract">抽象工厂模式[Abstract Factory Pattern]</a>
 14. <a href="#a_builder">建造者模式[Builder Pattern]</a>
 15. <a href="#a_prototype">原型模式[Prototype Pattern]</a>
-16. <a href="#a_structural">结构型模式[Structural Patterns]</a>
+16. <a href="#a_structural">#结构型模式[Structural Patterns]#</a>
 17. <a href="#a_facade">外观模式[Facade Pattern]</a>
 18. <a href="#a_adapter">适配器模式[Adapter Pattern]</a>
 19. <a href="#a_proxy">代理模式[Proxy Pattern]</a>
@@ -98,7 +98,7 @@ MVC 模式[MVC Pattern]、业务代表模式[Business Delegate Pattern]、
 22. <a href="#a_flyweight">享元模式[Flyweight Pattern]</a>
 23. <a href="#a_bridge">桥接模式[Bridge Pattern]</a>
 24. <a href="#a_filter">过滤器模式[Filter Pattern]</a>
-25. <a href="#a_behavioral">行为型模式[Behavioral Patterns]</a>
+25. <a href="#a_behavioral">#行为型模式[Behavioral Patterns]#</a>
 26. <a href="#a_mediator">中介者模式[Mediator Pattern]</a>
 27. <a href="#a_observer">观察者模式[Observer Pattern]</a>
 28. <a href="#a_command">命令模式[Command Pattern]</a>
@@ -111,10 +111,10 @@ MVC 模式[MVC Pattern]、业务代表模式[Business Delegate Pattern]、
 35. <a href="#a_responsibility">责任链模式[Chain of Responsibility Pattern]</a>
 36. <a href="#a_visitor">访问者模式[Visitor Pattern]</a>
 37.	<a href="#a_object">对象模式[Null Object Pattern]</a>
-38. <a href="#a_j2ee">J2EE设计模式</a>
+38. <a href="#a_j2ee">#J2EE设计模式#</a>
 39. <a href="#a_mvc">MVC 模式[MVC Pattern]</a>
 40. <a href="#a_business">业务代表模式[Business Delegate Pattern]</a>
-41. <a href="#a_composite">组合实体模式[Composite Entity Pattern]</a>
+41. <a href="#a_entity">组合实体模式[Composite Entity Pattern]</a>
 42. <a href="#a_data">数据访问对象模式[Data Access Object Pattern]</a>
 43. <a href="#a_front">前端控制器模式[Front Controller Pattern]</a>
 44. <a href="#a_intercepting">拦截过滤器模式[Intercepting Filter Pattern]</a>
@@ -2054,7 +2054,7 @@ public class Existing {
 [结构图、时序图](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.principle/notes/mode/M18_IteratorPattern.eap)<br/>
 
 ---
-### <a id="a_template">二十六、模板模式[Template Pattern]</a> <a href="a_iterator">last</a> <a href="#a_strategy">next</a>
+### <a id="a_template">二十六、模板模式[Template Pattern]</a> <a href="#a_iterator">next</a> <a href="#a_strategy">next</a>
 [结构图、时序图](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.principle/notes/mode/M19_TemplatePattern.eap)<br/>
 
 ---
@@ -2074,7 +2074,7 @@ public class Existing {
 [结构图、时序图](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.principle/notes/mode/M23_InterpreterPattern.eap)<br/>
 
 ---
-### <a id="a_responsibility">三十一、责任链模式[Chain of Responsibility Pattern]</a> <a href="#a_interpreter">last</a> <a href="#a_visitor>next</a>
+### <a id="a_responsibility">三十一、责任链模式[Chain of Responsibility Pattern]</a> <a href="#a_interpreter">last</a> <a href="#a_visitor">next</a>
 [结构图、时序图](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.principle/notes/mode/M24_ChainofResponsibilityPattern.eap)<br/>
 
 ---
@@ -2092,15 +2092,15 @@ public class Existing {
 [结构图、时序图](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.principle/notes/mode/M27_MVCPattern.eap)<br/>
 
 ---
-### <a id="a_business">三十五、业务代表模式[Business Delegate Pattern]</a> <a href="#a_mvc">last</a> <a href="#a_composite">next</a>
+### <a id="a_business">三十五、业务代表模式[Business Delegate Pattern]</a> <a href="#a_mvc">last</a> <a href="#a_entity">next</a>
 [结构图、时序图](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.principle/notes/mode/M28_BusinessDelegatePattern.eap)<br/>
 
 ---
-### <a id="a_composite">三十六、组合实体模式[Composite Entity Pattern]</a> <a href="#a_business">last</a> <a href="#a_data">next</a>
+### <a id="a_entity">三十六、组合实体模式[Composite Entity Pattern]</a> <a href="#a_business">last</a> <a href="#a_data">next</a>
 [结构图、时序图](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.principle/notes/mode/M29_CompositeEntityPattern.eap)<br/>
 
 ---
-### <a id="a_data">三十七、数据访问对象模式[Data Access Object Pattern]</a> <a href="#a_composite">last</a> <a href="#a_front">next</a>
+### <a id="a_data">三十七、数据访问对象模式[Data Access Object Pattern]</a> <a href="#a_entity">last</a> <a href="#a_front">next</a>
 [结构图、时序图](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.principle/notes/mode/M30_DataAccessObjectPattern.eap)<br/>
 
 ---
@@ -2120,9 +2120,8 @@ public class Existing {
 [结构图、时序图](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.principle/notes/mode/M34_TransferObjectPattern.eap)<br/>
 
 
-
 ---
-### <a id="a_xmind">[思维导图](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.principle/notes/principle) </a> <a href="#">last</a> <a href="#a_ea">next</a>
+### <a id="a_xmind">[思维导图](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.principle/notes/principle) </a> <a href="#a_transfer">last</a> <a href="#a_ea">next</a>
 [P0-面向对象设计原则: SOLID](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.principle/notes/principle/P0_SOLID.xmind)<br/>
 [P1-单一职责原则[SR: Single Responsibility Principle]](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.principle/notes/principle/P1_SRP.xmind)<br/>
 [P2-开闭原则[OCP: Open Closed Principle]](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.principle/notes/principle/P2_OCP.xmind)<br/>
