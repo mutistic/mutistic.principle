@@ -2121,7 +2121,7 @@ public class Existing {
 
 
 ---
-### <a id="a_xmind">[思维导图](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.principle/notes/principle) </a> <a href="#a_transfer">last</a> <a href="#a_ea">next</a>
+## <a id="a_xmind">[思维导图](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.principle/notes/principle) </a> <a href="#a_j2ee">last</a> <a href="#a_ea">next</a>
 [P0-面向对象设计原则: SOLID](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.principle/notes/principle/P0_SOLID.xmind)<br/>
 [P1-单一职责原则[SR: Single Responsibility Principle]](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.principle/notes/principle/P1_SRP.xmind)<br/>
 [P2-开闭原则[OCP: Open Closed Principle]](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.principle/notes/principle/P2_OCP.xmind)<br/>
@@ -2131,7 +2131,7 @@ public class Existing {
 [P7-迪米特法则[LoD: Law of Demeter，最少知识原则: LKP: Least Knowledge Principle]](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.principle/notes/principle/P6_LoD.xmind)<br/>
 
 ---
-### <a id="a_ea">[EA](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.principle/notes/mode) </a> <a href="#a_xmind">last</a> <a href="#a_down">next</a>
+## <a id="a_ea">[EA](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.principle/notes/mode) </a> <a href="#a_xmind">last</a> <a href="#a_down">next</a>
 创建型模式[Creational Patterns]: <br/>
 [M1-简单工厂模式[Simple Factory Pattern]](https://github.com/mutistic/mutistic.principle/blob/master/com.mutistic.principle/notes/mode/M1_FactoryMethodPattern.eap)<br/>
 [M2-单例模式[Signleton Pattern]](https://github.com/mutistic/mutistic.principle/blob/master/com.mutistic.principle/notes/mode/M2_SignletonPattern.eap)<br/>
@@ -2171,9 +2171,14 @@ J2EE 设计模式[J2EE Patterns]: <br/>
 [M33-服务定位器模式[Service Locator Pattern]](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.principle/notes/mode/M33_ServiceLocatorPattern.eap)<br/>
 [M34-传输对象模式[Transfer Object Pattern]](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.principle/notes/mode/M34_TransferObjectPattern.eap)<br/>
 
-
-
 ---
 <a id="a_down"></a>  
 <a href="#a_top">Top</a> 
-<a href="#a_catalogue">Catalogue</a>
+<a href="#a_catalogue">Catalogue</a><br/>
+<a href="#a_design">设计原则</a>
+<a href="#a_creational">创建型模式[Creational Patterns]</a>
+<a href="#a_structural">结构型模式[Structural Patterns]</a>
+<a href="#a_behavioral">行为型模式[Behavioral Patterns]</a>
+<a href="#a_j2ee">J2EE 设计模式[J2EE Patterns]</a><br/>
+<a href="#a_xmind">[思维导图</a>
+<a href="#a_ea">EA</a>
