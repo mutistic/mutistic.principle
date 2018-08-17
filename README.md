@@ -158,7 +158,7 @@ A: 面向对象设计原则由此而来，其规范了设计一个对象因遵�
 ---
 ### <a id="a_SRP">二、单一职责原则[SRP: Single Responsibility Principle]</a> <a href="#a_SOLID">last</a> <a href="#a_OCP">next</a>
 [思维导图](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.principle/notes/principle/P1_SRP.xmind)<br/>
-一、定义和本质: 单一职责原则（SRP: Single responsibility principle，单一功能原则]: 
+一、定义: 单一职责原则（SRP: Single responsibility principle，单一功能原则]: 
 ```
 规定一个类应该只有一个发生变化的原因。或者说一个类只负责一个功能领域中的相应职责。
 ```
@@ -235,7 +235,7 @@ A: 面向对象设计原则由此而来，其规范了设计一个对象因遵�
 ---
 ### <a id="a_OCP">三、开闭原则[OCP: Open Closed Principle]</a> <a href="#a_SRP">last</a> <a href="#a_LSP">next</a>
 [思维导图](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.principle/notes/principle/P2_OCP.xmind)<br/>
-一、定义和本质: 开闭原则[OCP: Open Closed Principle]: 
+一、定义: 开闭原则[OCP: Open Closed Principle]: 
 ```
 对于扩展是开放的（Open for extension），对于修改是关闭的（Closed for modification），意味着模块的行为是可以扩展的。
 ```
@@ -324,7 +324,7 @@ EVP要求在做系统设计的时候，对系统所有可能发生变化的部�
 ---
 ### <a id="a_LSP">四、里氏替换原则[LSP: Liskov Substitution Principle]</a> <a href="#a_OCP">last</a> <a href="#a_ISP">next</a>
 [思维导图](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.principle/notes/principle/P3_LSP.xmind)<br/>
-一、定义和本质: 里氏替换原则[LSP: Liskov Substitution Principle]: 
+一、定义: 里氏替换原则[LSP: Liskov Substitution Principle]: 
 ```
 继承必须确保超类所拥有的性质在子类中仍然成立。或者说任何超类可以出现的地方，子类一定可以出现。
 ```
@@ -404,7 +404,7 @@ DbC从形式化方法中借鉴了一套确保对象行为和自身状态的方�
 ### <a id="a_ISP">五、接口隔离原则[ISP: Interface Segregation Principle]</a> <a href="#a_LSP">last</a> <a href="#a_DIP">next</a>
 [思维导图](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.principle/notes/principle/P4_ISP.xmind)<br/>
 
-一、定义和本质: 接口隔离原则[ISP: Interface Segregation Principle]: 
+一、定义: 接口隔离原则[ISP: Interface Segregation Principle]: 
 ```
 客户端不应该依赖它不需要的接口；一个类对另一个类的依赖应该建立在最小的接口上。或者说使用多个专门的接口，而不使用单一的总接口
 ```
@@ -485,7 +485,7 @@ DbC从形式化方法中借鉴了一套确保对象行为和自身状态的方�
 ### <a id="a_DIP">六、依赖倒置原则[DIP: Dependence Inversion Principle]</a> <a href="#a_ISP">last</a> <a href="#a_Lod">next</a>
 [思维导图](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.principle/notes/principle/P5_DIP.xmind)<br/>
 
-一、定义和本质: 依赖倒转原则[DIP: Dependence Inversion Principle，依赖倒置原则]: 
+一、定义: 依赖倒转原则[DIP: Dependence Inversion Principle，依赖倒置原则]: 
 ```
 抽象不应该依赖于细节，细节应该依赖于抽象
 ```
@@ -555,7 +555,7 @@ Setter方法传递依赖对象: 在类中通过Setter方法声明依赖关系，
 ### <a id="a_Lod">七、迪米特法则[LoD: Law of Demeter，最少知识原则: LKP: Least Knowledge Principle]</a> <a href="#a_DIP">last</a> <a href="#a_simple">next</a>
 [思维导图](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.principle/notes/principle/P6_LoD.xmind)
 
-一、定义和本质: 
+一、定义: 
 ```
 就是说一个对象应当对其他对象有尽可能少的了解,不和陌生人说话	
 对于面向OOD来说，又被解释为下面几种方式:  
@@ -2059,6 +2059,285 @@ public class Existing {
 ### <a id="a_mediator">二十二、中介者模式[Mediator Pattern]</a> <a href="#a_filter">last</a> <a href="#a_observer">next</a>
 [结构图](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.principle/notes/mode/structure/M15_MediatorPattern.png)<br/>
 [时序图](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.principle/notes/mode/sequence/M15_MediatorPattern.png)<br/>
+一、定义和本质: 
+```
+定义: 用一个中介对象来封装一系列的对象交付。终结者是的各对象不需要显式地相互引用，
+	从而而使其耦合松散，而且可以独立的改变他们之间的交互
+本质: 封装交互
+原则：符合迪米特原则
+```
+
+二、结构和说明: 
+```
+Mediator: 
+	中介者接口。在内部定义各个同事之间交付需要的方法，可以是公共的通讯方法，比如changed方法。也可以是小范围的交互方法。
+
+ConcreteMediator: 
+	具体中介者实现对象。需要了解并维护各个同事对象，并负责具体的协调各同事对象的交互关系
+
+Colleague: 
+	同事类的定义，通常实现为抽象类，主要负责约束同事对象的类型，并实现一些具体同事内类之间的公共功能，
+	比如: 每个具体同事类都应该知道中介者对象，也及时具体同事类都会持有中介者对象，就可以定义到这个类中
+
+ConcreteColleague: 
+	具体的同事类，实现自己的业务，在需要与其他同事通讯的时候，就与自由的中介者通信，中介者会负责与其他的同事交互。
+```
+
+三、理解: 
+```
+主要解决：对象与对象之间存在大量的关联关系，这样势必会导致系统的结构变得很复杂，同时若一个对象发生改变，我们也需要跟踪与之相关联的对象，同时做出相应的处理。
+如何解决：将多个类相互耦合新城的网状结构分离为星型结构(局域网就是星型结构)。
+
+1、中介者的功能: 就是封装对象之间的交互。如果一个对象的操作会引起其它相关对象的变化，或者是某个操作需要引起其它对象的后续或连带操作，
+而这个对象又不希望自己来处理这些关系，那么就可以委托给中介者，需要的时候通知中介者，由中介者完成与其他对象的交互。
+	反之亦然，所有的对象都是和中介者对象进行通信，相互之间不再交互。这样能够集中的控制这些对象的交互关系，
+这样有什么变化的时候，修改起来就很方便。
+
+2、Mediator中介者接口: Mediator接口的使用取决于时候回提供多个不同的中介者实现。如果明确只有一个ConcreteMediator中介者实现的话，
+	并且预计中也没有需要扩展的要求，那么就可以不定义Mediator，让同事对象直接使用中介者对象。
+	反之就需要定义Mediator，各个同事对象来面向中介者接口编程，而无需关心具体的中介者实现。
+
+3、Colleague关系：在中介者模式中，要求这些内都要继承相同的类，也就是说，这些对象从某个角度讲是同一个类型，算是兄弟对象。
+	正式因为这些对象之间的交互关系复杂，才产生了把这些交互关系分离出去，单独做成中介者对象。这些对象在中介者对象中就被称之为同事对象
+
+4、Mediator和Colleague的关系：中介者对象和同事对象之间是相互依赖的。
+
+5、如果实现同事和中介者的通信：
+	实现方式一：在Mediator接口中定义一个特殊的通知接口，作为一个通用的方法，各个同事类调用这个方法。
+	实现方式二：不拘泥于中介者模式，可以采用观察者模式，把Mediator实现为观察者Observer，把Colleague实现成为Subject。
+这样同事类发生了改变，会通知Mediator。Mediator在接到通知后，会与相应的同事对象进行交互。观察者模式称Mediator为。
+```
+
+四、写法: 
+```
+1、标准的中介者模式在实际使用中的困难：
+1.1、是否有必要为同事对象定义一个公共的父类？
+	大家都知道，Java是单继承的，为了使用中介者模式，就让这些同事对象继承一个父类，这是很不好的：
+再说了，这个父类目前也没有什么特别的公共功能，也就是说继承它也得不到多少好处。
+	在实际开发中，很多相互交互的对象本身是没有公共父类的，强行加上一个父类，会让这些对象实现起来特别别扭。
+	
+1.2、同事类有必要持有中介者对象吗？
+	同事类需要知道中介者对象，以便当它们发生改变的时候，能够通知中介者对象，但是否需要作为属性，并通过构造方法传入，这么强的依赖关系呢？
+	也可以有简单的方式去通知中介对象，比如把中介对象做成单例，直接在同事类的方法里面去调用中介者对象。
+
+1.3、是否需要中介者接口？
+	在实际开发中，很常见的情况是不需要中介者接口的，而且中介者对象也不需要创建很多个实例，
+因为中介者是用来封装和处理同事对象的关系的，它一般是没有状态需要护的，因此中介者涌常可以实现成单例。
+1.4、中介者对象是否需要持有所有的同事？
+	虽说中介者对象需要知道所有的同事类，这样中介者才能与它们交互。但是是否需要做为属性这么强烈的依赖关系，
+而且中介者对象在不同的关系维护上，可能会需要不同的同事对象的实例，因此可以在中介者处理的方法里面去创建、
+或者获取、或者从参数传入需要的同事对象。
+
+1.5、中介者对象只是提供一个公共的方法，来接受同事对象的通知吗？
+	在公共方法里，还是要去区分到底是谁调过来，这还是简单的，还没有去区分到底是什么样的业务触发调用过来的，
+因为不同的业务，引起的与其它对象的交互是不一样的。
+	因此在实际开发中，通常会提供具体的业务通知方法，这样就不用再去判断到底是什么对象，具体是什么业务了。
+
+
+2、对标准的中介者模式在实际使用中的改进：广义中介者
+基于上面的考虑，在实际应用开发中，经常会简化中介者模式，来使开发变得简单，比如有如下的简化：
+2.1、通常会去掉同事对象的父类，这样可以让任意的对象，只要需要相互交互，就可以成为同事
+2.2、通常不定义Mediator接口，把具体的中介者对象实现成为单例；
+2.3、同事对象不再持有中介者，而是在需要的时候直接获取中介者对象并调用。中介者也不再持有同事对象，
+而是在具体处方法里面去创建、或者获取、或者从参数传入需要的同事对象
+
+把这样经过简化、变形使用的情况称为广义中介者。
+```
+
+五、优点: 
+```
+1、松散耦合，各个类之间的解耦
+2、集中控制交互
+3、降低了类的复杂度，多对多变成一对多，网状结构分离为星型结构
+```
+
+六、缺点: 
+```
+1、过度集中化
+2、中介者会庞大，变得复杂难以维护
+```
+
+七、使用场景: 
+```
+1、如果一组对象之间的通信方式比较复杂，导致相互依赖、结构混乱，可以采用中介者模式，把这些对象相互的交互管理起来，
+各个对象都只要需要和中介者交互，从而使得各个对象松散耦合，结构也更清晰易懂。
+2、如果一个对象引用很多对象，并直接跟这些对象交互，导致难以复用该对象，可以采用中介者模式，
+把这个对象跟其他对象的交互封装到中介者对象里面，这个对象就只要中介者对象交互就可以了
+
+具体场景：
+1、WTO之前是各个国家相互贸易，结构复杂，现在是各个国家通过WTO来互相贸易。 
+2、机场调度系统。 
+3、MVC 框架，其中Controller（控制器）就是 Mode（模型）和 View（视图）的中介者
+```
+
+八、注意事项: 
+```
+1、不应当在职责混乱的时候使用
+2、注意使用中介者模式不要产生循环调用，这样会造成死循环
+```
+
+Client.java: 
+```Java
+package com.mutistic.behavioral.mediator.structure;
+import com.mutistic.utils.PrintUtil;
+// 客户端-演示中介者模式 
+public class Client {
+	public static void main(String[] args) {
+		PrintUtil.printOne("中介者模式：");
+		
+		ConcreteMediator mediator = new ConcreteMediator();
+		PrintUtil.printThree("创建中介者实例：", mediator);
+		
+		ConcreteColleagueA ca = new ConcreteColleagueA(mediator);
+		PrintUtil.printTwo("创建同事A实例：", ca);
+		mediator.setColleagueA(ca);
+		
+		ConcreteColleagueB cb = new ConcreteColleagueB(mediator);
+		PrintUtil.printTwo("创建同事B实例：", cb);
+		mediator.setColleagueB(cb);
+		
+		ca.operation();
+		cb.operationB();
+	}
+}
+```
+Mediator.java: 
+```Java
+package com.mutistic.behavioral.mediator.structure;
+// Mediator
+// 中介者接口。在内部定义各个同事之间交付需要的方法，可以是公共的通讯方法，比如changed方法。也可以是小范围的交互方法。
+public interface Mediator {
+	/**
+	 * 同事对象在自身改变的时候通知中介者的方法，负责与其他同事之间的交互
+	 * @param colleague 同事对象实例
+	 */
+	void changed(Colleague colleague);
+}
+```
+ConcreteMediator.java: 
+```Java
+package com.mutistic.behavioral.mediator.structure;
+import com.mutistic.utils.PrintUtil;
+// ConcreteMediator
+// 具体中介者实现对象。需要了解并维护各个同事对象，并负责具体的协调各同事对象的交互关系
+public class ConcreteMediator implements Mediator {
+	// 持有并维护同事A
+	private ConcreteColleagueA colleagueA;
+	// 持有并维护同事B
+	private ConcreteColleagueB colleagueB;
+	/**
+	 * 同事对象在自身改变的时候通知中介者的方法，负责与其他同事之间的交互
+	 * @param colleague  同事对象实例
+	 */
+	@Override
+	public void changed(Colleague colleague) {
+		PrintUtil.printOne("注意使用中介者模式不要产生循环调用，这样会造成死循环");
+		
+		if (null == colleague) {
+			PrintUtil.printOne("传入的同事为空，changed结束");
+		}
+
+		PrintUtil.printThree("某个同事类发生了变化，通常需要与其他同事交互", colleague);
+		// colleagueA 转调  colleagueB.operation()业务
+		if (colleague.getClass() == colleagueA.getClass()) {
+			if (null != colleagueB) {
+				PrintUtil.printThree("具体协调相应的同事对象来实现协作", colleagueB);
+				this.colleagueB.operation();
+			}
+		} 
+		// colleagueB 转调  colleagueA.operationA()业务
+		else if (colleague.getClass() == colleagueB.getClass()) {
+			if (null != colleagueA) {
+				PrintUtil.printThree("具体协调相应的同事对象来实现协作", colleagueA);
+				this.colleagueA.operationA();
+			}
+		}
+	}
+	/**
+	 * 设置中介者需要了解并维护的同事A实例
+	 * @param colleagueA  同事A对象实例
+	 */
+	public void setColleagueA(ConcreteColleagueA colleagueA) {
+		this.colleagueA = colleagueA;
+		PrintUtil.printThree("设置中介者需要了解并维护的同事A实例 ", colleagueA);
+	}
+	/**
+	 * 设置中介者需要了解并维护的同事B实例
+	 * @param colleagueB 同事B对象实例
+	 */
+	public void setColleagueB(ConcreteColleagueB colleagueB) {
+		this.colleagueB = colleagueB;
+		PrintUtil.printThree("设置中介者需要了解并维护的同事B实例 ", colleagueB);
+	}
+}
+```
+Colleague.java: 
+```Java
+package com.mutistic.behavioral.mediator.structure;
+// Colleague
+// 同事类的定义，通常实现为抽象类，主要负责约束同事对象的类型，并实现一些具体同事内类之间的公共功能，
+// 比如: 每个具体同事类都应该知道中介者对象，也及时具体同事类都会持有中介者对象，就可以定义到这个类中
+public abstract class Colleague {
+	// 持有中介者对象，每一个同事类都应该知道它的中介者对象
+	private Mediator mediator;
+
+	/**
+	 * 构造函数：传入中介者对象（也可以使用set方法）
+	 * @param mediator 中介者对象实例
+	 */
+	public Colleague(Mediator mediator) {
+		super();
+		this.mediator = mediator;
+	}
+
+	// get方法获得中介者对象 
+	public Mediator getMediator() { return mediator; }
+}
+```
+ConcreteColleagueA.java: 
+```Java
+package com.mutistic.behavioral.mediator.structure;
+import com.mutistic.utils.PrintUtil;
+// ConcreteColleague
+// 具体的同事类，实现自己的业务，在需要与其他同事通讯的时候，就与自由的中介者通信，中介者会负责与其他的同事交互
+public class ConcreteColleagueA extends Colleague {
+	/**
+	 * 构造函数：传入中介者对象（也可以使用set方法）
+	 * @param mediator 中介者对象实例
+	 */
+	public ConcreteColleagueA(Mediator mediator) {
+		super(mediator);
+	}
+	// 业务逻辑
+	public void operation() {
+		PrintUtil.printTwo("执行ConcreteColleagueA.operation()", "业务逻辑");
+		this.getMediator().changed(this);
+	}
+	// 业务逻辑
+	public void operationA() {
+		PrintUtil.printTwo("执行ConcreteColleagueA.operationA()", "业务逻辑");
+	}
+}
+```
+ConcreteColleagueB.java: 
+```Java
+package com.mutistic.behavioral.mediator.structure;
+import com.mutistic.utils.PrintUtil;
+// ConcreteColleague 
+// 具体的同事类，实现自己的业务，在需要与其他同事通讯的时候，就与自由的中介者通信，中介者会负责与其他的同事交互
+public class ConcreteColleagueB extends Colleague {
+	public ConcreteColleagueB(Mediator mediator) {
+		super(mediator);
+	}
+	public void operation() {
+		PrintUtil.printTwo("执行ConcreteColleagueB.operation()", "其他业务逻辑");
+	}
+	public void operationB() {
+		PrintUtil.printTwo("执行ConcreteColleagueB.operationB()", "其他业务逻辑");
+		this.getMediator().changed(this);
+	}
+}
+```
 
 ---
 ### <a id="a_observer">二十三、观察者模式[Observer Pattern]</a> <a href="#a_mediator">last</a> <a href="#a_command">next</a>
