@@ -7,7 +7,7 @@ import java.util.Map;
 import com.mutistic.utils.PrintUtil;
 
 /**
- * @program 广义中介者
+ * @program ConcreteMediator:广义中介者
  * @description 
  * @author mutisitic
  * @date 2018年8月17日

@@ -2,6 +2,12 @@ package com.mutistic.behavioral.mediator.manager;
 
 import com.mutistic.utils.PrintUtil;
 
+/**
+ * @program ConcreteColleague
+ * @description 具体的同事类
+ * @author mutisitic
+ * @date 2018年8月17日
+ */
 public class Dept {
 	private String deptId;
 	private String deptName;
