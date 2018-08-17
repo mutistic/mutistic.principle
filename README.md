@@ -2027,7 +2027,55 @@ public class Existing {
 ### <a id="a_proxy">十六、代理模式[Proxy Pattern]</a> <a href="#a_adapter">last</a> <a href="#a_composite">next</a>
 [结构图](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.principle/notes/mode/structure/M9_ProxyPattern.png)<br/>
 [时序图](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.principle/notes/mode/sequence/M9_ProxyPattern.png)<br/>
+一、定义和本质: 
+```
+定义: 为其他对象提供一种代理以控制对这个对象的访问
+本质: 
+```
 
+二、结构和说明: 
+```
+Proxy：代理对象，通常有一下功能：
+1、实现与具体的目标对象一样的接口，可以使用代理来替代具体的目标对象
+2、保存一个指向具体目标对象的引用，可以在需要的时候调用具体的目标对象
+3、可以控制对具体目标对象的访问，并可能负责创建和删除它
+
+Subject：目标接口，定义代理额具体目标对象的接口，可在任何使用具体目标对象的地方使用代理对象
+
+RealSubject：具体的目标对象，真正实现目标接口要求的功能
+```
+
+三、理解: 
+```
+
+1、
+```
+
+四、写法: 
+```
+```
+
+五、优点: 
+```
+```
+
+六、缺点: 
+```
+```
+
+七、使用场景: 
+```
+
+具体场景：
+```
+
+八、注意事项: 
+```
+```
+
+Client.java: 
+```Java
+```
 
 ---
 ### <a id="a_composite">十七、组合模式[Composite Pattern]</a> <a href="#a_proxy">last</a> <a href="#a_decorator">next</a>
