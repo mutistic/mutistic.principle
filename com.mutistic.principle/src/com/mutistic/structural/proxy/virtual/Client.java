@@ -10,7 +10,7 @@ import com.mutistic.utils.PrintUtil;
  */
 public class Client {
 	public static void main(String[] args) {
-		PrintUtil.printOne("Java动态代理的使用：");
+		PrintUtil.printOne("虚拟代理的使用：");
 		Order order = new Order("AAA", 100d, "bbbb");
 		PrintUtil.printThree("创建Order具体实例信息", order.toString());
 		
