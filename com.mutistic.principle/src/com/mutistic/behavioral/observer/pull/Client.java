@@ -2,6 +2,12 @@ package com.mutistic.behavioral.observer.pull;
 
 import com.mutistic.utils.PrintUtil;
 
+/**
+ * @program Client 客户端 
+ * @description 
+ * @author mutisitic
+ * @date 2018年8月21日
+ */
 public class Client {
 	public static void main(String[] args) {
 		PrintUtil.one("观察者模式[Observer Pattern]-拉模型");
@@ -21,7 +27,7 @@ public class Client {
 		paper.attach(r2);
 		paper.attach(r3);
 		
-		// 新报纸，通知观察者-推模型
+		// 新报纸，通知观察者-拉模型
 		paper.setContent("1111111111111111111111");
 	}
 }

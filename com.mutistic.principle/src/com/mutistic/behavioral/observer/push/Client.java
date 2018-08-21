@@ -2,6 +2,12 @@ package com.mutistic.behavioral.observer.push;
 
 import com.mutistic.utils.PrintUtil;
 
+/**
+ * @program Client 客户端 
+ * @description 
+ * @author mutisitic
+ * @date 2018年8月21日
+ */
 public class Client {
 	public static void main(String[] args) {
 		PrintUtil.one("观察者模式[Observer Pattern]-推模型");
