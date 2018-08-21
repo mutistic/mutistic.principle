@@ -2531,6 +2531,175 @@ public class ConcreteColleagueB extends Colleague {
 [结构图](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.principle/notes/mode/structure/M16_ObserverPattern.png)<br/>
 [时序图](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.principle/notes/mode/sequence/M16_ObserverPattern.png)<br/>
 
+一、定义和本质: 
+```
+定义: 定义对象间的一种一对多的依赖关系，当一个对象的状态发生改变时，所有依赖于它的对象都得到通知并被自动更新
+本质: 
+体现: 
+```
+
+二、结构和说明: 
+```
+Subject：目标对象，通常具有以下功能：
+	1、一个目标可以被多个观察者观察
+	2、目标提供对观察者注册和退订的维护
+	3、当目标的状态发生变化时，目标负责通知所有的注册的、有效的观察者
+
+ConcreteSubject：具体的目标实现对象，用来维护目标状态，当目标对象的状态发生改变时，通知所有注册有效的观察者，
+	让观察者执行相应的处理
+
+Observer：定义观察者的接口，提供目标通知时对应的更新方法，这个更新方法进行相应的业务处理，
+	可以在这个方法里面回调目标对象，以获取目标对象的数据
+
+ConcreteObserver：观察者的具体实现对象，用来接收目标的通知，并进行相应的后续处理，
+	比如更新自身的状态以保持和目标的相应对状态一致
+```
+
+三、理解: 
+```
+
+1、
+```
+
+四、写法: 
+```
+```
+
+五、优点: 
+```
+```
+
+六、缺点: 
+```
+```
+
+七、使用场景: 
+```
+
+具体场景：
+```
+
+八、注意事项: 
+```
+```
+
+Client.java: 
+```Java
+package com.mutistic.behavioral.observer.structure;
+import com.mutistic.utils.PrintUtil;
+// Client 客户端
+public class Client {
+	public static void main(String[] args) {
+		PrintUtil.one("观察者模式[Observer Pattern]");
+		// 创建观察者实例
+		ConcreteObserver ob1 = new ConcreteObserver();
+		ConcreteObserver ob2 = new ConcreteObserver();
+		// 注册观察者
+		ConcreteSubject sb1 = new ConcreteSubject();
+		sb1.attach(ob1);
+		sb1.attach(ob2);
+		// 具体的目标改变状态
+		sb1.setSubjectStatus("AAA");
+		// 删除观察者
+		sb1.detach(ob2);
+		// 具体的目标改变状态
+		sb1.setSubjectStatus("BBB");
+	}
+}
+```
+Subject.java: 
+```Java
+package com.mutistic.behavioral.observer.structure;
+import java.util.HashSet;
+import java.util.Set;
+import com.mutistic.utils.PrintUtil;
+// Subject：目标对象，知道具体的观察者，并提供注册和删除观察的接口
+public class Subject {
+	/** 有效的观察者集合 */
+	private Set<Observer> observerSet = new HashSet<Observer>();
+	// 注册观察者
+	public void attach(Observer observer) {
+		if(null != observer) {
+			observerSet.add(observer);
+			PrintUtil.two("注册观察者", observer);
+		}
+	}
+	// 删除观察者
+	public void detach(Observer observer) {
+		if(null != observer) {
+			observerSet.remove(observer);
+			PrintUtil.two("删除观察者", observer);
+		}
+	}
+	// 通知所有的观察者
+	protected void notifyObserver() {
+		for (Observer observer : observerSet) {
+			PrintUtil.two("正在通知观察者", observer);
+			observer.update(this);
+		}
+	}
+}
+```
+ConcreteSubject.java: 
+```Java
+package com.mutistic.behavioral.observer.structure;
+import com.mutistic.utils.PrintUtil;
+// ConcreteSubject：
+// 具体的目标实现对象，用来维护目标状态，当目标对象的状态发生改变时，通知所有注册有效的观察者，让观察者执行相应的处理
+public class ConcreteSubject extends Subject {
+	/** 目标对象状态 */
+	private String subjectStatus;
+	public String getSubjectStatus() {
+		return subjectStatus;
+	}
+	// 目标状态发生变化时，通知所有的观察者
+	public void setSubjectStatus(String subjectStatus) {
+		this.subjectStatus = subjectStatus;
+
+		PrintUtil.two("目标状态发生变化时，通知所有的观察者", subjectStatus);
+		this.notifyObserver();
+	}
+}
+```
+Observer.java: 
+```Java
+package com.mutistic.behavioral.observer.structure;
+// Observer
+// 定义观察者的接口，提供目标通知时对应的更新方法，这个更新方法进行相应的业务处理，可以在这个方法里面回调目标对象，以获取目标对象的数据
+public interface Observer {
+	/**
+	 * 定义更新功能接口
+	 * @param subject 传入目标对象，获取对应的状态值
+	 */
+	void update(Subject subject);
+}
+
+```
+ConcreteObserver.java: 
+```Java
+package com.mutistic.behavioral.observer.structure;
+import com.mutistic.utils.PrintUtil;
+// ConcreteObserver：
+// 观察者的具体实现对象，用来接收目标的通知，并进行相应的后续处理，比如更新自身的状态以保持和目标的相应对状态一致
+public class ConcreteObserver implements Observer {
+	/** 观察者状态 */
+	private String observerState;
+	/**
+	 * 更新功能具体实现
+	 * @param subject 传入目标对象，获取对应的状态值
+	 * @see com.mutistic.behavioral.observer.structure.Observer#update(com.mutistic.behavioral.observer.structure.Subject)
+	 */
+	@Override
+	public void update(Subject subject) {
+		if (subject != null && subject.getClass() == ConcreteSubject.class) {
+			this.observerState = ((ConcreteSubject) subject).getSubjectStatus();
+		}
+		PrintUtil.three("更新功能：设置观察者状态", observerState);
+	}
+}
+```
+
+
 ---
 ### <a id="a_command">二十四、命令模式[Command Pattern]</a> <a href="#a_observer">last</a> <a href="#a_iterator">next</a>
 [结构图](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.principle/notes/mode/structure/M17_CommandPattern.png)<br/>
