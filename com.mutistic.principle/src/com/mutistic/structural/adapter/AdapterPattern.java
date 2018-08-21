@@ -10,8 +10,8 @@ import com.mutistic.utils.PrintUtil;
  */
 public class AdapterPattern {
 	public static void main(String[] args) {
-		PrintUtil.println("适配器模式[Adapter Pattern] ");
-		PrintUtil.printOne("一、定义和本质:\r\n" + 
+		PrintUtil.ln("适配器模式[Adapter Pattern] ");
+		PrintUtil.one("一、定义和本质:\r\n" + 
 				"\r\n" + 
 				"定义: 将一个类的接口转换客户端希望的另外一个接口。适配器模式使得原本由于接口不兼容而能一起工作的那些类可以一起工作。\r\n" + 
 				"本质: 转换匹配，复用功能\r\n" + 

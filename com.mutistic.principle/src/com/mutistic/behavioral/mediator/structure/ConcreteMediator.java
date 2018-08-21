@@ -27,24 +27,24 @@ public class ConcreteMediator implements Mediator {
 	 */
 	@Override
 	public void changed(Colleague colleague) {
-		PrintUtil.printOne("注意使用中介者模式不要产生循环调用，这样会造成死循环");
+		PrintUtil.one("注意使用中介者模式不要产生循环调用，这样会造成死循环");
 		
 		if (null == colleague) {
-			PrintUtil.printOne("传入的同事为空，changed结束");
+			PrintUtil.one("传入的同事为空，changed结束");
 		}
 
-		PrintUtil.printThree("某个同事类发生了变化，通常需要与其他同事交互", colleague);
+		PrintUtil.three("某个同事类发生了变化，通常需要与其他同事交互", colleague);
 		// colleagueA 转调  colleagueB.operation()业务
 		if (colleague.getClass() == colleagueA.getClass()) {
 			if (null != colleagueB) {
-				PrintUtil.printThree("具体协调相应的同事对象来实现协作", colleagueB);
+				PrintUtil.three("具体协调相应的同事对象来实现协作", colleagueB);
 				this.colleagueB.operation();
 			}
 		} 
 		// colleagueB 转调  colleagueA.operationA()业务
 		else if (colleague.getClass() == colleagueB.getClass()) {
 			if (null != colleagueA) {
-				PrintUtil.printThree("具体协调相应的同事对象来实现协作", colleagueA);
+				PrintUtil.three("具体协调相应的同事对象来实现协作", colleagueA);
 				this.colleagueA.operationA();
 			}
 		}
@@ -58,7 +58,7 @@ public class ConcreteMediator implements Mediator {
 	 */
 	public void setColleagueA(ConcreteColleagueA colleagueA) {
 		this.colleagueA = colleagueA;
-		PrintUtil.printThree("设置中介者需要了解并维护的同事A实例 ", colleagueA);
+		PrintUtil.three("设置中介者需要了解并维护的同事A实例 ", colleagueA);
 	}
 
 	/**
@@ -69,7 +69,7 @@ public class ConcreteMediator implements Mediator {
 	 */
 	public void setColleagueB(ConcreteColleagueB colleagueB) {
 		this.colleagueB = colleagueB;
-		PrintUtil.printThree("设置中介者需要了解并维护的同事B实例 ", colleagueB);
+		PrintUtil.three("设置中介者需要了解并维护的同事B实例 ", colleagueB);
 	}
 
 }

@@ -34,7 +34,7 @@ public class PrototypeManager {
 	public synchronized static void setPrototype(String prototypeId, Prototype prototype) {
 		if (null != prototypeId && null != prototype) {
 			map.put(prototypeId, prototype);
-			PrintUtil.printThree("添加或修改原型", "[key = "+ prototypeId +"]" + prototype.toString());
+			PrintUtil.three("添加或修改原型", "[key = "+ prototypeId +"]" + prototype.toString());
 		}
 	}
 
@@ -47,7 +47,7 @@ public class PrototypeManager {
 	 */
 	public synchronized static void removePrototype(String prototypeId) {
 		map.remove(prototypeId);
-		PrintUtil.printThree("删除原型", prototypeId);
+		PrintUtil.three("删除原型", prototypeId);
 	}
 
 	public static Prototype getPrototype(String prototypeId) {
@@ -55,7 +55,7 @@ public class PrototypeManager {
 			return map.get(prototypeId);
 		}
 
-		PrintUtil.printThree("原型管理器中不存在原型", prototypeId);
+		PrintUtil.three("原型管理器中不存在原型", prototypeId);
 		return null;
 	}
 

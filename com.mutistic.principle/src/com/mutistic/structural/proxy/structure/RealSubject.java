@@ -18,7 +18,7 @@ public class RealSubject implements Subject {
 	 */
 	@Override
 	public void request() {
-		PrintUtil.printThree("RealSubject具体的目标对象开始执行业务：", "realSubject.request()");
+		PrintUtil.three("RealSubject具体的目标对象开始执行业务：", "realSubject.request()");
 	}
 
 }

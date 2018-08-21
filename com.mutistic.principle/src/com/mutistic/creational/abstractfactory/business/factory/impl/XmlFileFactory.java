@@ -28,10 +28,10 @@ public class XmlFileFactory implements IAbstractFactory {
 		}
 
 		if ("order".equals(businessType)) {
-			PrintUtil.printThree("抽象工厂模式:XmlFileFactory", "创建OrderXmlFileDaoImpl");
+			PrintUtil.three("抽象工厂模式:XmlFileFactory", "创建OrderXmlFileDaoImpl");
 			return new OrderXmlFileDaoImpl();
 		} else if ("orderDetail".equals(businessType)) {
-			PrintUtil.printThree("抽象工厂模式:XmlFileFactory", "创建OrderDetailXmlFileDaoImpl");
+			PrintUtil.three("抽象工厂模式:XmlFileFactory", "创建OrderDetailXmlFileDaoImpl");
 			return new OrderDetailXmlFileDaoImpl();
 		}
 

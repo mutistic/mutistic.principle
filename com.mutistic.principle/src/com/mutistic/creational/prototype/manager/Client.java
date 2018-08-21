@@ -11,7 +11,7 @@ import com.mutistic.utils.PrintUtil;
 public class Client {
 	public static void main(String[] args) {
 		Prototype p1 = new ConcretePrototype1();
-		PrintUtil.printTwo("创建的原型实例Prototype", p1.toString());
+		PrintUtil.two("创建的原型实例Prototype", p1.toString());
 		PrototypeManager.setPrototype("Prototype1", p1);
 
 		PrintUtil.println();
@@ -20,18 +20,18 @@ public class Client {
 
 		Prototype p2 = PrototypeManager.getPrototype("Prototype1").clone();
 		p2.setName("AAA");
-		PrintUtil.printTwo("从原型管理器获取的Prototype1并重置name", p2.toString());
+		PrintUtil.two("从原型管理器获取的Prototype1并重置name", p2.toString());
 
 		Prototype p3 = PrototypeManager.getPrototype("Prototype1").clone();
 		p3.setName("BBB");
-		PrintUtil.printTwo("从原型管理器获取的Prototype1并重置name", p3.toString());
+		PrintUtil.two("从原型管理器获取的Prototype1并重置name", p3.toString());
 
 		PrintUtil.println();
 		PrototypeManager.removePrototype("Prototype1");
 
 		PrintUtil.println();
 		Prototype p4 = PrototypeManager.getPrototype("Prototype1");
-		PrintUtil.printThree("从原型管理器获取的Prototype1", p4 == null ? "null" : p4.toString());
+		PrintUtil.three("从原型管理器获取的Prototype1", p4 == null ? "null" : p4.toString());
 
 	}
 }

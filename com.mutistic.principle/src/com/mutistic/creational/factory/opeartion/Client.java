@@ -14,10 +14,10 @@ public class Client {
 		double numberA = 2d;
 		double numberB = 5d;
 		
-		PrintUtil.printThree("OpeartionAddFactory", new OpeartionAddFactory().factoryMethod(numberA, numberB).getResult());
-		PrintUtil.printThree("OpeartionDivFactory", new OpeartionDivFactory().factoryMethod(numberA, numberB).getResult());
-		PrintUtil.printThree("OpeartionMulFactory", new OpeartionMulFactory().factoryMethod(numberA, numberB).getResult());
-		PrintUtil.printThree("OpeartionRemFactory", new OpeartionRemFactory().factoryMethod(numberA, numberB).getResult());
-		PrintUtil.printThree("OpeartionSubFactory", new OpeartionSubFactory().factoryMethod(numberA, numberB).getResult());
+		PrintUtil.three("OpeartionAddFactory", new OpeartionAddFactory().factoryMethod(numberA, numberB).getResult());
+		PrintUtil.three("OpeartionDivFactory", new OpeartionDivFactory().factoryMethod(numberA, numberB).getResult());
+		PrintUtil.three("OpeartionMulFactory", new OpeartionMulFactory().factoryMethod(numberA, numberB).getResult());
+		PrintUtil.three("OpeartionRemFactory", new OpeartionRemFactory().factoryMethod(numberA, numberB).getResult());
+		PrintUtil.three("OpeartionSubFactory", new OpeartionSubFactory().factoryMethod(numberA, numberB).getResult());
 	}
 }

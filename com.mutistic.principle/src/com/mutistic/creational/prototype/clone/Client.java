@@ -21,15 +21,15 @@ public class Client {
 		order.setOrderNo("O123345");
 		order.setGoods(goods);
 
-		PrintUtil.printOne("Java中实现Object的clone() 完成深度克隆");
+		PrintUtil.one("Java中实现Object的clone() 完成深度克隆");
 		
-		PrintUtil.printTwo("原型实例", order.toString());
+		PrintUtil.two("原型实例", order.toString());
 		
 		try {
 			Order clone = (Order) order.clone();
-			PrintUtil.printTwo("克隆实例", clone.toString());
+			PrintUtil.two("克隆实例", clone.toString());
 		} catch (CloneNotSupportedException e) {
-			PrintUtil.printErr("克隆出现异常" + e.getMessage());
+			PrintUtil.err("克隆出现异常" + e.getMessage());
 		}
 	}
 

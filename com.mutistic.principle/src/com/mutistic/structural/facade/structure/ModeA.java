@@ -15,7 +15,7 @@ public class ModeA {
 	 * @date 2018年8月10日
 	 */
 	public void testA() {
-		PrintUtil.printTwo("ModeA-testA", "模块：接受Facade对象的委派，真正实现功能，各个模块之前按可能有交互，注意，Facade对象知道各个模块，但是各个模块不应该知道Facade对象");
+		PrintUtil.two("ModeA-testA", "模块：接受Facade对象的委派，真正实现功能，各个模块之前按可能有交互，注意，Facade对象知道各个模块，但是各个模块不应该知道Facade对象");
 	}
 	
 }

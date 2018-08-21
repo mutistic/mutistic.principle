@@ -20,15 +20,15 @@ public class TwoDirectAdapter implements LogDataSourceApi, LogFileOpearionApi {
 		this.logDataSourceApi = logDataSourceApi;
 		this.logFileOpearionApi = logFileOpearionApi;
 		
-		PrintUtil.printThree("双向适配器-TwoDirectAdapter()-构造函数：注入logDataSourceApi", logDataSourceApi.getClass());
-		PrintUtil.printThree("双向适配器-TwoDirectAdapter()-构造函数：注入logDataSourceApi", logFileOpearionApi.getClass());
+		PrintUtil.three("双向适配器-TwoDirectAdapter()-构造函数：注入logDataSourceApi", logDataSourceApi.getClass());
+		PrintUtil.three("双向适配器-TwoDirectAdapter()-构造函数：注入logDataSourceApi", logFileOpearionApi.getClass());
 	}
 
 	@Override
 	public Integer writeLogFile(LoggerMode mode) {
 		logFileOpearionApi.writeLogFile(mode);
 		
-		PrintUtil.printThree("logDataSourceApi.writeLogFile()", mode.toString());
+		PrintUtil.three("logDataSourceApi.writeLogFile()", mode.toString());
 
 		return null;
 	}
@@ -37,7 +37,7 @@ public class TwoDirectAdapter implements LogDataSourceApi, LogFileOpearionApi {
 	public Integer deleteLogFile(LoggerMode mode) {
 		logFileOpearionApi.deleteLogFile(mode);
 		
-		PrintUtil.printThree("logDataSourceApi.deleteLogFile()", mode.toString());
+		PrintUtil.three("logDataSourceApi.deleteLogFile()", mode.toString());
 		return null;
 	}
 
@@ -45,7 +45,7 @@ public class TwoDirectAdapter implements LogDataSourceApi, LogFileOpearionApi {
 	public List<LoggerMode> readLogFile() {
 		logFileOpearionApi.readLogFile();
 		
-		PrintUtil.printThree("logFileOpearionApi.readLogFile()", null);
+		PrintUtil.three("logFileOpearionApi.readLogFile()", null);
 		return null;
 	}
 
@@ -53,7 +53,7 @@ public class TwoDirectAdapter implements LogDataSourceApi, LogFileOpearionApi {
 	public Integer createrLog(LoggerMode mode) {
 		logDataSourceApi.createrLog(mode);
 		
-		PrintUtil.printThree("logDataSourceApi.createrLog()", mode.toString());
+		PrintUtil.three("logDataSourceApi.createrLog()", mode.toString());
 		return null;
 	}
 
@@ -61,7 +61,7 @@ public class TwoDirectAdapter implements LogDataSourceApi, LogFileOpearionApi {
 	public Integer updateLog(LoggerMode mode) {
 		logDataSourceApi.updateLog(mode);
 		
-		PrintUtil.printThree("logDataSourceApi.updateLog()", mode.toString());
+		PrintUtil.three("logDataSourceApi.updateLog()", mode.toString());
 		return null;
 	}
 
@@ -69,7 +69,7 @@ public class TwoDirectAdapter implements LogDataSourceApi, LogFileOpearionApi {
 	public Integer removeLog(LoggerMode mode) {
 		logDataSourceApi.removeLog(mode);
 		
-		PrintUtil.printThree("logDataSourceApi.removeLog()", mode.toString());
+		PrintUtil.three("logDataSourceApi.removeLog()", mode.toString());
 		return null;
 	}
 

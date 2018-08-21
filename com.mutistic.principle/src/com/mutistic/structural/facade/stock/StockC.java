@@ -16,7 +16,7 @@ public class StockC {
 	 * @date 2018年8月10日
 	 */
 	public void buy() {
-		PrintUtil.printThree("StockA", "buy");
+		PrintUtil.three("StockA", "buy");
 	}
 	
 	/**
@@ -25,6 +25,6 @@ public class StockC {
 	 * @date 2018年8月10日
 	 */
 	public void seller() {
-		PrintUtil.printThree("StockA", "seller");
+		PrintUtil.three("StockA", "seller");
 	}
 }

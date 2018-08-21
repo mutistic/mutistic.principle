@@ -16,7 +16,7 @@ public class Fund {
 	 * @date 2018年8月10日
 	 */
 	public void buy() {
-		PrintUtil.printThree("Fund", "buy");
+		PrintUtil.three("Fund", "buy");
 	}
 	
 	/**
@@ -25,6 +25,6 @@ public class Fund {
 	 * @date 2018年8月10日
 	 */
 	public void seller() {
-		PrintUtil.printThree("Fund", "seller");
+		PrintUtil.three("Fund", "seller");
 	}
 }

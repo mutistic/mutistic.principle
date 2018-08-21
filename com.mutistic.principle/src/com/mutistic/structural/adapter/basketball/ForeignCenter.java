@@ -13,11 +13,11 @@ public class ForeignCenter {
 	public String name;
 
 	public void attack() {
-		PrintUtil.printThree("外籍中锋 ："+ name, "进攻");
+		PrintUtil.three("外籍中锋 ："+ name, "进攻");
 	}
 
 	public void defense() {
-		PrintUtil.printThree("外籍中锋 ："+ name, "防守");
+		PrintUtil.three("外籍中锋 ："+ name, "防守");
 	}
 
 }

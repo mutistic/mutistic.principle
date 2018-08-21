@@ -18,7 +18,7 @@ public class OrderXmlFileDaoImpl implements IOrderDao {
 	 */
 	@Override
 	public void insertOrder() {
-		PrintUtil.printThree("产品具体业务:OrderDBDaoImpl", "insertOrder()");
+		PrintUtil.three("产品具体业务:OrderDBDaoImpl", "insertOrder()");
 		PrintUtil.println();
 	}
 }

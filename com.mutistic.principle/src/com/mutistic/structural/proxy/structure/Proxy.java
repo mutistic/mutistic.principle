@@ -30,8 +30,8 @@ public class Proxy implements Subject {
 	 */
 	@Override
 	public void request() {
-		PrintUtil.printTwo("Proxy代理对象开始转调：", "realSubject.request()");
+		PrintUtil.two("Proxy代理对象开始转调：", "realSubject.request()");
 		realSubject.request();
-		PrintUtil.printThree("Proxy代理对象转调结束：", "realSubject.request()");
+		PrintUtil.three("Proxy代理对象转调结束：", "realSubject.request()");
 	}
 }

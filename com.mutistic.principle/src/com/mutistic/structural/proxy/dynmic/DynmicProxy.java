@@ -18,20 +18,20 @@ public class DynmicProxy implements InvocationHandler {
 
 	@Override
 	public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
-		PrintUtil.printTwo("Java动态实例开始方法调用", null);
+		PrintUtil.two("Java动态实例开始方法调用", null);
 
 		if (method.getName().startsWith("set")) {
-			PrintUtil.printThree("调用Set方法", method.getName());
+			PrintUtil.three("调用Set方法", method.getName());
 
 			if (this.order.getUser() != null && this.order.getUser().equals(args[1])) {
-				PrintUtil.printThree("模拟保护代理功能", method.getName());
+				PrintUtil.three("模拟保护代理功能", method.getName());
 
 				return method.invoke(this.order, args);
 			} else {
-				PrintUtil.printThree("无权操作，此时操作user：", args[1]);
+				PrintUtil.three("无权操作，此时操作user：", args[1]);
 			}
 		} else {
-			PrintUtil.printThree("调用非Set方法", method.getName());
+			PrintUtil.three("调用非Set方法", method.getName());
 
 			return method.invoke(this.order, args);
 		}
@@ -48,7 +48,7 @@ public class DynmicProxy implements InvocationHandler {
 		OrderApi api = (OrderApi) Proxy.newProxyInstance(order.getClass().getClassLoader(),
 				order.getClass().getInterfaces(), this);
 
-		PrintUtil.printTwo("创建OrderApi的Java动态代理实例：", api.getClass());
+		PrintUtil.two("创建OrderApi的Java动态代理实例：", api.getClass());
 		return api;
 	}
 

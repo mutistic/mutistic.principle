@@ -37,13 +37,13 @@ public class Client {
 	
 
 	public static void main(String[] args) {
-		PrintUtil.printOne("原型模式[Prototype Pattern]");
+		PrintUtil.one("原型模式[Prototype Pattern]");
 	
 		ConcretePrototype prototye = new ConcretePrototype();
 		Client client = new Client(prototye);
-		PrintUtil.printThree("创建原型本身的实例对象: ", "hashCode=" + prototye.hashCode());
+		PrintUtil.three("创建原型本身的实例对象: ", "hashCode=" + prototye.hashCode());
 
 		ConcretePrototype clone = (ConcretePrototype) client.operation();
-		PrintUtil.printThree("克隆原型的实例对象: ", "hashCode=" + clone.hashCode());
+		PrintUtil.three("克隆原型的实例对象: ", "hashCode=" + clone.hashCode());
 	}
 }

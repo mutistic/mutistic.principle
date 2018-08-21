@@ -24,7 +24,7 @@ public abstract class Creator {
 	 * @date 2018年8月13日
 	 */
 	public void operation() {
-		PrintUtil.printTwo("Creator-operation", "具体业务逻辑 ");
+		PrintUtil.two("Creator-operation", "具体业务逻辑 ");
 		Product product = factoryMethod();
 		product.operation();
 	}

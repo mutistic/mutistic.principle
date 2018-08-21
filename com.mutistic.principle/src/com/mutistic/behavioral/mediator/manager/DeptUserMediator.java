@@ -40,13 +40,13 @@ public class DeptUserMediator {
 			return false;
 		}
 		
-		PrintUtil.printThree("广义中介者接收到撤销部门通知，要撤销的部门：", dept.getDeptName());
+		PrintUtil.three("广义中介者接收到撤销部门通知，要撤销的部门：", dept.getDeptName());
 		if (deptUserMap.get(dept) != null) {
 			deptUserMap.put(new Dept("LS", "临时部门"), deptUserMap.get(dept));
-			PrintUtil.printThree("成立临时部门", "将员工调整到临时部门中");
+			PrintUtil.three("成立临时部门", "将员工调整到临时部门中");
 		}
 		deptUserMap.remove(dept);
-		PrintUtil.printThree("成功撤销部门", dept.getDeptName());
+		PrintUtil.three("成功撤销部门", dept.getDeptName());
 
 		return true;
 	}
@@ -63,11 +63,11 @@ public class DeptUserMediator {
 			return false;
 		}
 		
-		PrintUtil.printThree("广义中介者接收到员工离职通知，要离职的员工：", user.getUserName());
+		PrintUtil.three("广义中介者接收到员工离职通知，要离职的员工：", user.getUserName());
 		for (Dept dept : deptUserMap.keySet()) {
 			if (deptUserMap.get(dept) != null && deptUserMap.get(dept).contains(user)) {
 				deptUserMap.get(dept).remove(user);
-				PrintUtil.printThree("已办理完离职手续", user.getUserName());
+				PrintUtil.three("已办理完离职手续", user.getUserName());
 			}
 		}
 
@@ -79,10 +79,10 @@ public class DeptUserMediator {
 	 */
 	private Map<Dept, List<User>> deptUserMap = new HashMap<Dept, List<User>>();
 	public void showInfo() {
-		PrintUtil.printOne("[DeptUserMediator.showDeptUser()]显示部门信息");
+		PrintUtil.one("[DeptUserMediator.showDeptUser()]显示部门信息");
 		for (Dept dept : deptUserMap.keySet()) {
-			PrintUtil.printThree("部门：", dept.toString());
-			PrintUtil.printThree("部门"+ dept.getDeptName() +"的员工：", deptUserMap.get(dept));
+			PrintUtil.three("部门：", dept.toString());
+			PrintUtil.three("部门"+ dept.getDeptName() +"的员工：", deptUserMap.get(dept));
 		}
 	}
 	public void setDeptUserMap(Map<Dept, List<User>> deptUserMap) {

@@ -10,8 +10,8 @@ import com.mutistic.utils.PrintUtil;
  */
 public class PrototypePattern {
 	public static void main(String[] args) {
-		PrintUtil.println("原型模式[Prototype Pattern]");
-		PrintUtil.printOne("一、定义:\r\n" + 
+		PrintUtil.ln("原型模式[Prototype Pattern]");
+		PrintUtil.one("一、定义:\r\n" + 
 				"\r\n" + 
 				"定义: 用原型实例执行创建对象的种类，并通过拷贝这些原型创建新的对象\r\n" + 
 				"本质: 克隆生成对象\r\n" + 

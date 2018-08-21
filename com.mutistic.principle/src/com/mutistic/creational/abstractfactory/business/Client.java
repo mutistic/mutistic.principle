@@ -14,7 +14,7 @@ import com.mutistic.utils.PrintUtil;
 public class Client {
 
 	public static void main(String[] args) {
-		PrintUtil.printOne("使用抽象工厂的具体工厂：DBDaoFactory 创建接口实例：");
+		PrintUtil.one("使用抽象工厂的具体工厂：DBDaoFactory 创建接口实例：");
 		IOrderDao orderDB = (IOrderDao) SimpleFactory.factoryMethod("DB", "order");
 		if (null != orderDB) {
 			orderDB.insertOrder();
@@ -24,7 +24,7 @@ public class Client {
 			detailDB.insertOrderDetail();
 		}
 		
-		PrintUtil.printOne("使用抽象工厂的具体工厂：XmlFileDaoFactory 创建接口实例：");
+		PrintUtil.one("使用抽象工厂的具体工厂：XmlFileDaoFactory 创建接口实例：");
 		IOrderDao orderXml = (IOrderDao) SimpleFactory.factoryMethod("XML", "order");
 		if (null != orderXml) {
 			orderXml.insertOrder();

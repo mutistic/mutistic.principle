@@ -11,9 +11,9 @@ import com.mutistic.utils.PrintUtil;
 public class Client {
 	
 	public static void main(String[] args) {
-		PrintUtil.printOne("测试单例模式-控制实例的数目");
+		PrintUtil.one("测试单例模式-控制实例的数目");
 		for (int i = 0; i < 7; i++) {
-			PrintUtil.printThree("获取Signleton实例："+i, SignletonCache.getIntance());
+			PrintUtil.three("获取Signleton实例："+i, SignletonCache.getIntance());
 		}
 	}
 }

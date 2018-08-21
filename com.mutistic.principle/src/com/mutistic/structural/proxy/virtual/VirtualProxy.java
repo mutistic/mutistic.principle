@@ -29,9 +29,9 @@ public class VirtualProxy {
 			return;
 		}
 		
-		PrintUtil.printTwo("转调真正的业务功能前，price", this.orderApi.getPrice());
+		PrintUtil.two("转调真正的业务功能前，price", this.orderApi.getPrice());
 		this.orderApi.updatePrice(price);
-		PrintUtil.printThree("转调真正的业务功能后，price", this.orderApi.getPrice());
+		PrintUtil.three("转调真正的业务功能后，price", this.orderApi.getPrice());
 	}
 	
 }

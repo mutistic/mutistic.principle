@@ -26,10 +26,10 @@ public class SimpleFactory {
 		}
 		
 		if ("DB".equals(facotryType)) {
-			PrintUtil.printThree("简单工厂模式:factoryMethod", "创建DBFactory");
+			PrintUtil.three("简单工厂模式:factoryMethod", "创建DBFactory");
 			return new DBFactory().createrMethod(businessType);
 		} else if ("XML".equals(facotryType)) {
-			PrintUtil.printThree("简单工厂模式:factoryMethod", "创建XmlFileFactory");
+			PrintUtil.three("简单工厂模式:factoryMethod", "创建XmlFileFactory");
 			return new XmlFileFactory().createrMethod(businessType);
 		}
 

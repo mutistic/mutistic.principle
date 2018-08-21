@@ -16,7 +16,7 @@ public class Existing {
 	 * @date 2018年8月10日
 	 */
 	public void testExisting() {
-		PrintUtil.printTwo("Existing-testExisting", "已经存在的接口，但与客户端要求的特定领域接口不一致，需要被适配目标 ");
+		PrintUtil.two("Existing-testExisting", "已经存在的接口，但与客户端要求的特定领域接口不一致，需要被适配目标 ");
 	}
 	
 }

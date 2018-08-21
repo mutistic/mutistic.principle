@@ -16,12 +16,12 @@ public class Center extends Player {
 
 	@Override
 	public void attack() {
-		PrintUtil.printThree("中锋："+ super.name, "attack");
+		PrintUtil.three("中锋："+ super.name, "attack");
 	}
 
 	@Override
 	public void defense() {
-		PrintUtil.printThree("中锋："+ super.name, "defense");
+		PrintUtil.three("中锋："+ super.name, "defense");
 	}
 
 }

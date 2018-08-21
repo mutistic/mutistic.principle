@@ -10,8 +10,8 @@ import com.mutistic.utils.PrintUtil;
  */
 public class SignletonPattern {
 	public static void main(String[] args) {
-		PrintUtil.printOne("单例模式[Signleton Pattern]");
-		PrintUtil.println("一、定义和本质:\r\n" + 
+		PrintUtil.one("单例模式[Signleton Pattern]");
+		PrintUtil.ln("一、定义和本质:\r\n" + 
 				"\r\n" + 
 				"定义: 保证一个类仅有一个实例，并提供一个访问该类的全局访问接口。\r\n" + 
 				"本质: 控制实例的数目\r\n" + 

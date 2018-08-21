@@ -10,17 +10,17 @@ import com.mutistic.utils.PrintUtil;
  */
 public class Client {
 	public static void main(String[] args) {
-		PrintUtil.printOne("中介者模式：");
+		PrintUtil.one("中介者模式：");
 		
 		ConcreteMediator mediator = new ConcreteMediator();
-		PrintUtil.printThree("创建中介者实例：", mediator);
+		PrintUtil.three("创建中介者实例：", mediator);
 		
 		ConcreteColleagueA ca = new ConcreteColleagueA(mediator);
-		PrintUtil.printTwo("创建同事A实例：", ca);
+		PrintUtil.two("创建同事A实例：", ca);
 		mediator.setColleagueA(ca);
 		
 		ConcreteColleagueB cb = new ConcreteColleagueB(mediator);
-		PrintUtil.printTwo("创建同事B实例：", cb);
+		PrintUtil.two("创建同事B实例：", cb);
 		mediator.setColleagueB(cb);
 		
 		ca.operation();

@@ -18,7 +18,7 @@ public class ProductA2 implements AbstractProductA {
 	 */
 	@Override
 	public void operationA() {
-		PrintUtil.printThree("ProductA2", "operationA");
+		PrintUtil.three("ProductA2", "operationA");
 	}
 
 }

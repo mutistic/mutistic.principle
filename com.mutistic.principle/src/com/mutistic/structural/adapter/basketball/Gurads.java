@@ -16,12 +16,12 @@ public class Gurads extends Player {
 
 	@Override
 	public void attack() {
-		PrintUtil.printThree("后卫："+ super.name, "attack");
+		PrintUtil.three("后卫："+ super.name, "attack");
 	}
 
 	@Override
 	public void defense() {
-		PrintUtil.printThree("后卫："+ super.name, "defense");
+		PrintUtil.three("后卫："+ super.name, "defense");
 	}
 
 }

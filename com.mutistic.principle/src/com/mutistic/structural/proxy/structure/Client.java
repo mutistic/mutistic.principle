@@ -11,13 +11,13 @@ import com.mutistic.utils.PrintUtil;
 public class Client {
 	public static void main(String[] args) {
 		
-		PrintUtil.printOne("代理模式[Proxy Pattern]");
+		PrintUtil.one("代理模式[Proxy Pattern]");
 		
 		RealSubject real = new RealSubject();
-		PrintUtil.printTwo("创建RealSubject具体对象实例：", real);
+		PrintUtil.two("创建RealSubject具体对象实例：", real);
 		
 		Proxy proxy = new Proxy(real);
-		PrintUtil.printTwo("创建Proxy代理对象实例：", proxy);
+		PrintUtil.two("创建Proxy代理对象实例：", proxy);
 		
 		proxy.request();
 	}

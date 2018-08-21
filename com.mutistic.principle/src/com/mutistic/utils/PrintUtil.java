@@ -17,30 +17,30 @@ public class PrintUtil {
 	public static void println() {
 		System.out.println();
 	}
-
-	public static void println(Object str) {
+	
+	public static void ln(Object str) {
 		System.out.println(str);
 	}
 	
-	public static String printErr(Object str) {
+	public static String err(Object str) {
 		String val = LINE_LONG_LN + (str == null ? "" : str);
 		System.err.println(val);
 		return val;
 	}
 
-	public static String printOne(Object str) {
+	public static String one(Object str) {
 		String val = LINE_LONG_LN + (str == null ? "" : str);
 		System.out.println(val);
 		return val;
 	}
 
-	public static String printTwo(Object str, Object obj) {
+	public static String two(Object str, Object obj) {
 		String val = LINE_SHORT_LN + (str == null ? "" : str) + (obj == null ? "" : T_LEFT + obj + T_RIGTH);
 		System.out.println(val);
 		return val;
 	}
 
-	public static String printThree(Object str, Object obj) {
+	public static String three(Object str, Object obj) {
 		String val = LINE_SHORT + (str == null ? "" : str) + (obj == null ? "" : T_LEFT + obj + T_RIGTH);
 		System.out.println(val);
 		return val;

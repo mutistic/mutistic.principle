@@ -22,17 +22,17 @@ public class Client {
 		Map<Long, List<GoodsBody>> bodys = createrBody();
 		Map<Long, GoodsFoot> foots  = createrFoot();
 		
-		PrintUtil.printOne("使用TxtBuilder构建对象：");
+		PrintUtil.one("使用TxtBuilder构建对象：");
 		TxtBuilder txt = new TxtBuilder();
 		Director txtDire = new Director(txt);
 		txtDire.construct(heads, bodys, foots);
-		PrintUtil.println(txt.getResult().toString());
+		PrintUtil.ln(txt.getResult().toString());
 		
-		PrintUtil.printOne("使用XmlBuilder构建对象：");
+		PrintUtil.one("使用XmlBuilder构建对象：");
 		XmlBuilder xml = new XmlBuilder();
 		Director xmlDire = new Director(xml);
 		xmlDire.construct(heads, bodys, foots);
-		PrintUtil.println(xml.getResult().toString());
+		PrintUtil.ln(xml.getResult().toString());
 		
 	}
 

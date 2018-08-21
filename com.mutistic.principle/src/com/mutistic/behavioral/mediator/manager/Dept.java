@@ -34,7 +34,7 @@ public class Dept {
 	 * @date 2018年8月17日
 	 */
 	public void deleteDept() {
-		PrintUtil.printOne("[Dept.deleteDept()]撤销部门");
+		PrintUtil.one("[Dept.deleteDept()]撤销部门");
 		DeptUserMediator.getInstance().deleteDept(this);
 	}
 

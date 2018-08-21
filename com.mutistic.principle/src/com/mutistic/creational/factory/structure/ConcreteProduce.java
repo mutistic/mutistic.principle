@@ -17,6 +17,6 @@ public class ConcreteProduce implements Product {
 	 */
 	@Override
 	public void operation() {
-		PrintUtil.printTwo("ConcreteProduce-operation", "Product具体业务实现");
+		PrintUtil.two("ConcreteProduce-operation", "Product具体业务实现");
 	}
 }

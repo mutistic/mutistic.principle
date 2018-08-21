@@ -19,7 +19,7 @@ public class ConcreteCreator extends Creator {
 	 */
 	@Override
 	public Product factoryMethod() {
-		PrintUtil.printTwo("ConcreteCreator-factoryMethod()", "创建Product的具体实例ConcreteProduce");
+		PrintUtil.two("ConcreteCreator-factoryMethod()", "创建Product的具体实例ConcreteProduce");
 		return new ConcreteProduce();
 	}
 	

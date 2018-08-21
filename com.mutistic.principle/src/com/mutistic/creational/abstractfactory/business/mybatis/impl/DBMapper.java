@@ -7,7 +7,7 @@ public class DBMapper implements IMapper {
 
 	@Override
 	public void insert(Object obj) {
-		PrintUtil.printTwo("XMLFileMapper.insert()", obj);
+		PrintUtil.two("XMLFileMapper.insert()", obj);
 	}
 
 }

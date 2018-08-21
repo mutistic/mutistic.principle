@@ -14,7 +14,7 @@ public class Client {
 
 	public static void main(String[] args) {
 		
-		PrintUtil.printOne("演示 双向适配器");
+		PrintUtil.one("演示 双向适配器");
 		LoggerMode mode = new LoggerMode();
 		mode.setCreaterTime(new Date());
 		mode.setLeave("INFO");

@@ -34,7 +34,7 @@ public class User {
 	 * @date 2018年8月17日
 	 */
 	public void deleteUser() {
-		PrintUtil.printOne("[User.deleteUser()]员工离职");
+		PrintUtil.one("[User.deleteUser()]员工离职");
 		DeptUserMediator.getInstance().deleteUser(this);
 	}
 

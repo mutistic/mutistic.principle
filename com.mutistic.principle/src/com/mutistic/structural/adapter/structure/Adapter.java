@@ -21,7 +21,7 @@ public class Adapter implements Target {
 	public Adapter(Existing existing) {
 		super();
 		this.existing = existing;
-		PrintUtil.printTwo("Adapter(Existing)", "构造器（传入被适配目标Existing实例）");
+		PrintUtil.two("Adapter(Existing)", "构造器（传入被适配目标Existing实例）");
 	}
 
 	/**
@@ -32,7 +32,7 @@ public class Adapter implements Target {
 	 */
 	@Override
 	public void test() {
-		PrintUtil.printTwo("Adapter-test()", "Target特定领域的业务功能，根据Target类型是否重写");
+		PrintUtil.two("Adapter-test()", "Target特定领域的业务功能，根据Target类型是否重写");
 	}
 	
 	/**
@@ -41,7 +41,7 @@ public class Adapter implements Target {
 	 * @date 2018年8月10日
 	 */
 	public void testExisting() {
-		PrintUtil.printTwo("Adapter-testExisting()", "Existing接口功能，非必须项，根据实际需要是否添加");
+		PrintUtil.two("Adapter-testExisting()", "Existing接口功能，非必须项，根据实际需要是否添加");
 		
 		this.existing.testExisting();
 	}

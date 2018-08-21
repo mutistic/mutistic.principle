@@ -19,7 +19,7 @@ public class ConcreteFactory1 implements AbstractFactory {
 	 */
 	@Override
 	public AbstractProductA ceraterProductA() {
-		PrintUtil.printThree("ConcreteFactoryA", "ceraterProductA");
+		PrintUtil.three("ConcreteFactoryA", "ceraterProductA");
 		return new ProductA1();
 	}
 
@@ -32,7 +32,7 @@ public class ConcreteFactory1 implements AbstractFactory {
 	 */
 	@Override
 	public AbstractProductB ceraterProductB() {
-		PrintUtil.printThree("ConcreteFactoryA", "ceraterProductB");
+		PrintUtil.three("ConcreteFactoryA", "ceraterProductB");
 		return new ProductB1();
 	}
 

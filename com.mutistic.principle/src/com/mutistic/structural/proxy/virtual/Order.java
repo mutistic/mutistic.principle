@@ -16,7 +16,7 @@ public class Order implements OrderApi {
 	
 	@Override
 	public void updatePrice(Double price) {
-		PrintUtil.printThree("真正的业务功能开始修改price信息，要修改的price为", price);
+		PrintUtil.three("真正的业务功能开始修改price信息，要修改的price为", price);
 		this.price = price;
 	}
 	

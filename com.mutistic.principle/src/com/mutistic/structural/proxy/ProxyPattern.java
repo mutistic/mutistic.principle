@@ -10,8 +10,8 @@ import com.mutistic.utils.PrintUtil;
  */
 public class ProxyPattern {
 	public static void main(String[] args) {
-		PrintUtil.println("代理模式[Proxy Pattern]");
-		PrintUtil.printOne("一、定义和本质:\r\n" + 
+		PrintUtil.ln("代理模式[Proxy Pattern]");
+		PrintUtil.one("一、定义和本质:\r\n" + 
 				"\r\n" + 
 				"定义: 为其他对象提供一种代理以控制对这个对象的访问\r\n" + 
 				"本质: 控制对象访问\r\n" + 

@@ -22,7 +22,7 @@ public class ConcreteColleagueA extends Colleague {
 	 * 业务逻辑
 	 */
 	public void operation() {
-		PrintUtil.printTwo("执行ConcreteColleagueA.operation()", "业务逻辑");
+		PrintUtil.two("执行ConcreteColleagueA.operation()", "业务逻辑");
 		this.getMediator().changed(this);
 	}
 	
@@ -30,6 +30,6 @@ public class ConcreteColleagueA extends Colleague {
 	 * 业务逻辑
 	 */
 	public void operationA() {
-		PrintUtil.printTwo("执行ConcreteColleagueA.operationA()", "业务逻辑");
+		PrintUtil.two("执行ConcreteColleagueA.operationA()", "业务逻辑");
 	}
 }

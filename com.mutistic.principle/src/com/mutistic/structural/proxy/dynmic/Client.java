@@ -10,17 +10,17 @@ import com.mutistic.utils.PrintUtil;
  */
 public class Client {
 	public static void main(String[] args) {
-		PrintUtil.printOne("Java动态代理的使用：");
+		PrintUtil.one("Java动态代理的使用：");
 		Order order = new Order("AAA", 100d, "bbbb");
-		PrintUtil.printThree("创建Order具体实例信息", order.toString());
+		PrintUtil.three("创建Order具体实例信息", order.toString());
 		
 		DynmicProxy proxy = new DynmicProxy();
 		OrderApi api = proxy.getProxyInterface(order);
 		
 		api.setPrice(200d, "BBB");
-		PrintUtil.printThree("BBB 修改后的Order信息", api.toString());
+		PrintUtil.three("BBB 修改后的Order信息", api.toString());
 		
 		api.setPrice(200d, "AAA");
-		PrintUtil.printThree("AAA 修改后的Order信息", api.toString());
+		PrintUtil.three("AAA 修改后的Order信息", api.toString());
 	}
 }

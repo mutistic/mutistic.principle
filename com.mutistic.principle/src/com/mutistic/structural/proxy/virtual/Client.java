@@ -10,14 +10,14 @@ import com.mutistic.utils.PrintUtil;
  */
 public class Client {
 	public static void main(String[] args) {
-		PrintUtil.printOne("虚拟代理的使用：");
+		PrintUtil.one("虚拟代理的使用：");
 		Order order = new Order("AAA", 100d, "bbbb");
-		PrintUtil.printThree("创建Order具体实例信息", order.toString());
+		PrintUtil.three("创建Order具体实例信息", order.toString());
 		
 		VirtualProxy proxy = new VirtualProxy();
 		proxy.setOrderApi(order);
 		
 		proxy.updatePrice(200d);
-		PrintUtil.printTwo("调用updatePrice后的Order信息", proxy.getOrderApi().toString());
+		PrintUtil.two("调用updatePrice后的Order信息", proxy.getOrderApi().toString());
 	}
 }

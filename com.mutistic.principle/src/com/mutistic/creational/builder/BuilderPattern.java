@@ -10,8 +10,8 @@ import com.mutistic.utils.PrintUtil;
  */
 public class BuilderPattern {
 	public static void main(String[] args) {
-		PrintUtil.println("建造者模式[Builder Pattern]");
-		PrintUtil.printOne("一、定义:\r\n" + 
+		PrintUtil.ln("建造者模式[Builder Pattern]");
+		PrintUtil.one("一、定义:\r\n" + 
 				"\r\n" + 
 				"定义: 将一个复杂对象的构建与它的表示分离，是的同样的构建过程可以创建不同的表示\r\n" + 
 				"本质: 分离整体构建算法和组件构造\r\n" + 

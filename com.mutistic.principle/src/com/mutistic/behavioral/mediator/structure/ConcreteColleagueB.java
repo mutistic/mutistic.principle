@@ -22,14 +22,14 @@ public class ConcreteColleagueB extends Colleague {
 	 * 业务逻辑
 	 */
 	public void operation() {
-		PrintUtil.printTwo("执行ConcreteColleagueB.operation()", "其他业务逻辑");
+		PrintUtil.two("执行ConcreteColleagueB.operation()", "其他业务逻辑");
 	}
 	
 	/**
 	 * 业务逻辑
 	 */
 	public void operationB() {
-		PrintUtil.printTwo("执行ConcreteColleagueB.operationB()", "其他业务逻辑");
+		PrintUtil.two("执行ConcreteColleagueB.operationB()", "其他业务逻辑");
 		this.getMediator().changed(this);
 	}
 }

@@ -10,8 +10,8 @@ import com.mutistic.utils.PrintUtil;
  */
 public class FacadePattern {
 	public static void main(String[] args) {
-		PrintUtil.println("外观模式[Facade Pattern]");
-		PrintUtil.printOne("一、定义和本质:\r\n" + 
+		PrintUtil.ln("外观模式[Facade Pattern]");
+		PrintUtil.one("一、定义和本质:\r\n" + 
 				"\r\n" + 
 				"定义: 为系统中的一组接口提供一个一致的界面。Facade模式定义高层接口，这个接口使得客户端容易使用这一系统。\r\n" + 
 				"本质: 封装交互、简化调用\r\n" + 

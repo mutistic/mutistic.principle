@@ -28,10 +28,10 @@ public class DBFactory implements IAbstractFactory {
 		}
 
 		if ("order".equals(businessType)) {
-			PrintUtil.printThree("抽象工厂模式:DBFactory", "创建OrderDBDaoImpl");
+			PrintUtil.three("抽象工厂模式:DBFactory", "创建OrderDBDaoImpl");
 			return new OrderDBDaoImpl();
 		} else if ("orderDetail".equals(businessType)) {
-			PrintUtil.printThree("抽象工厂模式:DBFactory", "创建OrderDetailDBImpl");
+			PrintUtil.three("抽象工厂模式:DBFactory", "创建OrderDetailDBImpl");
 			return new OrderDetailDBImpl();
 		}
 

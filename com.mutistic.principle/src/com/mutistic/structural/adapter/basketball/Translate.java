@@ -17,12 +17,12 @@ public class Translate extends Player {
 	}
 
 	public void attack() {
-		PrintUtil.printThree("翻译官开始进行翻译：", name + "进攻");
+		PrintUtil.three("翻译官开始进行翻译：", name + "进攻");
 		fc.attack();
 	}
 
 	public void defense() {
-		PrintUtil.printThree("翻译官开始进行翻译：", name + "防守");
+		PrintUtil.three("翻译官开始进行翻译：", name + "防守");
 		fc.defense();
 	}
 

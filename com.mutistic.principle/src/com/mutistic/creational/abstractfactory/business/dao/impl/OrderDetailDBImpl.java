@@ -18,7 +18,7 @@ public class OrderDetailDBImpl implements IOrderDetailDao {
 	 */
 	@Override
 	public void insertOrderDetail() {
-		PrintUtil.printThree("产品具体业务:OrderDetailDBImpl", "insertOrderDetail()");
+		PrintUtil.three("产品具体业务:OrderDetailDBImpl", "insertOrderDetail()");
 		PrintUtil.println();
 	}
 

@@ -16,7 +16,7 @@ public class Nationaldebt {
 	 * @date 2018年8月10日
 	 */
 	public void buy() {
-		PrintUtil.printThree("Nationaldebt", "buy");
+		PrintUtil.three("Nationaldebt", "buy");
 	}
 	
 	/**
@@ -25,6 +25,6 @@ public class Nationaldebt {
 	 * @date 2018年8月10日
 	 */
 	public void seller() {
-		PrintUtil.printThree("Nationaldebt", "seller");
+		PrintUtil.three("Nationaldebt", "seller");
 	}
 }

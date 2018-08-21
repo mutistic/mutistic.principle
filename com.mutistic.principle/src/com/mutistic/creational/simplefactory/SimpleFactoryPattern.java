@@ -11,8 +11,8 @@ import com.mutistic.utils.PrintUtil;
 public class SimpleFactoryPattern {
 	
 	public static void main(String[] args) {
-		PrintUtil.printOne("简单工厂模式[Simple Factory Pattern]");
-		PrintUtil.println("一、定义和本质:\r\n" + 
+		PrintUtil.one("简单工厂模式[Simple Factory Pattern]");
+		PrintUtil.ln("一、定义和本质:\r\n" + 
 				"\r\n" + 
 				"定义: 提供一个创建对象实例的功能，无需关心其具体的实现。被创建时间的类型可以是接口、抽象类，也可以是具体的类.\r\n" + 
 				"本质: 选择实现\r\n" + 

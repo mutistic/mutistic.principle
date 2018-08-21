@@ -10,8 +10,8 @@ import com.mutistic.utils.PrintUtil;
  */
 public class AbstractFactoryPattern {
 	public static void main(String[] args) {
-		PrintUtil.println("抽象工厂模式[Abstract Factory Pattern]");
-		PrintUtil.printOne("一、定义:\r\n" + 
+		PrintUtil.ln("抽象工厂模式[Abstract Factory Pattern]");
+		PrintUtil.one("一、定义:\r\n" + 
 				"\r\n" + 
 				"定义: 提供一个创建一系列相关或相互依赖对象的接口，而无需指定它们具体的类\r\n" + 
 				"本质: 选择产品簇的实现\r\n" + 

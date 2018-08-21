@@ -10,8 +10,8 @@ import com.mutistic.utils.PrintUtil;
  */
 public class FacotryPattern {
 	public static void main(String[] args) {
-		PrintUtil.println("工厂模式[Factory Pattern]");
-		PrintUtil.printOne("一、定义:\r\n" + 
+		PrintUtil.ln("工厂模式[Factory Pattern]");
+		PrintUtil.one("一、定义:\r\n" + 
 				"\r\n" + 
 				"定义: 定义一个用于创建对象的接口，让子类决定实例化哪一个类，Factory Method使一个类的实例化延迟到子类\r\n" + 
 				"本质: 延迟到子类来选择实现\r\n" + 
