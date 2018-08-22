@@ -2776,6 +2776,231 @@ public class ConcreteObserver implements Observer {
 [结构图](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.principle/notes/mode/structure/M17_CommandPattern.png)
 [时序图](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.principle/notes/mode/sequence/M17_CommandPattern.png)<br/>
 
+一、定义和本质: 
+```
+定义: 将一个请求封装为一个对象，从而使得可用不同的请求对客户进行参数化。对请求排队或记录请求日志，以及支持可撤销的操作
+本质: 封装请求
+```
+
+二、结构和说明: 
+```
+Command：定义命令的接口，声明执行的方法
+
+ConcreteCommand：命令接口的实现对象，是“虚”的实现：通常会持有接收者，并调用接收者的功能来完成命令要执行的操作
+
+Receiver：接收者。真正执行命令的对象。任何类都可能成为一个接收者，只要它能够实现命令要求实现的相应功能
+
+Invoker：调用者，要求命令对象执行请求，通常会持有命令对象，可以持有很多个命令对象。这个是客户端真正触发命令并要求
+命令执行相应操作的地方，也就是说相当于使用命令对象的入口
+
+Client：创建具体的命令对象，并且设置命令对象的接收者。注意这个不是常规意义上的客户端，而是在组装命令对象和接收者，
+把这个Client成为装配者（组装者）会更合适，因为真正使用命令的客户端是从Invoker来触发执行。
+```
+
+三、理解: 
+```
+主要解决：在软件系统中，行为请求者与行为实现者通常是一种紧耦合的关系，但某些场合，比如需要对行为进行记录、撤销或重做、
+	事务等处理时，这种无法抵御变化的紧耦合的设计就不太合适。
+如何解决：通过调用者调用接收者执行命令，顺序：调用者→接收者→命令。
+
+1、命令模式的关键：
+  命令模式的关键之处就是把请求封装成为对象，也就是命令对象，并定义了统一的执行操作的接口，
+这个命令对象可以被存储、转发、记录、处理、撤销等，整个命令模式都是围绕这个对象在进行。
+
+2、命令模式式的组装和调用：
+  在命令模式中经常会有一个命令的组装若，用它来维护命令的”‘虚”实现和真实实现之间的关系。
+如果是超级智能的命令，也就是说命令对象自己完全实现好了，不需要接收者，那就命令模式的退化，不需要接收者，自然也不需要组装者
+  而真正的客户端就是具体化请求的内容，然后提交请求进行触发就好了。真正的用户会通过Invoker来触发命令
+  在实际开发中，Client和Invoker可以融合在一起，有客户端在使用命令模式时，先进群命令对象和接收者的组装，组装完成后，在调用命令执行
+
+3、命令模式的接收者：
+  接收者可以是任意的类．对它没有什么特殊要求．这个对象知道如何真正执行命令的操作，执行时是从Command的实现类里面转调过来
+  一个接收者对象可以处理多个命令，接收者和命令之间没有约定的对应关系。接收若提供的方法个数、名称、功能和命令中的可以不一样，
+只要能够通过调用接收者的方法来实现命令对应的功能就可以了。
+
+4、发起请求的对象和真正实现的对象是完全解耦的：
+  请求究竟是由谁处理，如何处理，发起请求的对象是不知道的，也就是发起请求的对象和真正实现的对象是解耦的。
+发起请求的对象只关系自己发出的命令，真正的实现是不关注的。
+
+5、命令模式提供了对事务进行建模的方法，命令模式又称为Transaction
+```
+
+四、写法: 
+```
+1、智能命令
+  在标准的命令模式里面，命令的实现类是没有真正实现命令要求的功能的，真正执行命令的功能的是接收者
+  如果命令的实现对象比较智能，自己就能真实地实现命令要求的功能，而不再需要调用接收者，那么这种情况就称为智能命令 或 退化的命令模式
+  也可以有半智能的命令，命令对象知道部分实现，其他的还是需要调用接收者来完成，也就是说命令的功能由命令对象和接收者共同来完成
+
+2、参数化配置：所谓命令模式的参数化配置指的是：可以用不同的命令对象，去参数化配置客户端的请求
+
+3、可撤销的操作：
+  可撤销操作的意思是：放弃该操作，回到未执行该操作前的状态。这是一个非常重要的功能，
+几乎所有GUI应用都有撤消操作的功能。GUI的菜单是命令模式的最典型的应用之一。菜单项基本上都有撤销这个菜单
+  实现撤销操作的思路：
+  一种是补偿式，又称为反操作式：比如被撤销的操作时加的功能，那撤销的实现就是减操作
+  一种是存储恢复式：把操作前的状态记录下来，然后要撤销操作的时候就直接恢复回去
+
+4、宏命令：
+  包含多个命令的命令，是一个命令的组合
+  如何实现宏命令：宏命令的杯子上将类似于一个命令，基本上是把它当命令对象进行处理。
+区别就是，宏命令对象包含多个普通命令对象。执行一个宏命令就是执行宏命令里面包含的所有命令对象
+
+5、队列请求：
+	所谓队列请求，就是对命令对象进行排队，组成工作队列，然后依次去除命令对象来执行。
+	一般采用多线程或者线程池来进行命令队列的处理。
+
+6、日志请求：
+  所谓日志请求，就是把请求的历史记录保存下来，一般是采用物理存储的方式。如果运行请求的过程中，
+那么在系统再次运行时，就可以从保存的历史记录里面获取日志请求，并重新执行命令
+  日志请求的实现有两种方案：
+  一种是直接使用Java的序列化方法
+  一种是在命令对象里面添加存储和装载的方法。其实就是让命令对象自己实现类似序列化的功能 
+```
+
+五、优点: 
+```
+1、更松散的耦合，客户端请求和接收者完全解耦
+2、更动态的控制
+3、能很自然的复合命令，就是宏命令
+4、更好的扩展性
+```
+
+六、缺点: 
+```
+使用命令模式可能会导致某些系统有过多的具体命令类
+```
+
+七、使用场景: 
+```
+1、如果需要抽象出需要执行的动作，并参数化这些对象，可以选用命令模式，把需要执行的动作抽象成命令，然后实现凌乱的参数化配置
+2、如果需要在不同的时刻执行、排列和执行请求，可以选用命令模式，把这些请求封装成为命令对象，然后实现把请求对你恶化
+3、如果需要支持撤销操作，可以选用命令模式，通过管理命令对象，能很容易的实现命令的恢复和重做的功能
+4、如果需要支持单系统崩溃时，能把对系统的操作功能重新执行一遍，可以选用命令模式，把这些操作功能的请求封装成命令对象，
+然后实现日志命令，就可以在系统恢复回来后，通过日志获取命令列表，从而重新执行功能
+5、在需要事务的系统中，可以选用命令模式，命令模式提供了对事务进行建模的方法，命令模式又称为Transaction
+
+具体场景：
+1、GUI 中每一个按钮都是一条命令。 
+2、模拟 CMD
+```
+
+八、注意事项: 
+```
+系统需要支持命令的撤销(Undo)操作和恢复(Redo)操作，也可以考虑使用命令模式，见命令模式的扩展
+```
+
+Client.java: 
+```Java
+package com.mutistic.behavioral.command.structure;
+import com.mutistic.utils.PrintUtil;
+// Client：
+// 创建具体的命令对象，并且设置命令对象的接收者。注意这个不是常规意义上的客户端，而是在组装命令对象和接收者，把这个Client成为装配置会更合适，因为真正使用命令的客户端是从Invoker来触发执行。
+public class Client {
+	public static void main(String[] args) {
+		PrintUtil.one("命令模式[Command Pattern]");
+		Invoker invoker = new Client().assemble();
+		invoker.runCommand();
+	}
+	// 组装命令对象和接收者
+	public Invoker assemble() {
+		Receiver receiver = new Receiver();
+		PrintUtil.two("创建接收者对象实例", receiver);
+
+		Command cmd = new ConcreteCommand(receiver);
+		PrintUtil.three("创建命令对象实例，注入接收者对象实例", cmd);
+
+		Invoker invoker = new Invoker();
+		invoker.setCommand(cmd);
+		PrintUtil.two("创建调用者对象实例，注入命令对象实例", invoker);
+
+		return invoker;
+	}
+}
+```
+Receiver.java: 
+```Java
+package com.mutistic.behavioral.command.structure;
+import com.mutistic.utils.PrintUtil;
+// Receiver：
+// 接收者。真正执行命令的对象。任何类都可能成为一个接收者，只要它能够实现命令要求实现的相应功能
+public class Receiver {
+	// 真正执行命令的方法
+	public void action() {
+		PrintUtil.two("接收者开始真正执行命令", "Receiver.action()");
+	}
+}
+```
+Command.java: 
+```Java
+package com.mutistic.behavioral.command.structure;
+// Command：
+// 定义命令的接口，声明执行的操作方法
+public interface Command {
+	// 定义命令的接口，声明执行的操作方法
+	void execute();
+}
+```
+ConcreteCommand.java: 
+```Java
+package com.mutistic.behavioral.command.structure;
+import com.mutistic.utils.PrintUtil;
+// ConcreteCommand：
+// 命令接口的实现对象，是“虚”的实现：通常会持有接收者，并调用接收者的功能来完成命令要执行的操作
+public class ConcreteCommand implements Command {
+	/** 持有相应的接收者对象 */
+	private Receiver receiver;
+	/** 命令对象可有自己的状态 */
+	private String state;
+	/**
+	 * 命令接口的具体实现
+	 * @see com.mutistic.behavioral.command.structure.Command#execute()
+	 */
+	@Override
+	public void execute() {
+		PrintUtil.two("命令的具体对象开始转调接收者对象的对应方法", "ConcreteCommand.execute()");
+		// 转调接收者对象的对应方法，接收者来真正执行功能。所以称其ConcreteCommand是虚的实现
+		receiver.action();
+		// 设置命令对象的状态
+		state = "SUCCESS";
+		PrintUtil.two("命令的具体对象转调接收者对象的对应方法结束，命令状态", state);
+	}
+	/**
+	 * 构造函数：注入接收者对象实例
+	 * @param receiver 接收者对象实例
+	 */
+	public ConcreteCommand(Receiver receiver) {
+		this.receiver = receiver;
+		PrintUtil.two("命令的具体对象注入接收者对象实例", receiver);
+	}
+}
+```
+Invoker.java: 
+```Java
+package com.mutistic.behavioral.command.structure;
+import com.mutistic.utils.PrintUtil;
+// Invoker：
+// 调用者，要求命令对象执行请求，通常会持有命令对象，可以持有很多个命令对象。这个是客户端真正触发命令并要求命令执行相应操作的地方，也就是说相当于使用命令对象的入口
+public class Invoker {
+	/** 持有命令对象 */
+	private Command command;
+	/**
+	 * 要求命令对象执行的具体操作
+	 */
+	public void runCommand() {
+		PrintUtil.two("要求命令对象执行的具体操作", "Invoker.runCommand()");
+		command.execute();
+	}
+	// 获取命令对象实例
+	public Command getCommand() { return command; }
+	/**
+	 * 注入命令对象实例
+	 * @param command 命令对象实例
+	 */
+	public void setCommand(Command command) { this.command = command; }
+}
+```
+
 ---
 ### <a id="a_iterator">二十五、迭代器者模式[Iterator Pattern]</a> <a href="#a_command">last</a> <a href="#a_template">next</a>
 [结构图](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.principle/notes/mode/structure/M18_IteratorPattern.png)
