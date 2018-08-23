@@ -10,7 +10,7 @@ import com.mutistic.utils.PrintUtil;
  */
 public class Client {
 	public static void main(String[] args) {
-		PrintUtil.one(" 智能命令");
+		PrintUtil.one("智能命令（又称退化的命令模式）");
 		Invoker invoker = new Invoker();
 		invoker.setCommand(new ConcreteCommand());
 		invoker.runCommand();

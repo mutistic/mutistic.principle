@@ -4,7 +4,7 @@ import com.mutistic.utils.PrintUtil;
 
 /**
  * @program ConcreteCommand：
- * @description 智能命令
+ * @description 智能命令（又称退化的命令模式）
  * @author mutisitic
  * @date 2018年8月23日
  */
@@ -18,7 +18,7 @@ public class ConcreteCommand implements Command {
 	 */
 	@Override
 	public void execute() {
-		PrintUtil.two("智能命令直接执行具体的业务，不需要Receiver", "ConcreteCommand.execute()");
+		PrintUtil.two("智能命令（又称退化的命令模式）直接执行具体的业务，不需要Receiver", "ConcreteCommand.execute()");
 	}
 
 }
