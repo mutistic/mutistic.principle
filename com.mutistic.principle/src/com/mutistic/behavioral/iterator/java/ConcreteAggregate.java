@@ -24,7 +24,7 @@ public class ConcreteAggregate extends Aggregate {
 	 * @return 创建相应迭代器对象
 	 */
 	@Override
-	public Iterator createrIterator() {
+	public Iterator<Object> createrIterator() {
 		PrintUtil.two("工厂方法，创建相应迭代器对象的具体方法", "ConcreteAggregate.createrIterator()");
 		return new ConcreteIterator(this);
 	}

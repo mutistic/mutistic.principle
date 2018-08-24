@@ -18,7 +18,7 @@ public class Client {
 		ConcreteAggregate aggregate = new ConcreteAggregate();
 		aggregate.setData(ss);
 		
-		Iterator it =  aggregate.createrIterator();
+		Iterator<Object> it =  aggregate.createrIterator();
 		while(it.hasNext()) {
 			PrintUtil.three("Iterator.next()", it.next());
 		}

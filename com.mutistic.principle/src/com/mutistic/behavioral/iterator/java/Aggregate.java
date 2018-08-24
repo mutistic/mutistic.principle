@@ -15,5 +15,5 @@ public abstract class Aggregate {
 	 * @date 2018年8月24日
 	 * @return 创建相应迭代器对象
 	 */
-	abstract Iterator createrIterator();
+	abstract Iterator<Object> createrIterator();
 }
