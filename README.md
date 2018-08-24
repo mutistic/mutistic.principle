@@ -2222,6 +2222,274 @@ public class RealSubject implements Subject {
 [结构图](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.principle/notes/mode/structure/M10_CompositePattern.png)
 [时序图](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.principle/notes/mode/sequence/M10_CompositePattern.png)<br/>
 
+一、定义和本质: 
+```
+定义: 将对象组合成树形结构以表示“部分-整体”的层次结构。组合模式使得用户对单个对象和组合对象的使用具有一致性
+本质: 统一叶子对象和组合对象
+```
+
+二、结构和说明: 
+```
+Component：抽象的组件对象，为组合中的对象什么接口，让客户端可以通过这个接口来访问和管理整个对象结构，
+可以在内部为定义的功能提供默认的实现
+
+Leaf：叶子节点对象，定义和实现叶子对象的行为，不再包含其他的子节点对象
+
+Composite：组合对象，通常会存储子组件即叶子节点，定义包含子组件的那些组件的行为，
+并实现在组件接口中定义的与子组件有关的操作
+
+Client：客户端，通过组件接口来操作组合结果里面的组件对象
+```
+
+三、理解: 
+```
+主要解决：它在我们树型结构的问题中，模糊了简单元素和复杂元素的概念，客户程序可以向处理简单元素一样来处理复杂元素，
+从而使得客户程序与复杂元素的内部结构解耦。
+如何解决：树枝和叶子实现统一接口，树枝内部组合该接口。
+
+1、组合模式的目的：
+  让客户端不在区分操作的是组合对象还是叶子对象，而是以一个统一的方式来操作。实现这个功能关键是设计一个抽象的组件类，让它可以代表组合对象和叶子对象，
+
+2、对象树：
+  通常，组合模式会组合出树形结构，组成这个属性结构所使用的多个组件对象没救自然的形成了对象树
+  这意味着方式可以使用对象树来描述或者操作的功能，都可以考虑使用组合模式，比如XML或HTML文件格式
+
+3、组合模式中递归：
+  组合模式中的递归，指的是对象递归组合，不是递归算法
+  组合模式中的递归，是对象本身的递归，是对象的组合方式，是从设计上来讲的。在设计模式成为递归关联，是对象关联关系的一种
+
+4、Component中是否应该实现一个Component集合：
+  大多数情况下，一个Composite对象会持有子节点的集合。不声明在Component中的原因是，在父类来存放子类的实例对象，
+对于Composite节点来说是没什么问题的，Composite本身就要存放子节点。但是对于叶子节点来说会导致空间浪费，因为叶子节点是最小单位
+
+5、最大化Component定义：
+  由于要统一两种对象的操作，所以Component里面的方法主要是两种对象方法的和。这种实现是与类单一职责设计原则是冲突的
+一个父类应该只定义那些对它的之类有意义的操作。所以在Component中对组合对象的操作方法是对叶子对象没有意义的这种方法，
+提供默认的实现或是默认抛出不支持该功能的异常。组合对象按需覆盖该功能
+```
+
+四、写法: 
+```
+1、子组件排序：
+  在某些应用中，实用组合模式的时候，需要按照一定的顺序来使用子组件对象，比如进行语法分析的时候，
+使用组合模式构建的抽象语法是，在解析执行的时候，是需要按照顺序执行的。此时可以考虑结合迭代器模式来实现顺序访问组件对象
+
+2、透明性实现方式、安全性实现方式：
+  针对在Compoent声明定义管理子组件的操作还是在Composite中，在不同的实现中，要进行安全性和透明性的权衡选择
+  安全性是指：从客户使用组合模式上看是否更安全。如果安全，那么不会有发生无操作的可能，能访问的防范都是被支持的功能
+  透明性是指：从客户使用组合模式上，是否需要区分到底是组合对象还是叶子对象。如果是透明的，那就不再区分，对客户端而言，
+都是组件对象，具体的类型对于客户而言是透明的，是客户无需关心的。
+
+2.1、透明性的实现：
+  如果把管理子组件的操作定义在Component中，那么客户端只需要面对Component，而无需关心具体的组件类型，这种实现方式
+就是透明性的实现。也是标准的组合模式的定义。
+  但是透明性的实现是以安全性为代价的，因为Component中管理子组件的操作对客户是透明的，当客户使用叶子对象使用管理
+子组件的操作就会出现异常，这样操作是不安全的。
+
+2.2、透明性和安全性实现方式的选择：
+  对于组合模式而言，在安全性和透明性上，会更看重透明性，毕竟组合模式的功能就是要让客户端对叶子对象和组合对象的使用具有一致性
+  而且对于安全性的实现，需要区分是组合对象还是叶子对象，但是有的时候在强制类型转换，强制类型转换反而是不够安全的，
+针对这种问题，需要在Component额外声明判断是组合对象还是叶子对象的方法，根据判断结果在强制转换
+  因此在使用组合模式时，建议多采用透明性的实现方式，Component提供默认实现，少采用安全性的实现方式
+
+3、父组件引用：
+  父组件引用指的是：子组件对象到父组件对象的引用
+  简单的方案：在保持父组件到子组件引用的基础上，在增加保持从子组件到父组件的引用，这样在删除或调整一个组件对象时，
+可以通过调整父组件的引用来实现。通常在组合对象添加、删除、调整子组件对象时，为子组件对象重新父组件的方式来维护父组件引用。
+
+4、环状引用：
+  环状引用指的是：在对象结构中，某个对象包含的子对象，或者子对象的子对象，或是子对象的子对象的子对象，经过N层后，
+出现所包含的子对象中有这个对象本身，从而在组合模式中的树形结构出现了环状引用。
+  简单来说就是A包含B，B包含C，C包含A，这种组合关系形成了环状引用，这是要避免的。
+  检测是否有环状引用的情况：简单方案是：记录每个组件从根节点开始的路径，环状引用的标志是在一条路由中，
+某个对象出现两次。因此通过这个特性来判断是否存在环状引用。
+```
+
+五、优点: 
+```
+1、定义了包含基本对象和组合对象的类层次结构
+2、统一了组合对象和叶子对象
+3、简化了客户端调用
+4、更容易扩展，节点自有增加
+```
+
+六、缺点: 
+```
+1、很难限制组合中的组件类型
+2、在使用组合模式时，组合对象和叶子对象的声明都是实现类，而不是接口，违反了依赖倒置原则
+```
+
+七、使用场景: 
+```
+1、需要表示对象的部分-整体层次结构，可以选用组合模式，把整体和部分的操作统一起来，是的层次结构实现更简单，
+简化客户端的调用
+2、需要统一使用组合结构中所有对象
+
+具体场景：
+1、Java中Awt和Swing
+2、数据字典、树形菜单、文件夹
+```
+
+八、注意事项: 
+```
+Component一般定义时为具体类、抽象类，而不是接口
+```
+
+Client.java: 
+```Java
+package com.mutistic.structural.composite.structure;
+import com.mutistic.utils.PrintUtil;
+// Client：
+// 客户端，通过组件接口来操作组合结果里面的组件对象
+public class Client {
+	public static void main(String[] args) {
+		PrintUtil.one("组合模式[Composite Pattern]");
+		// 定义多个Composite对象
+		Component root = new Composite();
+		Component c1 = new Composite();
+		Component c2 = new Composite();
+		PrintUtil.two("定义多个Composite对象", "root，c1，c2");
+		// 创建多个叶子对象
+		Component l1 = new Leaf();
+		Component l2 = new Leaf();
+		Component l3 = new Leaf();
+		PrintUtil.two("创建多个叶子对象", "l1，l2，l3");
+		// 组合成树形结构
+		root.addChild(c1);
+		root.addChild(c2);
+		root.addChild(l1);
+		c1.addChild(l2);
+		c2.addChild(l3);
+		PrintUtil.two("组合成树形结构", "root包含c1,c2,l1。c1包含l2，c2包含l3");
+		// 操作Component对象
+		PrintUtil.two("操作Root Component对象", root);
+		root.opeartion();
+		Component comp = root.getChildrend(1);
+		PrintUtil.two("操作root.getChildrend(1)", comp);
+		comp.opeartion();
+	}
+}
+```
+Component.java: 
+```Java
+package com.mutistic.structural.composite.structure;
+// Component：
+// 抽象的组件对象，为组合中的对象什么接口，让客户端可以通过这个接口来访问和管理整个对象结构，可以在内部为定义的功能提供默认的实现
+public abstract class Component {
+	/**
+	 * 示意方法，子组件对象可能有的功能方法 
+	 */
+	public abstract void opeartion();
+	/**
+	 * 向组合对象中加入组件对象
+	 * @param child 被加入组合对象中的组件对象
+	 */
+	public void addChild(Component child) {
+		// 默认的实现，抛出异常，叶子对象或子组件未重写该方法时，Component对象本身不支持该方法
+		throw new UnsupportedOperationException("Component对象不支持addChild()方法");
+	}
+	/**
+	 * 从组合对象中移除组件对象
+	 * @param child 被移除组件对象
+	 */
+	public void removeChild(Component child) {
+		// 默认的实现，抛出异常，叶子对象或子组件未重写该方法时，Component对象本身不支持该方法
+		throw new UnsupportedOperationException("Component对象不支持removeChild()方法");
+	}
+	/**
+	 * 获取某个索引对应的组件对象
+	 * @param index 索引
+	 * @return 索引对应的组件对象
+	 */
+	public Component getChildrend(int index) {
+		// 默认的实现，抛出异常，叶子对象或子组件未重写该方法时，Component对象本身不支持该方法
+		throw new UnsupportedOperationException("Component对象不支持getChildrend()方法");
+	}
+}
+```
+Composite.java: 
+```Java
+package com.mutistic.structural.composite.structure;
+import java.util.ArrayList;
+import java.util.List;
+import com.mutistic.utils.PrintUtil;
+// Composite：
+// 组合对象，通常会存储子组件即叶子节点，定义包含子组件的那些组件的行为，并实现在组件接口中定义的与子组件有关的操作
+public class Composite extends Component {
+	/** 用来存储组合对象中包含的子组件对象集合 */
+	private List<Component> childComps;
+	/**
+	 * 示意方法，组合对象中通里面需要实现递归的调用
+	 * @see com.mutistic.structural.composite.structure.Component#opeartion()
+	 */
+	@Override
+	public void opeartion() {
+		if (childComps == null) {
+			return;
+		}
+		for (Component comp : childComps) {
+			// 递归的进行子组件相应方法的调用
+			PrintUtil.three("递归的进行子组件相应方法的调用", comp);
+			comp.opeartion();
+		}
+		PrintUtil.println();
+	}
+	/**
+	 * 向组合对象中加入组件对象
+	 * @param child 被加入组合对象中的组件对象
+	 * @see com.mutistic.structural.composite.structure.Component#addChild(com.mutistic.structural.composite.structure.Component)
+	 */
+	@Override
+	public void addChild(Component child) {
+		if(childComps == null) {
+			childComps = new ArrayList<Component>();
+		}
+		childComps.add(child);
+	}
+	/**
+	 * 从组合对象中移除组件对象
+	 * @param child 被移除组件对象
+	 * @see com.mutistic.structural.composite.structure.Component#removeChild(com.mutistic.structural.composite.structure.Component)
+	 */
+	@Override
+	public void removeChild(Component child) {
+		if(child != null && childComps != null) {
+			childComps.remove(child);
+		}
+	}
+	/**
+	 * 获取某个索引对应的组件对象
+	 * @param index 索引
+	 * @return 索引对应的组件对象
+	 * @see com.mutistic.structural.composite.structure.Component#getChildrend(int)
+	 */
+	@Override
+	public Component getChildrend(int index) {
+		if(childComps == null) {
+			return null;
+		}
+		return childComps.get(index);
+	}
+}
+```
+Leaf.java: 
+```Java
+package com.mutistic.structural.composite.structure;
+import com.mutistic.utils.PrintUtil;
+// Leaf：
+// 叶子节点对象，定义和实现叶子对象的行为，不再包含其他的子节点对象
+public class Leaf extends Component {
+	/**
+	 * 示意方法，叶子对象可能有的方法
+	 * @see com.mutistic.structural.composite.structure.Component#opeartion()
+	 */
+	@Override
+	public void opeartion() {
+		PrintUtil.three("叶子对象可能有的方法", this);
+	}
+}
+```
+
 ---
 ### <a id="a_decorator">十八、装饰模式[Decorator Pattern]</a> <a href="#a_composite">last</a> <a href="#a_flyweight">next</a>
 [结构图](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.principle/notes/mode/structure/M11_DecoratorPattern.png)
@@ -3010,7 +3278,6 @@ public class Invoker {
 ```
 定义: 提供一种方法顺序访问一个聚合对象中各个元素，而又不需暴露该对象的内部表示
 本质: 控制访问聚合对象中的元素
-体现: 
 ```
 
 二、结构和说明: 
@@ -3082,6 +3349,11 @@ ConcreteAggregate：具体聚合对象。实现创建相应的迭代器对象。
   自己实现的话只需要在Iterator接口中添加向前和判断和向前获取值的方法，然后在实现类中实现即可。
 
 5、翻页迭代：
+  常见的翻页功能有以下几种：
+  纯数据库实现：依靠SQL提供的功能实现翻页，根据用户每次请求翻页的数据，从数据库中查询相应的数据，以时间换空间
+  纯内存实现：从数据库中把需要的所有数据取出放在内存中，根据用户的请求翻页数据，从内容中获取相应的数据，以空间换时间
+  数据库+内存实现：比如每页显示10条记录，根据判断用户翻页频率，第一次访问从数据库获取前几页数据，然后放在内存中，这样
+前几页就可以从内存中后去数据。后几页的数据根据访问统计进行衰减访问，如此操作知道一次冲数据库中获取一页数据
 
 ```
 
@@ -3107,7 +3379,7 @@ ConcreteAggregate：具体聚合对象。实现创建相应的迭代器对象。
 3、希望为遍历不同的聚合对象提供一个统一的接口
 
 具体场景：
-1、Java中的java.util.Collection集合类
+1、Java中的java.util.Collection集合类和java.util.Iterator迭代器
 ```
 
 八、注意事项: 
@@ -3117,6 +3389,185 @@ ConcreteAggregate：具体聚合对象。实现创建相应的迭代器对象。
 
 Client.java: 
 ```Java
+package com.mutistic.behavioral.iterator.structrue;
+import com.mutistic.utils.PrintUtil;
+// Client：客户端 
+// 演示：迭代器者模式[Iterator Pattern]
+public class Client {
+	public static void main(String[] args) {
+		PrintUtil.one("迭代器者模式[Iterator Pattern]（外部迭代器）");
+		
+		String[] ss = new String[] {"111", "222", "333"};
+		// 创建聚合对象
+		Aggregate aggregate = new ConcreteAggregate(ss);
+		PrintUtil.two("创建聚合对象，注入聚合数据", aggregate);
+		
+		// 创建迭代器
+		Iterator it = aggregate.createrIterator();
+		PrintUtil.two("创建迭代器，注入聚合数据", it);
+
+		// 从迭代器获取元素
+		while(!it.isDone()) {
+			PrintUtil.three("从迭代器中获取元素", it.currentItem());
+			it.next();
+		}
+	}
+}
+```
+Iterator.java: 
+```Java
+package com.mutistic.behavioral.iterator.structrue;
+// Iterator：
+// 迭代器接口。定义访问和遍历元素的接口
+public interface Iterator {
+	/**
+	 * @description 定义：移动到聚合对象的第一个位置接口
+	 */
+	void first();
+	
+	/**
+	 * 定义：移动到聚合对象的下一个位置接口
+	 */
+	void next();
+	/**
+	 * 定义：判断是否已经移动移动聚合对象的最后一个位置接口
+	 * @return true：最后一个位置，false：不是最后一个位置
+	 */
+	boolean isDone();
+	/**
+	 * 定义：获取迭代当前元素接口
+	 * @return 迭代的当前元素
+	 */
+	Object currentItem();
+}
+```
+ConcreteIterator.java: 
+```Java
+package com.mutistic.behavioral.iterator.structrue;
+import com.mutistic.utils.PrintUtil;
+// ConcreteIterator：
+// 具体迭代器实现对象。定义对聚合对象的遍历，并跟踪遍历时的当前位置（外部迭代器）（游标）
+public class ConcreteIterator implements Iterator {
+	/** 持有被迭代的具体的聚合对象 */
+	private ConcreteAggregate aggregate;
+	/**
+	 * 内部索引，记录当前迭代到的索引位置 
+	 * -1：表示刚开始时，迭代器指向聚合对象第一个对象之前
+	 */
+	private int index = -1;
+	/**
+	 * 构造函数：注入被迭代的具体的聚合对象
+	 * @param aggregate 被迭代的具体的聚合对象
+	 */
+	public ConcreteIterator(ConcreteAggregate aggregate) {
+		super();
+		this.aggregate = aggregate;
+		PrintUtil.two("构造函数：注入被迭代的具体的聚合对象", "ConcreteIterator()");
+	}
+	/**
+	 * 移动到聚合对象的第一个位置
+	 * @see com.mutistic.behavioral.iterator.structrue.Iterator#first()
+	 */
+	@Override
+	public void first() {
+		index = 0;
+		PrintUtil.three("移动到聚合对象的第一个位置", "ConcreteIterator.first()");
+	}
+	/**
+	 * 移动到聚合对象的下一个位置
+	 * @see com.mutistic.behavioral.iterator.structrue.Iterator#next()
+	 */
+	@Override
+	public void next() {
+		if (index < aggregate.size()) {
+			index++;
+		}
+		PrintUtil.three("移动到聚合对象的第一个位置", "ConcreteIterator.next()");
+	}
+	/**
+	 * 判断是否已经移动移动聚合对象的最后一个位置
+	 * @return true：最后一个位置，false：不是最后一个位置
+	 * @see com.mutistic.behavioral.iterator.structrue.Iterator#isDone()
+	 */
+	@Override
+	public boolean isDone() {
+		PrintUtil.two("判断是否已经移动移动聚合对象的最后一个位置", "ConcreteIterator.isDone()");
+		return index == aggregate.size();
+	}
+
+	/**
+	 * 获取迭代当前元素
+	 * @return 迭代的当前元素
+	 * @see com.mutistic.behavioral.iterator.structrue.Iterator#currentItem()
+	 */
+	@Override
+	public Object currentItem() {
+		PrintUtil.three("（外部迭代器）获取迭代当前元素，转调聚合对象的get方法", "ConcreteIterator.currentItem()");
+		if (index < 0) {
+			first();
+		}
+		return aggregate.get(index);
+	}
+}
+```
+Aggregate.java: 
+```Java
+package com.mutistic.behavioral.iterator.structrue;
+// Aggregate：
+// 聚合对象。定义创建相应迭代器对象的接口
+public abstract class Aggregate {
+	/**
+	 * 定义：工厂方法，创建相应迭代器对象的抽象方法接口
+	 * @return 创建相应迭代器对象
+	 */
+	abstract Iterator createrIterator();
+}
+```
+ConcreteAggregate.java: 
+```Java
+package com.mutistic.behavioral.iterator.structrue;
+import com.mutistic.utils.PrintUtil;
+// ConcreteAggregate：
+// 具体聚合对象。实现创建相应的迭代器对象。
+public class ConcreteAggregate extends Aggregate {
+	/** 表示聚合对象具体的内容 */
+	private String[] ss;
+	/**
+	 * 构造函数：传入聚合对象具体的内容
+	 * @param ss 聚合对象具体的内容
+	 */
+	public ConcreteAggregate(String[] ss) {
+		super();
+		this.ss = ss;
+	}
+	/**
+	 * 工厂方法，创建相应迭代器对象的具体方法
+	 * @return 创建相应迭代器对象
+	 */
+	@Override
+	public Iterator createrIterator() {
+		PrintUtil.two("工厂方法，创建相应迭代器对象的具体方法", "ConcreteAggregate.createrIterator()");
+		return new ConcreteIterator(this);
+	}
+	/**
+	 * 获取索引所对应的元素
+	 * @param index 索引
+	 * @return 索引所对应的元素
+	 */
+	public Object get(int index) {
+		if(index > ss.length) {
+			return null;
+		}
+		return ss[index];
+	}
+	/**
+	 * 获取聚合对象的大小 
+	 * @return 聚合对象的大小
+	 */
+	public int size() {
+		return ss == null ? 0 : ss.length;
+	}
+}
 ```
 
 ---
