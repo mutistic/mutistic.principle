@@ -12,16 +12,17 @@ public class ConcreteIterator implements Iterator {
 
 	/** 持有被迭代的具体的聚合对象 */
 	private ConcreteAggregate aggregate;
-	
+
 	/**
-	 * 内部索引，记录当前迭代到的索引位置
-	 * -1：表示刚开始时，迭代器指向聚合对象第一个对象之前
+	 * 内部索引，记录当前迭代到的索引位置 -1：表示刚开始时，迭代器指向聚合对象第一个对象之前
 	 */
 	private int index = -1;
-	
+
 	/**
 	 * 构造函数：注入被迭代的具体的聚合对象
-	 * @param aggregate 被迭代的具体的聚合对象
+	 * 
+	 * @param aggregate
+	 *            被迭代的具体的聚合对象
 	 */
 	public ConcreteIterator(ConcreteAggregate aggregate) {
 		super();
@@ -49,7 +50,7 @@ public class ConcreteIterator implements Iterator {
 	 */
 	@Override
 	public void next() {
-		if(index < aggregate.size()) {
+		if (index < aggregate.size()) {
 			index++;
 		}
 		PrintUtil.three("移动到聚合对象的第一个位置", "ConcreteIterator.next()");
@@ -79,10 +80,10 @@ public class ConcreteIterator implements Iterator {
 	public Object currentItem() {
 		PrintUtil.three("（外部迭代器）获取迭代当前元素，转调聚合对象的get方法", "ConcreteIterator.currentItem()");
 
-		if(index < 0) {
+		if (index < 0) {
 			first();
 		}
-		
+
 		return aggregate.get(index);
 	}
 
