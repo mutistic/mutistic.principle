@@ -13,14 +13,14 @@ public class ConcreteAggregate extends Aggregate {
 	/**
 	 * 表示聚合对象具体的内容
 	 */
-	private String[] ss;
+	private String[] data;
 	/**
 	 * 构造函数：传入聚合对象具体的内容
-	 * @param ss 聚合对象具体的内容
+	 * @param data 聚合对象具体的内容
 	 */
-	public ConcreteAggregate(String[] ss) {
+	public ConcreteAggregate(String[] data) {
 		super();
-		this.ss = ss;
+		this.data = data;
 	}
 
 	/**
@@ -43,11 +43,11 @@ public class ConcreteAggregate extends Aggregate {
 	 * @return 索引所对应的元素
 	 */
 	public Object get(int index) {
-		if(index > ss.length) {
+		if(index > data.length) {
 			return null;
 		}
 		
-		return ss[index];
+		return data[index];
 	}
 	
 	/**
@@ -57,6 +57,6 @@ public class ConcreteAggregate extends Aggregate {
 	 * @return 聚合对象的大小
 	 */
 	public int size() {
-		return ss == null ? 0 : ss.length;
+		return data == null ? 0 : data.length;
 	}
 }

@@ -14,15 +14,14 @@ public class ConcreteIterator implements Iterator {
 	private ConcreteAggregate aggregate;
 
 	/**
-	 * 内部索引，记录当前迭代到的索引位置 -1：表示刚开始时，迭代器指向聚合对象第一个对象之前
+	 * 内部索引，记录当前迭代到的索引位置 
+	 * -1：表示刚开始时，迭代器指向聚合对象第一个对象之前
 	 */
 	private int index = -1;
 
 	/**
 	 * 构造函数：注入被迭代的具体的聚合对象
-	 * 
-	 * @param aggregate
-	 *            被迭代的具体的聚合对象
+	 * @param aggregate 被迭代的具体的聚合对象
 	 */
 	public ConcreteIterator(ConcreteAggregate aggregate) {
 		super();
