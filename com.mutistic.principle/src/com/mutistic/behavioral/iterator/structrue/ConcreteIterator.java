@@ -4,7 +4,7 @@ import com.mutistic.utils.PrintUtil;
 
 /**
  * @program ConcreteIterator：
- * @description 具体迭代器实现对象。定义对聚合对象的遍历，并跟踪遍历时的当前位置（外部迭代器）
+ * @description 具体迭代器实现对象。定义对聚合对象的遍历，并跟踪遍历时的当前位置（外部迭代器）（游标）
  * @author mutisitic
  * @date 2018年8月23日
  */
@@ -77,7 +77,7 @@ public class ConcreteIterator implements Iterator {
 	 */
 	@Override
 	public Object currentItem() {
-		PrintUtil.three("获取迭代当前元素", "ConcreteIterator.currentItem()");
+		PrintUtil.three("（外部迭代器）获取迭代当前元素，转调聚合对象的get方法", "ConcreteIterator.currentItem()");
 
 		if(index <= 0) {
 			first();
