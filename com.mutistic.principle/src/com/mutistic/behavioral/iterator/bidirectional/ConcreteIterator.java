@@ -1,12 +1,12 @@
-package com.mutistic.behavioral.iterator.structrue;
+package com.mutistic.behavioral.iterator.bidirectional;
 
 import com.mutistic.utils.PrintUtil;
 
 /**
  * @program ConcreteIterator：
- * @description 具体迭代器实现对象。定义对聚合对象的遍历，并跟踪遍历时的当前位置（外部迭代器）（游标）
+ * @description 具体迭代器实现对象。双向迭代器
  * @author mutisitic
- * @date 2018年8月23日
+ * @date 2018年8月24日
  */
 public class ConcreteIterator implements Iterator {
 
@@ -32,7 +32,7 @@ public class ConcreteIterator implements Iterator {
 	/**
 	 * @description 移动到聚合对象的第一个位置
 	 * @author mutisitic
-	 * @date 2018年8月23日
+	 * @date 2018年8月24日
 	 * @see com.mutistic.behavioral.iterator.structrue.Iterator#first()
 	 */
 	@Override
@@ -44,7 +44,7 @@ public class ConcreteIterator implements Iterator {
 	/**
 	 * @description 移动到聚合对象的下一个位置
 	 * @author mutisitic
-	 * @date 2018年8月23日
+	 * @date 2018年8月24日
 	 * @see com.mutistic.behavioral.iterator.structrue.Iterator#next()
 	 */
 	@Override
@@ -58,7 +58,7 @@ public class ConcreteIterator implements Iterator {
 	/**
 	 * @description 判断是否已经移动移动聚合对象的最后一个位置
 	 * @author mutisitic
-	 * @date 2018年8月23日
+	 * @date 2018年8月24日
 	 * @return
 	 * @see com.mutistic.behavioral.iterator.structrue.Iterator#isDone()
 	 */
@@ -71,19 +71,47 @@ public class ConcreteIterator implements Iterator {
 	/**
 	 * @description 获取迭代当前元素
 	 * @author mutisitic
-	 * @date 2018年8月23日
+	 * @date 2018年8月24日
 	 * @return
 	 * @see com.mutistic.behavioral.iterator.structrue.Iterator#currentItem()
 	 */
 	@Override
 	public Object currentItem() {
-		PrintUtil.three("（外部迭代器）获取迭代当前元素，转调聚合对象的get方法", "ConcreteIterator.currentItem()");
+		PrintUtil.three("（双向迭代器）获取迭代当前元素，转调聚合对象的get方法", "ConcreteIterator.currentItem()");
 
 		if(index < 0) {
 			first();
 		}
 		
 		return aggregate.get(index);
+	}
+
+	/**
+	 * @description 判断是否已经移动移动聚合对象的第一个位置
+	 * @author mutisitic
+	 * @date 2018年8月24日
+	 * @return
+	 * @see com.mutistic.behavioral.iterator.bidirectional.Iterator#isFirst()
+	 */
+	@Override
+	public boolean isFirst() {
+		PrintUtil.two("判断是否已经移动移动聚合对象的第一个位置", "ConcreteIterator.isFirst()");
+		return index == 0;
+	}
+
+	/**
+	 * @description 移动到聚合对象上一个位置
+	 * @author mutisitic
+	 * @date 2018年8月24日
+	 * @see com.mutistic.behavioral.iterator.bidirectional.Iterator#previous()
+	 */
+	@Override
+	public void previous() {
+		PrintUtil.three("（双向迭代器）移动到聚合对象上一个位置", "ConcreteIterator.previous()");
+
+		if(index > 0) {
+			index--;
+		}
 	}
 
 }
