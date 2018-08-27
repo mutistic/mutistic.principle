@@ -3788,6 +3788,158 @@ public class ConcreteClass extends AbstractClass {
 [结构图](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.principle/notes/mode/structure/M20_StrategyPattern.png)
 [时序图](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.principle/notes/mode/sequence/M20_StrategyPattern.png)<br/>
 
+一、定义、本质、原则: 
+```
+定义: 定义一系列的算法，把它们封装起来，并且使它们可以相互替换。策略模式使得算法可独立于使用它的客户而变化
+本质: 
+原则: 
+```
+
+二、结构和说明: 
+```
+Strategy：策略接口。用来约束一系列具体的策略算法。Context使用这个接口来调用具体的策略实现定义的算法
+
+ConcreteStrategy：具体的策略实现，也就是具体的算法实现
+
+Context：上下文。负责和具体的策略类交互，通常上下文会持有一个真正的策略实现，上下文可以让具体的策略类来获取上下文数据，
+甚至让具体的策略类来回调上下文的方法
+```
+
+三、理解: 
+```
+主要解决：在有多种算法相似的情况下，使用 if...else 所带来的复杂和难以维护。
+如何解决：将这些算法封装成一个一个的类，任意地替换。
+
+1、策略模式的功能：
+
+2、策略模式和if-else语句
+```
+
+四、写法: 
+```
+```
+
+五、优点: 
+```
+```
+
+六、缺点: 
+```
+```
+
+七、使用场景: 
+```
+
+具体场景：
+```
+
+八、注意事项: 
+```
+```
+
+Client.java: 
+```Java
+package com.mutistic.behavioral.strategy.structure;
+import com.mutistic.utils.PrintUtil;
+// Client：客户端
+// 演示：策略模式[Strategy Pattern]结构图
+public class Client {
+	public static void main(String[] args) {
+		PrintUtil.one("策略模式[Strategy Pattern]");
+		
+		PrintUtil.two("通过context转调具体策略算法", "ConcreteStrategyA");
+		Context context = new Context(new ConcreteStrategyA());
+		context.contextInterface();
+
+		PrintUtil.two("通过context转调具体策略算法", "ConcreteStrategyB");
+		Context context2 = new Context(new ConcreteStrategyB());
+		context2.contextInterface();
+
+		PrintUtil.two("通过context转调具体策略算法", "ConcreteStrategyC");
+		Context context3 = new Context(new ConcreteStrategyC());
+		context3.contextInterface();
+	}
+}
+```
+Strategy.java: 
+```Java
+package com.mutistic.behavioral.strategy.structure;
+// Strategy：
+// 策略接口。用来约束一系列具体的策略算法。Context使用这个接口来调用具体的策略实现定义的算法
+public interface Strategy {
+	// 定义：某个算法的接口，参数或返回值根据具体的需求
+	void algorithmInterface();
+	
+}
+```
+ConcreteStrategyA.java: 
+```Java
+package com.mutistic.behavioral.strategy.structure;
+import com.mutistic.utils.PrintUtil;
+// ConcreteStrategy：
+// 具体的策略实现，也就是具体的算法实现
+public class ConcreteStrategyA implements Strategy {
+	/**
+	 * 算法的具体实现
+	 * @see com.mutistic.behavioral.strategy.structure.Strategy#algorithmInterface()
+	 */
+	@Override
+	public void algorithmInterface() {
+		PrintUtil.three("ConcreteStrategyA.algorithmInterface()", "算法的具体实现");
+	}
+}
+```
+ConcreteStrategyB.java: 
+```Java
+package com.mutistic.behavioral.strategy.structure;
+import com.mutistic.utils.PrintUtil;
+public class ConcreteStrategyB implements Strategy {
+	@Override
+	public void algorithmInterface() {
+		PrintUtil.three("ConcreteStrategyB.algorithmInterface()", "算法的具体实现");
+	}
+}
+```
+ConcreteStrategyC.java: 
+```Java
+package com.mutistic.behavioral.strategy.structure;
+import com.mutistic.utils.PrintUtil;
+public class ConcreteStrategyC implements Strategy {
+	@Override
+	public void algorithmInterface() {
+		PrintUtil.three("ConcreteStrategyC.algorithmInterface()", "算法的具体实现");
+	}
+}
+```
+Context.java: 
+```Java
+package com.mutistic.behavioral.strategy.structure;
+import com.mutistic.utils.PrintUtil;
+// Context：
+// 上下文。负责和具体的策略类交互，通常上下文会持有一个真正的策略实现，上下文可以让具体的策略类来获取上下文数据，甚至让具体的策略类来回调上下文的方法
+public class Context {
+	/** 持有一个具体的策略对象 */
+	private Strategy strategy;
+
+	/**
+	 * 构造函数：传入具体的策略对象
+	 * @param strategy 具体的策略对象
+	 */
+	public Context(Strategy strategy) {
+		super();
+		if (null != strategy) {
+			this.strategy = strategy;
+		}
+	}
+
+	// 上下文对客户端提供的操作接口，转调策略算法接口
+	public void contextInterface() {
+		PrintUtil.three("Context.contextInterface()", "上下文对客户端提供的操作接口，转调策略算法接口");
+		this.strategy.algorithmInterface();
+	}
+}
+```
+
 ---
 ### <a id="a_state">二十八、状态模式[State Pattern]</a> <a href="#a_strategy">last</a> <a href="#a_memento">next</a>
 [结构图](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.principle/notes/mode/structure/M21_StatePattern.png)
