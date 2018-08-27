@@ -1,4 +1,4 @@
-package com.mutistic.behavioral.strategy.structure;
+package com.mutistic.behavioral.strategy.write;
 
 /**
  * @program 继承 Strategy类的具体策略类

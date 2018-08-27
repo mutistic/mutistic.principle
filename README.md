@@ -627,7 +627,7 @@ Setter方法传递依赖对象: 在类中通过Setter方法声明依赖关系，
 [结构图](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.principle/notes/mode/structure/M1_SimpleFactoryPattern.png)
 [时序图](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.principle/notes/mode/sequence/M1_SimpleFactoryPattern.png)<br/>
 
-一、定义和本质: 
+一、定义、本质: 
 ```
 定义: 提供一个创建对象实例的功能，无需关心其具体的实现。被创建时间的类型可以是接口、抽象类，也可以是具体的类.
 本质: 选择实现
@@ -772,7 +772,7 @@ public class ImplB extends API {
 [结构图](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.principle/notes/mode/structure/M2_SignletonPattern.png)
 [时序图](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.principle/notes/mode/sequence/M2_SignletonPattern.png)<br/>
 
-一、定义和本质: 
+一、定义、本质: 
 ```
 定义: 保证一个类仅有一个实例，并提供一个访问该类的全局访问接口。
 本质: 控制实例的数目
@@ -1724,7 +1724,7 @@ public class ConcretePrototype implements Prototype {
 [结构图](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.principle/notes/mode/structure/M7_FacadePattern.png)
 [时序图](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.principle/notes/mode/sequence/M7_FacadePattern.png)<br/>
 
-一、定义和本质: 
+一、定义、本质、原则: 
 ```
 定义: 为系统中的一组接口提供一个一致的界面。Facade模式定义高层接口，这个接口使得客户端容易使用这一系统。
 本质: 封装交互、简化调用
@@ -1856,7 +1856,7 @@ public class ModeC {
 [结构图](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.principle/notes/mode/structure/M8_AdapterPattern.png)
 [时序图](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.principle/notes/mode/sequence/M8_AdapterPattern.png)<br/>
 
-一、定义和本质: 
+一、定义、本质: 
 ```
 定义: 将一个类的接口转换客户端希望的另外一个接口。适配器模式使得原本由于接口不兼容而能一起工作的那些类可以一起工作。
 本质: 转换匹配，复用功能
@@ -2028,7 +2028,7 @@ public class Existing {
 ### <a id="a_proxy">十六、代理模式[Proxy Pattern]</a> <a href="#a_adapter">last</a> <a href="#a_composite">next</a>
 [结构图](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.principle/notes/mode/structure/M9_ProxyPattern.png)
 [时序图](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.principle/notes/mode/sequence/M9_ProxyPattern.png)<br/>
-一、定义和本质: 
+一、定义、本质: 
 ```
 定义: 为其他对象提供一种代理以控制对这个对象的访问
 本质: 控制对象访问
@@ -2222,7 +2222,7 @@ public class RealSubject implements Subject {
 [结构图](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.principle/notes/mode/structure/M10_CompositePattern.png)
 [时序图](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.principle/notes/mode/sequence/M10_CompositePattern.png)<br/>
 
-一、定义和本质: 
+一、定义、本质: 
 ```
 定义: 将对象组合成树形结构以表示“部分-整体”的层次结构。组合模式使得用户对单个对象和组合对象的使用具有一致性
 本质: 统一叶子对象和组合对象
@@ -2515,7 +2515,7 @@ public class Leaf extends Component {
 ### <a id="a_mediator">二十二、中介者模式[Mediator Pattern]</a> <a href="#a_filter">last</a> <a href="#a_observer">next</a>
 [结构图](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.principle/notes/mode/structure/M15_MediatorPattern.png)
 [时序图](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.principle/notes/mode/sequence/M15_MediatorPattern.png)<br/>
-一、定义和本质: 
+一、定义、本质: 
 ```
 定义: 用一个中介对象来封装一系列的对象交付。终结者是的各对象不需要显式地相互引用，
 	从而而使其耦合松散，而且可以独立的改变他们之间的交互
@@ -2800,7 +2800,7 @@ public class ConcreteColleagueB extends Colleague {
 [结构图](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.principle/notes/mode/structure/M16_ObserverPattern.png)
 [时序图](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.principle/notes/mode/sequence/M16_ObserverPattern.png)<br/>
 
-一、定义和本质: 
+一、定义、本质: 
 ```
 定义: 定义对象间的一种一对多的依赖关系，当一个对象的状态发生改变时，所有依赖于它的对象都得到通知并被自动更新
 本质: 触发联动
@@ -3044,7 +3044,7 @@ public class ConcreteObserver implements Observer {
 [结构图](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.principle/notes/mode/structure/M17_CommandPattern.png)
 [时序图](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.principle/notes/mode/sequence/M17_CommandPattern.png)<br/>
 
-一、定义和本质: 
+一、定义、本质: 
 ```
 定义: 将一个请求封装为一个对象，从而使得可用不同的请求对客户进行参数化。对请求排队或记录请求日志，以及支持可撤销的操作
 本质: 封装请求
@@ -3274,7 +3274,7 @@ public class Invoker {
 [结构图](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.principle/notes/mode/structure/M18_IteratorPattern.png)
 [时序图](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.principle/notes/mode/sequence/M18_IteratorPattern.png)<br/>
 
-一、定义和本质: 
+一、定义、本质: 
 ```
 定义: 提供一种方法顺序访问一个聚合对象中各个元素，而又不需暴露该对象的内部表示
 本质: 控制访问聚合对象中的元素
@@ -3575,11 +3575,11 @@ public class ConcreteAggregate extends Aggregate {
 [结构图](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.principle/notes/mode/structure/M19_TemplatePattern.png)
 [时序图](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.principle/notes/mode/sequence/M19_TemplatePattern.png)<br/>
 
-一、定义、本质、体现: 
+一、定义、本质、原则: 
 ```
 定义: 定义一个操作中的算法的骨架，而将一些步骤延迟到子类中。模板方法是的子类可以不改变一个算法的结构即可重定义该算法的某些特定步骤
 本质: 固定算法骨架
-体现: 提现了开闭原则和里氏替换原则
+原则: 提现了开闭原则和里氏替换原则
 ```
 
 二、结构和说明: 

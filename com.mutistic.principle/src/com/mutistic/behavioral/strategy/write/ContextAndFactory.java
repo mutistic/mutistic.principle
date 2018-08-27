@@ -1,4 +1,4 @@
-package com.mutistic.behavioral.strategy.structure;
+package com.mutistic.behavioral.strategy.write;
 
 /**
  * @program 策略模式+简单工厂模式：上下文类

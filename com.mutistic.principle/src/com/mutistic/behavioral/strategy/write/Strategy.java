@@ -1,4 +1,4 @@
-package com.mutistic.behavioral.strategy.structure;
+package com.mutistic.behavioral.strategy.write;
 
 /**
  * @program 策略抽象算法父类
