@@ -16,6 +16,7 @@ public class LogContext {
 	 * @date 2018年8月29日
 	 * @param msg
 	 */
+	@SuppressWarnings("unused")
 	public void log(String msg) {
 		LogStrategyTemplate strategy = new DbLog();
 		try {
