@@ -4030,6 +4030,139 @@ public class Context {
 [结构图](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.principle/notes/mode/structure/M21_StatePattern.png)
 [时序图](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.principle/notes/mode/sequence/M21_StatePattern.png)<br/>
 
+一、定义、本质、原则: 
+```
+定义: 允许一个对象在其内部状态改变时改变它的行为。对象看起来似乎修改了它的类
+本质: 
+原则: 
+```
+
+二、结构和说明: 
+```
+Context：环境，也称上下文。通常用来定义客户端需要的接口，同时维护一个具体处理当前状态的实例对象
+
+State：状态接口。用来封装于上下文的一个特定状态所对应的行为
+
+ConcreteState：具体实现状态处理的类，每个类实现一个状态的具体处理
+```
+
+三、理解: 
+```
+
+1、
+```
+
+四、写法: 
+```
+```
+
+五、优点: 
+```
+```
+
+六、缺点: 
+```
+```
+
+七、使用场景: 
+```
+
+具体场景：
+```
+
+八、注意事项: 
+```
+```
+
+Client.java: 
+```Java
+package com.mutistic.behavioral.state.structure;
+import com.mutistic.utils.PrintUtil;
+// Client：客户端
+// 演示 状态模式[State Pattern]
+public class Client {
+	public static void main(String[] args) {
+		PrintUtil.one("状态模式[State Pattern]");
+		
+		Context ctx = new Context();
+		ctx.setState(new ConcreteStateA());
+		ctx.request("ConcreteStateA");
+		
+		ctx.setState(new ConcreteStateB());
+		ctx.request("ConcreteStateB");
+	}
+}
+```
+Context.java: 
+```Java
+package com.mutistic.behavioral.state.structure;
+import com.mutistic.utils.PrintUtil;
+// Context：
+// 环境，也称上下文。通常用来定义客户端需要的接口，同时维护一个具体处理当前状态的实例对象
+public class Context {
+	/** 持有 State状态实例对象 */
+	private State state;
+
+	/**
+	 * 客户端需要的接口方法
+	 * @param param
+	 */
+	public void request(String param) {
+		PrintUtil.three("Context.request()客户端需要的接口方法，转调具体的状态实例功能", state);
+		state.handle(param);
+	}
+	// 获取状态对象
+	public State getState() { return state; }
+	// 设置状态对象
+	public void setState(State state) {
+		this.state = state;
+		PrintUtil.two("Context.setState()设置具体的状态实例", state);
+	}
+}
+```
+State.java: 
+```Java
+package com.mutistic.behavioral.state.structure;
+// State：
+// 状态接口。用来封装于上下文的一个特定状态所对应的行为
+public interface State {
+	/**
+	 * 定义：状态对应的处理接口
+	 * @param param 具体参数
+	 */
+	void handle(String param);
+}
+```
+ConcreteStateA.java: 
+```Java
+package com.mutistic.behavioral.state.structure;
+import com.mutistic.utils.PrintUtil;
+// ConcreteState：
+// 具体实现状态处理的类，每个类实现一个状态的具体处理
+public class ConcreteStateA implements State {
+	/**
+	 * 状态对应的具体处理
+	 * @param param
+	 * @see com.mutistic.behavioral.state.structure.State#handle(java.lang.String)
+	 */
+	@Override
+	public void handle(String param) {
+		PrintUtil.three("具体实现状态处理的类，每个类实现一个状态的具体处理", "ConcreteStateA.handle()");
+	}
+}
+```
+ConcreteStateB.java: 
+```Java
+package com.mutistic.behavioral.state.structure;
+import com.mutistic.utils.PrintUtil;
+public class ConcreteStateB implements State {
+	@Override
+	public void handle(String param) {
+		PrintUtil.three("具体实现状态处理的类，每个类实现一个状态的具体处理", "ConcreteStateB.handle()");
+	}
+}
+```
+
 ---
 ### <a id="a_memento">二十九、备忘录模式[Memento Pattern]</a> <a href="#a_state">last</a> <a href="#a_interpreter">next</a>
 [结构图](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.principle/notes/mode/structure/M22_MementoPattern.png)
