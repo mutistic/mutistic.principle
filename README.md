@@ -4253,6 +4253,181 @@ public class ConcreteStateB implements State {
 [结构图](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.principle/notes/mode/structure/M22_MementoPattern.png)
 [时序图](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.principle/notes/mode/sequence/M22_MementoPattern.png)<br/>
 
+一、定义、本质、原则: 
+```
+定义: 在不破坏封装性的前提下，捕获一个对象的内部状态，并在该对象之外保存这个状态。这样以后就可将对象恢复到原先保存的状态
+本质: 
+原则: 
+```
+
+二、结构和说明: 
+```
+Memento：备忘录。主要用来存储原发器对象的内部状态，但是具体需要存储哪些数据是由原发器对象来决定的。
+另外备忘录应该只能由原发器对象来访问它内部的数据，原发器外部的对象不应该能访问到备忘录对象的内部数据，
+一般定义为窄接口（不声明任何方法）
+
+MementoImpl：具体备忘录对象。实现备忘录窄接口，在Originator原发器内部中实现成私有的内部类，不让外部访问。同时可以声明为静态的
+
+Originator：原发器。使用备忘录来保存某个时刻原发器自身的状态，也可以使用备忘录来恢复内部状态。
+
+Caretaker：备忘录管理者，或者称为备忘录负责人。主要负责保存备忘录对象，但是不能对备忘录对象的内容过行操作或检查。
+```
+
+三、理解: 
+```
+
+1、
+```
+
+四、写法: 
+```
+```
+
+五、优点: 
+```
+```
+
+六、缺点: 
+```
+```
+
+七、使用场景: 
+```
+
+具体场景：
+```
+
+八、注意事项: 
+```
+```
+
+Client.java: 
+```Java
+package com.mutistic.behavioral.memento.structure;
+import com.mutistic.utils.PrintUtil;
+// Client：客户端 
+// 演示 备忘录模式[Memento Pattern]-结构
+public class Client {
+	public static void main(String[] args) {
+		PrintUtil.one("备忘录模式[Memento Pattern]-结构");
+		// 创建原发器实例，设置原发器状态
+		Originator originator = new Originator();
+		originator.setState("AAA");
+		
+		// 创建忘录管理者，保存从原发器创建出来的备忘录
+		Caretaker caretaker = new Caretaker();
+		caretaker.saveMemento(originator.createMemento());
+		
+		// 设置原发器其他状态
+		originator.setState("BBB");
+		
+		// 原发器 重新设置原发器对象的状态，让其回到备忘录对象记录的状态
+		originator.setMemento(caretaker.retriverMemento());
+		originator.getState();
+	}
+}
+```
+Memento.java: 
+```Java
+package com.mutistic.behavioral.memento.structure;
+// Memento：备忘录。定义为窄接口（不声明任何方法）
+// 主要用来存储原发器对象的内部状态，但是具体需要存储哪些数据是由原发器对象来决定的。
+// 另外备忘录应该只能由原发器对象来访问它内部的数据，原发器外部的对象不应该能访问到备忘录对象的内部数据
+public interface Memento {
+
+}
+```
+Caretaker.java: 
+```Java
+package com.mutistic.behavioral.memento.structure;
+import com.mutistic.utils.PrintUtil;
+// Caretaker： 备忘录管理者
+// 或者称为备忘录负责人。主要负责保存备忘录对象，但是不能对备忘录对象的内容过行操作或检查。
+public class Caretaker {
+	/** 持有 保存的备忘录对象*/
+	private Memento memento;
+	/**
+	 * 保存备忘录对象 
+	 * @param memeto 被保存的备忘录对象
+	 */
+	public void saveMemento(Memento memento) {
+		PrintUtil.three("Caretaker.saveMemento()：保存备忘录对象", memento);
+		this.memento = memento;
+	}
+	/**
+	 * 获取被保存的备忘录对象 
+	 * @return 被保存的备忘录对象
+	 */
+	public Memento retriverMemento() {
+		PrintUtil.two("Caretaker.retriverMemento()：获取被保存的备忘录对象 ", memento);
+		return memento;
+	}
+}
+```
+Originator.java: 
+```Java
+package com.mutistic.behavioral.memento.structure;
+import com.mutistic.utils.PrintUtil;
+// Originator： 原发器。
+// 使用备忘录来保存某个时刻原发器自身的状态，也可以使用备忘录来恢复内部状态。
+public class Originator {
+	/** 示意：表示原发器的状态 */
+	private String state;
+	// 获取原发器的状态
+	public String getState() {
+		PrintUtil.two("Originator.getState()：获取原发器的状态", state);
+		return state;
+	}
+	// 设置原发器的状态
+	public void setState(String state) {
+		PrintUtil.two("Originator.setState()：设置原发器的状态", state);
+		this.state = state;
+	}
+	/**
+	 * 创建保存原发器对象的状态的备忘录对象
+	 * @return 创建好的备忘录对象
+	 */
+	public Memento createMemento() {
+		Memento memento = new MementoImpl(state);
+		PrintUtil.three("Originator.createMemento()：创建保存原发器对象的状态的备忘录对象：Memento", memento);
+		return memento;
+	}
+	/**
+	 * 重新设置原发器对象的状态，让其回到备忘录对象记录的状态
+	 * @param memento 记录有原发器状态的备忘录对象
+	 */
+	public void setMemento(Memento memento) {
+		MementoImpl impl = (MementoImpl) memento;
+		PrintUtil.three("Originator.createMemento()：重新设置原发器对象的状态，让其回到备忘录对象记录的状态", impl);
+		this.state = impl.getState();
+	}
+	
+	/**
+	 * MementoImpl：具体备忘录对象 
+	 * 实现备忘录窄接口，在Originator原发器内部中实现成私有的内部类，不让外部访问。同时可以声明为静态的
+	 */
+	private static class MementoImpl implements Memento {
+		/** 示意：表示要保存的状态（可以是对象等，引用对象需要深度克隆） */
+		private String state;
+		/**
+		 * 构造函数：设置要保存的状态
+		 * @param state
+		 */
+		public MementoImpl(String state) {
+			PrintUtil.two("MementoImpl()：构造函数：设置要保存的状态", state);
+			this.state = state;
+		}
+
+		// 获取 保存的状态 
+		public String getState() {
+			PrintUtil.three("MementoImpl.getState()：获取 保存的状态 ", state);
+			return state;
+		}
+		
+	}
+}
+```
+
 ---
 ### <a id="a_interpreter">三十、解释器模式[Interpreter Pattern]</a> <a href="#a_memento">last</a> <a href="#a_responsibility">next</a>
 [结构图](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.principle/notes/mode/structure/M23_InterpreterPattern.png)
