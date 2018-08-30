@@ -11,6 +11,9 @@ import com.mutistic.utils.PrintUtil;
 public class Client {
 	public static void main(String[] args) {
 		PrintUtil.one("在状态的处理类里面实现状态维护和状态转换的控制");
-		
+		VoteContext ctx = new VoteContext();
+		for (int i = 0; i < 10; i++) {
+			ctx.vote("AAA", "1111");
+		}
 	}
 }
