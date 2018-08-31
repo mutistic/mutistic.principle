@@ -2,7 +2,7 @@ package com.mutistic.behavioral.command.revocation;
 
 /**
  * @program Command
- * @description 命令接口：可撤销命令
+ * @description 命令接口：可撤销命令：补偿式，又称为反操作式
  * @author mutisitic
  * @date 2018年8月23日
  */

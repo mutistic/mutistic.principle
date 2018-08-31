@@ -4,7 +4,7 @@ import com.mutistic.utils.PrintUtil;
 
 /**
  * @program Client客户端
- * @description
+ * @description 演示 命令模式-参数化配置
  * @author mutisitic
  * @date 2018年8月22日
  */

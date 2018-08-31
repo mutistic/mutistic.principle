@@ -10,7 +10,7 @@ import com.mutistic.utils.PrintUtil;
  */
 public class Client {
 	public static void main(String[] args) {
-		PrintUtil.one("可撤销命令");
+		PrintUtil.one("可撤销命令：补偿式，又称为反操作式");
 		int number = 2;
 		// 创建接收者
 		OpeartionApi opeartion = new Operation();

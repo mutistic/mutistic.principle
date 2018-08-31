@@ -7,7 +7,7 @@ import com.mutistic.utils.PrintUtil;
 
 /**
  * @program Invoker
- * @description 计算器类：持有加法、减法、撤销、恢复按钮 
+ * @description 计算器类：持有加法、减法、撤销、恢复按钮：可撤销命令：补偿式，又称为反操作式
  * @author mutisitic
  * @date 2018年8月23日
  */
