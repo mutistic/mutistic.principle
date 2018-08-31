@@ -49,7 +49,7 @@ public class Originator {
 	/**
 	 * @description 重新设置原发器对象的状态，让其回到备忘录对象记录的状态
 	 * @author mutisitic
-	 * @date 2018年8月30日
+	 * @date 2018年8月31日
 	 * @param memento 记录有原发器状态的备忘录对象
 	 */
 	public void setMemento(Memento memento) {
