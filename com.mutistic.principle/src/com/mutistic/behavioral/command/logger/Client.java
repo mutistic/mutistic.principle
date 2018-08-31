@@ -4,13 +4,12 @@ import com.mutistic.utils.PrintUtil;
 
 /**
  * @program Client：客户端
- * @description 演示 队列请求
- * @author mutisitic
+ * @author mutisitic 演示 日志请求：结合宏命令，队列请求
  * @date 2018年8月23日
  */
 public class Client {
 	public static void main(String[] args) {
-		PrintUtil.one("队列请求");
+		PrintUtil.one("演示 日志请求：结合宏命令，队列请求");
 		// 运行厨师管理
 		CookManager.run();
 		
