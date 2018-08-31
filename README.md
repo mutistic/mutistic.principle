@@ -2500,6 +2500,186 @@ public class Leaf extends Component {
 [结构图](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.principle/notes/mode/structure/M12_FlyweightPattern.png)
 [时序图](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.principle/notes/mode/sequence/M12_FlyweightPattern.png)<br/>
 
+一、定义、本质、原则: 
+```
+定义: 运用共享技术有效地支持大量细粒度的对象
+本质: 
+原则: 
+```
+
+二、结构和说明: 
+```
+Flyweight：享元接口，通这个接口flyweight可以接受并作用于外部状态。通过这个接口传入外部的状态，
+在享元对象的方法处理中可能会使用这些外部的数据
+
+ConcreteFlyweight：具体的享元实现对象，必须是可共享的，需要封装flweight的内部状态
+
+UnsharedConcreteFlywelght：非共享的享元实现对象，并不是所有的Flyweight实现对象都需要共享。
+非共享的享元实现对象通常是对共享享元对象的组合对象。
+
+FlyweightFactory：享元工厂，主要用来创建并管理共享的相关对象，并对外提供访问共享享元的接口。
+
+Client：享元客户端，主要的作是维持一个对flweight的引用，计算或存储享元对象的外部状态，
+当然这里可以访问共享和不共享的flyweight对象。
+```
+
+三、理解: 
+```
+主要解决：在有大量对象时，有可能会造成内存溢出，我们把其中共同的部分抽象出来，如果有相同的业务请求，
+直接返回在内存中已有的对象，避免重新创建。
+如何解决：用唯一标识码判断，如果在内存中有，则返回这个唯一标识码所标识的对象。
+
+1、
+```
+
+四、写法: 
+```
+```
+
+五、优点: 
+```
+```
+
+六、缺点: 
+```
+```
+
+七、使用场景: 
+```
+
+具体场景：
+```
+
+八、注意事项: 
+```
+```
+
+Client.java: 
+```Java
+package com.mutistic.structural.flyweight.structure;
+import com.mutistic.utils.PrintUtil;
+// Client：
+// 享元模式[Flyweight Pattern]-结构
+// 享元客户端，主要的作是维持一个对flweight的引用，计算或存储享元对象的外部状态，当然这里可以访问共享和不共享的flyweight对象。
+public class Client {
+	public static void main(String[] args) {
+		PrintUtil.one("享元模式[Flyweight Pattern]-结构");
+		
+		FlyweightFactory factory = new FlyweightFactory();
+		PrintUtil.two("Client创建享元工厂实例： ", factory);
+		
+		Flyweight f1 = factory.getFlyweight("Concrete1");
+		f1.opeartion("ConcreteFlyweight");
+		
+		Flyweight f2 = factory.getFlyweight("Unshared1");
+		f2.opeartion("UnsharedConcreteFlywelght");
+	}
+}
+```
+Flyweight.java: 
+```Java
+package com.mutistic.structural.flyweight.structure;
+// Flyweight：
+// 享元接口，通这个接口flyweight可以接受并作用于外部状态。通过这个接口传入外部的状态，在享元对象的方法处理中可能会使用这些外部的数据
+public interface Flyweight {
+	/**
+	 * 定义：示例操作方法，传入外部状态 
+	 * @param extrinsicState 示例参数：外部状态 
+	 */
+	void opeartion(String extrinsicState);
+}
+```
+ConcreteFlyweight.java: 
+```Java
+package com.mutistic.structural.flyweight.structure;
+import com.mutistic.utils.PrintUtil;
+// ConcreteFlyweight：
+// 具体的享元实现对象，必须是可共享的，需要封装flweight的内部状态
+public class ConcreteFlyweight implements Flyweight {
+	/** 描述：享元对象的内部状态的数据 */
+	private String state;
+	/**
+	 * 构造函数：传入享元对象的内部状态的数据
+	 * @param state 享元对象的内部状态的数据
+	 */ 
+	public ConcreteFlyweight(String state) {
+		this.state = state;
+		PrintUtil.two("ConcreteFlyweight()：构造函数：传入享元对象的内部状态的数据: ", this.state);
+	}
+	/**
+	 * 示例具体的操作方法，传入外部状态 
+	 * @param extrinsicState 外部状态 
+	 * @see com.mutistic.structural.flyweight.structure.Flyweight#opeartion(java.lang.String)
+	 */
+	@Override
+	public void opeartion(String extrinsicState) {
+		PrintUtil.three("ConcreteFlyweight.opeartion()：示例具体的操作方法，传入外部状态: ", extrinsicState);
+	}
+}
+```
+UnsharedConcreteFlywelght.java: 
+```Java
+package com.mutistic.structural.flyweight.structure;
+import com.mutistic.utils.PrintUtil;
+// UnsharedConcreteFlywelght：
+// 非共享的享元实现对象，并不是所有的Flyweight实现对象都需要共享。非共享的享元实现对象通常是对共享享元对象的组合对象。
+public class UnsharedConcreteFlywelght implements Flyweight {
+	/** 描述：非享元对象的内部状态的数据 */
+	private String allState;
+	/**
+	 * 设置 非享元对象的内部状态的数据
+	 * @param allState 非享元对象的内部状态的数据
+	 */
+	public void setAllState(String allState) {
+		this.allState = allState;
+		PrintUtil.two("UnsharedConcreteFlywelght.setAllState()：设置 传入非享元对象的内部状态的数据: ", this.allState);
+	}
+	/**
+	 * 示例具体的操作方法，传入外部状态 
+	 * @param extrinsicState 外部状态 
+	 * @see com.mutistic.structural.flyweight.structure.Flyweight#opeartion(java.lang.String)
+	 */
+	@Override
+	public void opeartion(String extrinsicState) {
+		PrintUtil.three("UnsharedConcreteFlywelght.opeartion()：示例具体的操作方法，传入外部状态: ", extrinsicState);
+	}
+}
+```
+FlyweightFactory.java: 
+```Java
+package com.mutistic.structural.flyweight.structure;
+import java.util.HashMap;
+import java.util.Map;
+import com.mutistic.utils.PrintUtil;
+// FlyweightFactory：
+// 享元工厂，主要用来创建并管理共享的相关对象，并对外提供访问共享享元的接口。
+public class FlyweightFactory {
+	/** 缓存多个Flyweight对象 */
+	private Map<String, Flyweight> flyMap = new HashMap<String, Flyweight>();
+	/**
+	 * 获取key对应的享元对象 
+	 * @param key
+	 * @return
+	 */
+	public Flyweight getFlyweight(String key) {
+		Flyweight fly = flyMap.get(key);
+		if(fly == null) {
+			if(key.contains("Unshared")) {
+				UnsharedConcreteFlywelght unshared = new UnsharedConcreteFlywelght();
+				unshared.setAllState(key);
+				fly = unshared;
+			} else {
+				fly = new ConcreteFlyweight(key);
+			}
+			
+			flyMap.put(key, fly);
+			PrintUtil.three("key="+ key +"对应的享元对象，不存在创建一个享元对象存放在缓存集合中", fly);
+		}
+		return fly;
+	}
+}
+```
+
 ---
 ### <a id="a_bridge">二十、桥接模式[Bridge Pattern]</a> <a href="#a_flyweight">last</a> <a href="#a_filter">next</a>
 [结构图](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.principle/notes/mode/structure/M13_BridgePattern.png)
@@ -4317,7 +4497,7 @@ Caretaker：备忘录管理者，或者称为备忘录负责人。主要负责�
   宽接口：原发器能够看到一个宽接口，允许它访问所需的所有数据，来返回到先前的状态。理想状况是：
 只允许生成备忘录的原发器来访问该备忘录的内部状态，通常实现成为原发器内的一个私有内部类。
 
-  备忘录模式的标准实现方式，那就是窄接口没有任何的方法，把备忘录对象实现成为原发器刈象的私有内类。
+  备忘录模式的标准实现方式，那就是窄接口没有任何的方法，把备忘录对象实现成为原发器对象的私有内类。
   那么能不能在窄接口里面提供备忘录对象对外的方法，，变相对外提供一个宽接口？
   通常情况是不会这么做的，因为这样一来，所有能拿到这个接口的对象就可以通过这个接口来访问备忘录内部的数据或是功能，
 这违反了备忘录模式的初衷，备忘录模式要求“在不破坏封性的前提下”，如果这么做，那就等于是暴露了内部细节，
