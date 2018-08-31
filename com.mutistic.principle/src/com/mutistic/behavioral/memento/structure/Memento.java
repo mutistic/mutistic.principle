@@ -8,6 +8,6 @@ package com.mutistic.behavioral.memento.structure;
  * @author mutisitic
  * @date 2018年8月30日
  */
-public interface Memento {
+public interface Memento { 
 
 }
