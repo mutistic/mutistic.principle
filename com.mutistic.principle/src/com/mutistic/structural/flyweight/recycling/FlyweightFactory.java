@@ -104,6 +104,7 @@ public class FlyweightFactory {
 	 * @author mutisitic
 	 * @date 2018年9月3日
 	 */
+	@SuppressWarnings("deprecation")
 	private class ClearCahe extends Thread {
 		public void run() {
 			while(true) {
