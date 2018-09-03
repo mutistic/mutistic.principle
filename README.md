@@ -4803,11 +4803,10 @@ public class Originator {
 [结构图](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.principle/notes/mode/structure/M23_InterpreterPattern.png)
 [时序图](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.principle/notes/mode/sequence/M23_InterpreterPattern.png)<br/>
 
-一、定义、本质、原则: 
+一、定义、本质: 
 ```
 定义: 给定一个语言，定义它的语法的一种表示，并定义一个解释器，这个解释器使用该表示来解释语言中的句子
-本质: 
-原则: 
+本质: 分离实现，解释执行
 ```
 
 二、结构和说明: 
@@ -4828,34 +4827,180 @@ Client：客户端，指的是使用解释器的客户端，通常在这里去�
 
 三、理解: 
 ```
+主要解决：对于一些固定语法构建一个解释句子的解释器。
+如何解决：构建语法树，定义终结符与非终结符。
 
-1、
+1、解释器模式的功能：
+  解释器模式使用解释器对象来表示和处理相应的语法规则，一般一个解释器处理一条语法规则。
+理论上来说，只要能用解释器对象把符合语法的表达式表示以来，而且能够构成抽象的语法树，那都可以使用解释器模式来处理。
+
+2、语法规则和解释器：
+  语法规则和解释器之间是有对应关系的，一般一个解释器处理一条语法规，但是反过来并不成立，
+一条浯法规则是可以有多种解释和处理的，也就是一条语法规则可以对应多个解释器对象。
+
+3、上下文的公用性：
+  上下文在解释器模式中起到非重要的作用，由于上下文会被传递到所有的解释器中，因此可以在上下文中存储和
+访问问解释器的状态，比如解释器可以存储一些数据在上下文中，后而的解释器就可以获取这些值
+  另外还可以通过上下文传递一些在解释器外部，但是解释器需要的数据，也可以是一些全局的，公共的数据。
+  上下文还有一个功能，可以提供所有解释器对象的公共功能，类似于对象组合，而不是使用继承来获取公共功能，
+在每个解释器对象里曲都可以调用。
+
+4、谁来构建抽象语法树：
+ 在客户端手工来构建抽象语法树，是很麻烦的，但是在解释器模式中，并没有涉及这部分功能，
+只是负责对构建好的抽象语法树进行解释处理。
+  还存在的问题，就是一条语法规则是可以对应多个解释器对象的，也就是说同一个元素，
+是可以转换成多个解释器对象的，这也就意味着同样一个表达式，是可以构成不同的抽象语法树的，
+这也造成构建抽象语法树变得很困难，而且工作量很大。
+
+5、谁负责解释操作：
+  只要定义好了抽象语法树，肯定是解释器来负责解释执行。虽然有不同的语法规则，
+但是解释器不负责选择究竟用哪一个解释器对象来解释执行语法规则选释器的功能在构建抽象语法树的时候就完成了。
 ```
 
 四、写法: 
 ```
+1、解释xml：
+
+2、解析器：
+  解析器负责把表达式，解析转换成为解释器需要的抽象语法树。当然解析器是跟表达式的语法，还有解释器对象紧密关联的。
+  解析器有很多种实现方式，没有什么定式，只要能完成相应的功能即可，比如表驱动、语法分析生成程序等。
+  也可以分解表达式以实现构建抽象语法树的功能，没有使用递归，而是用循环实现的。
+
+  循环实现思路：
+  2.1、把客户端传递来的表达式进行分解，分解成为单个的元素，并用一个对应的解析模型来封装这个元素的一些信息。
+  2.2、根每个元素的信息，转化成相对应的解析器对象
+  2.3、按照先后顺序，把这些解析器对象组合起来，得到抽象浯法树
+  
+  不把第一步和第二步合并，直接分解出一个元素就转转成相应的解释器对象的原因：
+  一是功能分离，不要让一个方法的功能过于复杂。
+  二是为了之后的修改和扩展，如果语法复杂了，直接转换就很杂乱了。
+  事实上，封装解析属性的数据模型充当了第一步和第二步操作间的接口，使第一步和第二步都变简单了
 ```
 
 五、优点: 
 ```
+1、可扩展性比较好，灵活。 
+2、增加了新的解释表达式的方式。 
+3、易于实现简单语法（文法）。
 ```
 
 六、缺点: 
 ```
+1、可利用场景比较少。 
+2、对于复杂的文法比较难维护。 
+3、解释器模式会引起类膨胀。 
+4、解释器模式采用递归调用方法。
 ```
 
 七、使用场景: 
 ```
+1、当有一个语言需要解释执行，并且可以将该语言中的句子表示为一个抽象语法树的时候，可以考使用解释器模式。
+  在使用解释器模式的时候，还有两个特点需要考虑，一个是语法相对应该比较简单，太复杂的语法不合适使用解释器模式。
+另一个是效率要求不是很高，对效率要求很高的情况下，不适合使用解释器模式。
 
 具体场景：
+1、编译器、运算表达式计算
 ```
 
 八、注意事项: 
 ```
+可利用场景比较少，JAVA 中如果碰到可以用 expression4J 代替
 ```
 
 Client.java: 
 ```Java
+package com.mutistic.behavioral.interpreter.structure;
+import com.mutistic.utils.PrintUtil;
+// Client：
+// 客户端，指的是使用解释器的客户端，通常在这里去把按照语言的语法做的表达式，
+// 转换成为解释器对象捐述的抽象浯法树，这一步也叫解析器，然后调用解释操作。
+public class Client {
+	public static void main(String[] args) {
+		PrintUtil.one("解释器模式[Interpreter Pattern]-结构");
+		
+		NonteminalExpression root = new NonteminalExpression();
+		NonteminalExpression note = new NonteminalExpression();
+		TerminalExpression term = new TerminalExpression();
+		root.add(note);
+		note.add(term);
+		
+		Context ctx = new Context();
+		root.interpret(ctx);
+	}
+}
+```
+Context.java: 
+```Java
+package com.mutistic.behavioral.interpreter.structure;
+// Context：
+// 上下文，通常包含各个解释器需要的数据，或是公共的功能。
+public class Context {
+}
+```
+AbstractExpression.java: 
+```Java
+package com.mutistic.behavioral.interpreter.structure;
+// AbstractExpression：抽象表达式
+// 定义解释器的接口，约定解释器的解释操作。
+public abstract class AbstractExpression {
+	/**
+	 * 定义：解释的操作
+	 * @param ctx 上下文对象
+	 */
+	public abstract void interpret(Context ctx);
+}
+```
+NonteminalExpression.java: 
+```Java
+package com.mutistic.behavioral.interpreter.structure;
+import java.util.ArrayList;
+import java.util.List;
+import com.mutistic.utils.PrintUtil;
+//  NonteminalExpression：非终结符表达式
+// 非终结符解释器，用来实现语法规则中非终结符相关的操作，通常一个解释器对应一个语法规则，
+// 可以包含其它的解释器，如果用组合模式来构建抽象语法树的话，相当于组合模式中的组合对象，可以有多种终结符解释器。
+public class NonteminalExpression extends AbstractExpression {
+	/** 持有 表达式集合 */
+	private List<AbstractExpression> list = new ArrayList<AbstractExpression>();
+	/**
+	 * 添加表达式
+	 * @param expression
+	 */
+	public void add(AbstractExpression expression) {
+		list.add(expression);
+	}
+	/**
+	 * 非终结符表达式：解释操作
+	 * @param ctx 上下文
+	 * @see com.mutistic.behavioral.interpreter.structure.AbstractExpression#interpret(com.mutistic.behavioral.interpreter.structure.Context)
+	 */
+	@Override
+	public void interpret(Context ctx) {
+		PrintUtil.two("NonteminalExpression.interpret()", "实现与语法规则中的非终结符相关联的解释操作：递归调用"+ctx);
+		for (AbstractExpression abstractExpression : list) {
+			abstractExpression.interpret(ctx);
+		}
+	}
+}
+```
+TerminalExpression.java: 
+```Java
+package com.mutistic.behavioral.interpreter.structure;
+import com.mutistic.utils.PrintUtil;
+// TerminalExpression：终结符表达式
+// 终结符解释器，用来实现语法规则中和终结符相关的操作，不再包含其它的解释器，
+// 如果用组合模式来构建抽象语法树的话，就相当于组合模式中的叶子对象，可以有多种终结符解释器。
+public class TerminalExpression extends AbstractExpression {
+	/**
+	 * 终结符表达式：解释操作
+	 * @param ctx 上下文
+	 * @see com.mutistic.behavioral.interpreter.structure.AbstractExpression#interpret(com.mutistic.behavioral.interpreter.structure.Context)
+	 */
+	@Override
+	public void interpret(Context ctx) {
+		PrintUtil.two("TerminalExpression.interpret()", "实现与语法规则中的终结符相关联的解释操作"+ ctx);
+	}
+}
 ```
 
 ---
