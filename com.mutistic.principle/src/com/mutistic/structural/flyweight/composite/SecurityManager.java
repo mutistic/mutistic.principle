@@ -33,7 +33,7 @@ public class SecurityManager {
 	 * @param user
 	 */
 	public void login(String user) {
-		PrintUtil.two("SecurityManager.login()：用户登陆方：", "user="+ user);
+		PrintUtil.two("SecurityManager.login()：用户登陆：", "user="+ user);
 		List<Flyweight> userFly = queryByUser(user);
 		sessionMap.put(user, userFly);
 	}
