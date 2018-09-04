@@ -4,6 +4,8 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 
+import com.mutistic.utils.PrintUtil;
+
 /**
  * @program Context：上下文
  * @description 解析xml的上下文
@@ -31,16 +33,18 @@ public class Context {
 	 * @return 当前元素对象
 	 */
 	public Element getNowEle(Element preEle, String eleName) {
+		PrintUtil.three("Context.getNowEle()：根据父元素和当前元素名称来获取当前元素对象", "preEle="+ preEle.getNodeName() +"，eleName = "+ eleName);
+		
 		NodeList list = preEle.getChildNodes();
 		for (int i = 0; i < list.getLength(); i++) {
 			if(list.item(i) instanceof Element) {
 				Element nowEle = (Element) list.item(i);
 				if(nowEle.getTagName().equals(eleName)) {
+					PrintUtil.three("Context：获取到的当前元素对象", nowEle.getClass());
 					return nowEle;
 				}
 			}
 		}
-		
 		return null;
 	}
 

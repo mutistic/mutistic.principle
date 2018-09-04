@@ -5,6 +5,8 @@ import javax.xml.parsers.DocumentBuilderFactory;
 
 import org.w3c.dom.Document;
 
+import com.mutistic.utils.PrintUtil;
+
 /**
  * @program XML解析工具
  * @description 
@@ -20,6 +22,8 @@ public class XmlUtil {
 	 * @return
 	 */
 	public static Document getRoot(String fileName) {
+		PrintUtil.two("XmlUtil.getRoot()：开始加载文件：", fileName);
+		
 		Document doc = null;
 		try {
 			// 创建一个Document解析器工程
@@ -33,6 +37,7 @@ public class XmlUtil {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		PrintUtil.three("成功创建org.w3c.dom.Document树对象：", doc.getClass());
 		return doc;
 	}
 }
