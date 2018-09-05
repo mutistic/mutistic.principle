@@ -76,7 +76,7 @@ public class Resolver {
 				int dotIndex = token.indexOf(DOT);
 				if(dotIndex > 0) {
 					// DOT前为元素非终结解释器：end=false，如果存在 LAR 说明不是单个元素或值：signleValue =false
-					String[] temp = token.split("\\"+DOT);
+					String[] temp = token.split("\\"+DOT); // . 和 $ 分隔符 需要添加前缀 \\ 进行转移
 					
 					String eleName = temp[0];
 					boolean signleValue = true;
