@@ -58,7 +58,7 @@ public class Resolver {
 	 * @return
 	 */
 	private static Map<String, ResolverMode> resolverPath(String expr) {
-		PrintUtil.three("Resolver.resolverPath()：分解表达式，转换成对应的解析器Mode", expr);
+		PrintUtil.three("Resolver.resolverPath()：分解表达式，转换成对应的解析器Mode：expr", expr);
 		Map<String, ResolverMode> pathMap = new HashMap<String, ResolverMode>();
 		
 		// 按照 / 分解表达式
@@ -114,7 +114,7 @@ public class Resolver {
 	 * @return
 	 */
 	private static List<ReadXmlExpression> toInterpreter(Map<String, ResolverMode> pathMap) {
-		PrintUtil.three("Resolver.resolverPath()：分解表达式，转换成对应的解析器Mode", pathMap.keySet());
+		PrintUtil.three("Resolver.toInterpreter()：根据节点的属性转换成对应的解释器对象：pathMap.keySet()", pathMap.keySet());
 		List<ReadXmlExpression> list = new ArrayList<ReadXmlExpression>();
 		
 		for (String key : exprList) {
@@ -154,7 +154,7 @@ public class Resolver {
 	 * @return
 	 */
 	private static ReadXmlExpression buildTree(List<ReadXmlExpression> eleList) {
-		PrintUtil.three("Resolver.resolverPath()：分解表达式，转换成对应的解析器Mode", eleList);
+		PrintUtil.three("Resolver.buildTree()：组合抽象语法树，按照先后顺序来组合：eleList", eleList);
 		ReadXmlExpression tree = null;
 		
 		ReadXmlExpression prep = null;
