@@ -27,8 +27,8 @@ public class Client {
 	 * @param ctx
 	 */
 	private static void showElement(Context ctx) {
-		PrintUtil.one("演示元素终结符解释器：每次重新获取需要重置上下文的：PreEle");
-		ctx.setPreEle(null);
+		PrintUtil.one("演示元素终结符解释器：每次获取元素需要重新初始化上下文Context.resetInit()");
+		ctx.resetInit();
 		
 		PrintUtil.three("获取D元素的值：约定表达式值：", "root/a/b/d");
 		//创建语法解析器对象
@@ -53,8 +53,8 @@ public class Client {
 	 */
 	private static void showProperty(Context ctx) {
 		// 每次重新获取需要重置上下文的：PreEle
-		PrintUtil.one("演示属性终结解释器：每次重新获取需要重置上下文的：PreEle");
-		ctx.setPreEle(null); 
+		PrintUtil.one("演示属性终结解释器：每次获取元素需要重新初始化上下文Context.resetInit()");
+		ctx.resetInit();
 		
 		PrintUtil.three("获取D元素的值：约定表达式值：", "root/a/b/c.name");
 		//创建语法解析器对象

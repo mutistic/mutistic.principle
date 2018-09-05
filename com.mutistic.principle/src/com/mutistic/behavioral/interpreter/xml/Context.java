@@ -50,6 +50,15 @@ public class Context {
 		return null;
 	}
 
+	/**
+	 * @description 重初始化上下文 
+	 * @author mutisitic
+	 * @date 2018年9月5日
+	 */
+	public void resetInit() {
+		preEle = null;
+	}
+	
 	public Element getPreEle() {
 		return preEle;
 	}
