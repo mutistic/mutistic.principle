@@ -13,8 +13,10 @@ import com.mutistic.utils.PrintUtil;
  * @date 2018年9月3日
  */
 public class Context {
-	private Element preEle;
+	/** Dom解析XML的Doucument对象 */
 	private Document document;
+	/** 上一次被处理的元素 */
+	private Element preEle;
 	
 	/**
 	 * 构造函数：传入xml文件名获取Document对象

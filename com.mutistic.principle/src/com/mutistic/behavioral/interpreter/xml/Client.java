@@ -13,7 +13,6 @@ import com.mutistic.utils.PrintUtil;
 public class Client {
 	public static void main(String[] args) {
 		PrintUtil.one("解析XML-单元素");
-//		C:\Work\Study\GitProduct\mutistic.principle\com.mutistic.principle\src\com\mutistic\behavioral\interpreter\xml
 		String fileName = "src/com/mutistic/behavioral/interpreter/xml/interprete_test.xml";
 		
 		Context ctx = new Context(fileName);
