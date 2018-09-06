@@ -50,7 +50,7 @@
 描述如何组合类和对对象以获得更大的结构
 ```
 外观模式[Facade Pattern]、适配器模式[Adapter Pattern]、代理模式[Proxy Pattern]、
-组合模式[Composite Pattern]、装饰器模式[Decorator Pattern]、享元模式[Flyweight Pattern]、
+组合模式[Composite Pattern]、装饰模式[Decorator Pattern]、享元模式[Flyweight Pattern]、
 桥接模式[Bridge Pattern]、过滤器模式[Filter Pattern]、
 ```
 
@@ -2137,7 +2137,7 @@ RealSubject：具体的目标对象，真正实现目标接口要求的功能
 
 八、注意事项: 
 ```
-1、和适配器模式的区别：适配器模式主要改变所考虑对象的接口，而代理模式不能改变所代理类的接口。 2、和装饰器模式的区别：装饰器模式为了增强功能，而代理模式是为了加以控制
+1、和适配器模式的区别：适配器模式主要改变所考虑对象的接口，而代理模式不能改变所代理类的接口。 2、和装饰模式的区别：装饰模式为了增强功能，而代理模式是为了加以控制
 ```
 
 Client.java: 
@@ -2494,6 +2494,225 @@ public class Leaf extends Component {
 ### <a id="a_decorator">十八、装饰模式[Decorator Pattern]</a> <a href="#a_composite">last</a> <a href="#a_flyweight">next</a>
 [结构图](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.principle/notes/mode/structure/M11_DecoratorPattern.png)
 [时序图](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.principle/notes/mode/sequence/M11_DecoratorPattern.png)<br/>
+
+一、定义、本质、原则: 
+```
+定义: 动态地给一个对象添加一些额外的职责。就增加功能来说，装饰模式比生成子类更为灵活
+本质: 
+原则: 
+```
+
+二、结构和说明: 
+```
+Component：组件对象的接口，可以给这对象动态的添加职责。
+
+ConcreteComponent：具体的组件对象，实现组件对象接口，通常就是被装饰器装的原始对象，也就是可以给这个对象添加职责。
+
+Decorator：所有装饰器的抽象父类，需要定义一个与组件接口一致的接口，并持有一个Component对象，其实就是持有一个被装饰的对象。
+  注意这个被装饰的对象不一定是最原始的那个对象了，也可能是被其它装饰器装饰过后的对象，实现的同一个接口，也就是同一类型。
+
+ConcreteDecorator：实际的装饰器对象，实现具体要向被装饰对象添加的功能。
+```
+
+三、理解: 
+```
+
+1、
+```
+
+四、写法: 
+```
+```
+
+五、优点: 
+```
+```
+
+六、缺点: 
+```
+```
+
+七、使用场景: 
+```
+
+具体场景：
+```
+
+八、注意事项: 
+```
+```
+
+Client.java: 
+```Java
+package com.mutistic.structural.decorator.structure;
+import com.mutistic.utils.PrintUtil;
+/**
+ * Client：客户端 
+ * 演示 装饰模式[Decorator Pattern]-结构
+ */
+public class Client {
+	public static void main(String[] args) {
+		PrintUtil.one("装饰模式[Decorator Pattern]-结构");
+		
+		Component component = new ConcreteComponent();
+		PrintUtil.two("创建具体组件对象：", component);
+		
+		Decorator decorator1 = new ConcreteDecoratorA(component);
+		PrintUtil.two("创建具体的装饰对象：", decorator1);
+		decorator1.operation();
+		
+		Decorator decorator2 = new ConcreteDecoratorB(component);
+		PrintUtil.two("创建具体的装饰对象：", decorator2);
+		decorator2.operation();
+	}
+}
+```
+Component.java: 
+```Java
+package com.mutistic.structural.decorator.structure;
+/**
+ * Component：
+ * 组件对象的接口，可以给这对象动态的添加职责。
+ */
+public abstract class Component {
+	/**
+	 * 定义：示意组件对象的通用方法
+	 */
+	public abstract void operation();
+}
+```
+ConcreteComponent.java: 
+```Java
+package com.mutistic.structural.decorator.structure;
+import com.mutistic.utils.PrintUtil;
+/**
+ * ConcreteDecorator：
+ * 实际的装饰器对象，实现具体要向被装饰对象添加的功能。
+ */
+public class ConcreteComponent extends Component {
+	/**
+	 * 示意组件对象的通用方法的具体实现
+	 * @see com.mutistic.structural.decorator.structure.Component#operation()
+	 */
+	@Override
+	public void operation() {
+		PrintUtil.three("ConcreteComponent.operation()", "示意组件对象的通用方法的具体实现");
+	}
+
+}
+```
+Decorator.java: 
+```Java
+package com.mutistic.structural.decorator.structure;
+import com.mutistic.utils.PrintUtil;
+/**
+ * Decorator：
+ * 所有装饰器的抽象父类，需要定义一个与组件接口一致的接口，并持有一个Component对象，其实就是持有一个被装饰的对象。
+ * 注意这个被装饰的对象不一定是最原始的那个对象了，也可能是被其它装饰器装饰过后的对象，实现的同一个接口，也就是同一类型。
+ */
+public class Decorator extends Component {
+	/** 持有组件对象 */
+	private Component component;
+	/**
+	 * 构造函数：传入具体的组件对象
+	 * @param component 具体的组件对象
+	 */
+	public Decorator(Component component) {
+		super();
+		this.component = component;
+	}
+	/**
+	 * 负责转发给具体的组件对象，可以在转发前后添加附加功能 
+	 * @see com.mutistic.structural.decorator.structure.Component#operation()
+	 */
+	@Override
+	public void operation() {
+		PrintUtil.three("Decorator.operation()", "负责转发给具体的组件对象，可以在转发前后添加附加功能 ");
+		component.operation();
+		PrintUtil.three("Decorator.operation()", "转发结束");
+	}
+}
+```
+ConcreteDecoratorA.java: 
+```Java
+package com.mutistic.structural.decorator.structure;
+import com.mutistic.utils.PrintUtil;
+/**
+ * ConcreteDecorator：
+ * 实际的装饰器对象，实现具体要向被装饰对象添加的功能。
+ */
+public class ConcreteDecoratorA extends Decorator{
+	/**
+	 * 构造函数：传入具体的组件对象
+	 * @param component 具体的组件对象
+	 */
+	public ConcreteDecoratorA(Component component) {
+		super(component);
+	}
+	/**
+	 * 重写Decorator的operation，实现具体的装饰功能
+	 * @see com.mutistic.structural.decorator.structure.Decorator#operation()
+	 */
+	@Override
+	public void operation() {
+		// 调用父类的方法，可以在调用前后添加附加动作
+		super.operation(); 
+		this.assedState = "SUCCESS";
+		PrintUtil.three("ConcreteDecoratorA.assedState", assedState);
+	}
+	/** 添加的状态 */
+	private String assedState;
+	/**
+	 * 获取：添加的状态 
+	 * @return 添加的状态
+	 */
+	public String getAssedState() {
+		return assedState;
+	}
+	/**
+	 * 设置：添加的状态
+	 * @param assedState 添加的状态
+	 */
+	public void setAssedState(String assedState) {
+		this.assedState = assedState;
+	}
+}
+```
+ConcreteDecoratorB.java: 
+```Java
+package com.mutistic.structural.decorator.structure;
+import com.mutistic.utils.PrintUtil;
+/**
+ * ConcreteDecorator：
+ * 实际的装饰器对象，实现具体要向被装饰对象添加的功能。
+ */
+public class ConcreteDecoratorB  extends Decorator {
+	/**
+	 * 构造函数：传入具体的组件对象
+	 * @param component 具体的组件对象
+	 */
+	public ConcreteDecoratorB(Component component) {
+		super(component);
+	}
+	/**
+	 * 重写Decorator的operation，实现具体的装饰功能
+	 * @see com.mutistic.structural.decorator.structure.Decorator#operation()
+	 */
+	@Override
+	public void operation() {
+		// 调用父类的方法，可以在调用前后添加附加动作
+		super.operation(); 
+		addedBehavior();
+	}
+	/**
+	 * 添加的职责
+	 */
+	private void addedBehavior() {
+		PrintUtil.three("ConcreteDecoratorB.addedBehavior()", "添加的职责");
+	}
+}
+```
+
 
 ---
 ### <a id="a_flyweight">十九、享元模式[Flyweight Pattern]</a> <a href="#a_decorator">last</a> <a href="#a_bridge">next</a>
@@ -3708,7 +3927,7 @@ package com.mutistic.behavioral.iterator.structrue;
 // 迭代器接口。定义访问和遍历元素的接口
 public interface Iterator {
 	/**
-	 * @description 定义：移动到聚合对象的第一个位置接口
+	 * 定义：移动到聚合对象的第一个位置接口
 	 */
 	void first();
 	
@@ -5104,7 +5323,7 @@ public class TerminalExpression extends AbstractExpression {
 [M8-适配器模式[Adapter Pattern]](https://github.com/mutistic/mutistic.principle/blob/master/com.mutistic.principle/notes/mode/eap/M8_AdapterPattern.eap)<br/>
 [M9-代理模式[Proxy Pattern]](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.principle/notes/mode/eap/M9_ProxyPattern.eap)<br/>
 [M10-组合模式[Composite Pattern]](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.principle/notes/mode/eap/M10_CompositePattern.eap)<br/>
-[M11-装饰器模式[Decorator Pattern]](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.principle/notes/mode/eap/M11_DecoratorPattern.eap)<br/>
+[M11-装饰模式[Decorator Pattern]](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.principle/notes/mode/eap/M11_DecoratorPattern.eap)<br/>
 [M12-享元模式[Flyweight Pattern]](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.principle/notes/mode/eap/M12_FlyweightPattern.eap)<br/>
 [M13-桥接模式[Bridge Pattern]](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.principle/notes/mode/eap/M13_BridgePattern.eap)<br/>
 [M14-过滤器模式[Filter Pattern]](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.principle/notes/mode/eap/M14_FilterPattern.eap)<br/>
