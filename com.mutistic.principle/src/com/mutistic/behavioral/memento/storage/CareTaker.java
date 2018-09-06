@@ -17,7 +17,7 @@ import com.mutistic.utils.PrintUtil;
  */
 public class CareTaker {
 
-	private static String FILE_NAME = "FlowMemento.txt";
+	private static String FILE_NAME = "src/com/mutistic/behavioral/memento/storage/FlowMemento.txt";
 
 	/**
 	 * @description 保存备忘录对象

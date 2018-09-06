@@ -17,7 +17,7 @@ public class CommandQueue {
 	 * 队列日志文件名称
 	 * 默认：com.mutistic.principle项目根目录下
 	 */
-	private static String QUEUE_FILE = "CmdQueue.log";
+	private static String QUEUE_FILE = "src/com/mutistic/behavioral/command/logger/CmdQueue.log";
 	/**
 	 * 用来存储菜品命令对象的队列集合
 	 * 队列集合可以使用：java.util.Queue
