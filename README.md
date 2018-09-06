@@ -2554,7 +2554,7 @@ ConcreteDecorator：实际的装饰器对象，实现具体要向被装饰对象
   2.2、其实FileInputStream、ObjectInputStream、StringBufferInputStream这几个对象是
 直接接继承了InputStream，还有几个直接继承InputStream的对象，比如：ByteArrayInputStream、PipedInputStream等。
 这些对象相当于装饰模式中的Concretecomponent，是可以被装饰器装饰的对象。
-  2.3、那么FilterInutstram就相当于装饰模式中的Decorator，而它的子类
+  2.3、那么FilterInputStream就相当于装饰模式中的Decorator，而它的子类
   DataInputStream、BfferedInputStrearm、LineNumberInputStream、PushbackInputStream 就相当于装饰模式中的ConcreteDecorator了。
 另外FilterInputStream和它的子类对象的构造器，都是传入组件Inputstrealll类型，
   这打就完个符合装饰器的结构了。
