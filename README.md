@@ -3069,6 +3069,192 @@ public class FlyweightFactory {
 [结构图](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.principle/notes/mode/structure/M13_BridgePattern.png)
 [时序图](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.principle/notes/mode/sequence/M13_BridgePattern.png)<br/>
 
+一、定义、本质、原则: 
+```
+定义: 将抽象部分与它的实现部分分离，使它们都可以独立地变化
+本质: 
+原则: 
+```
+
+二、结构和说明: 
+```
+Abstraction：抽象部分的接口。通常在这个对象里面，要维护一个实现部分的对象引用，在抽象对象里面的方法，
+需要调用实现部分的对象来完成。这个对象里面的方法，通常都是具体的业务相关的方法
+
+RefinedAbstraction：扩展抽象部分的接口，通常在这些对象里面，定义跟实际业务相关的方法，
+这些方法的实现通常会使用Abstraction中定义的方法，也可能需要调用实现部分的对象来完成
+
+Implementor：定义实现部分的接口，这个接口不用和Abstraction里面的方法一致，
+通常是由Implementor接口提供基本的操作，而Abstraction而定义的是基于这些基本操作的务方法，
+也就是说Abstraction定义了基于这些基本操作的较高层次的操作
+
+ConcreteImplementor：真实实现Implementor接口的对象
+```
+
+三、理解: 
+```
+
+1、
+```
+
+四、写法: 
+```
+```
+
+五、优点: 
+```
+```
+
+六、缺点: 
+```
+```
+
+七、使用场景: 
+```
+
+具体场景：
+```
+
+八、注意事项: 
+```
+```
+
+Client.java: 
+```Java
+package com.mutistic.structural.bridge.structure;
+import com.mutistic.utils.PrintUtil;
+/**
+ * Client：客户端
+ * 桥接模式[Bridge Pattern]-结构
+ */
+public class Client {
+	public static void main(String[] args) {
+		PrintUtil.one("桥接模式[Bridge Pattern]-结构");
+		
+		Implementor implA = new ConcreteImplementorA();
+		Abstraction refined = new RefinedAbstraction(implA);
+		PrintUtil.println();
+		refined.operation();
+		
+		Implementor implB = new ConcreteImplementorB();
+		RefinedAbstraction refinedB = new RefinedAbstraction(implB);
+		refinedB.otherOperation();
+	}
+}
+```
+Abstraction.java: 
+```Java
+package com.mutistic.structural.bridge.structure;
+import com.mutistic.utils.PrintUtil;
+/**
+ * Abstraction：
+ * 抽象部分的接口。通常在这个对象里面，要维护一个实现部分的对象引用，在抽象对象里面的方法，
+ * 需要调用实现部分的对象来完成。这个对象里面的方法，通常都是具体的业务相关的方法
+ */
+public abstract class Abstraction {
+	/** 持有：一个实现部分的对象 */
+	protected Implementor impl;
+	/**
+	 * 构造函数：注入实现部分的对象
+	 * @param impl 实现部分的对象
+	 */
+	public Abstraction(Implementor impl) {
+		super();
+		this.impl = impl;
+		PrintUtil.two("Abstraction 构造函数：注入实现部分的对象", impl);
+	}
+	/**
+	 * 实现一定的功能，可能需要转调实现部分的具体实现方法
+	 */
+	public void operation() {
+		PrintUtil.three("Abstraction.operation()", "实现一定的功能，可能需要转调实现部分的具体实现方法，开始转调");
+		impl.operationImpl();
+	}
+}
+```
+RefinedAbstraction.java: 
+```Java
+package com.mutistic.structural.bridge.structure;
+import com.mutistic.utils.PrintUtil;
+/**
+ * RefinedAbstraction：
+ * 扩展抽象部分的接口，通常在这些对象里面，定义跟实际业务相关的方法，
+ * 这些方法的实现通常会使用Abstraction中定义的方法，也可能需要调用实现部分的对象来完成
+ * @author mutisitic
+ * @date 2018年9月7日
+ */
+public class RefinedAbstraction extends Abstraction {
+	/**
+	 * 构造函数：注入实现部分的对象
+	 * @param impl
+	 */
+	public RefinedAbstraction(Implementor impl) {
+		super(impl);
+	}
+	/**
+	 * 示意：实现一定的功能，可能会由具体实现部分的实现方法，也可能会转调抽象父类的功能
+	 */
+	public void otherOperation() {
+		PrintUtil.two("RefinedAbstraction.otherOperation()", "实现一定的功能，可能会由具体实现部分的实现方法，也可能会转调抽象父类的功能");
+		operation();
+	}
+}
+```
+Implementor.java: 
+```Java
+package com.mutistic.structural.bridge.structure;
+/**
+ * Implementor：
+ * 定义实现部分的接口，这个接口不用和Abstraction里面的方法一致，
+ * 通常是由Implementor接口提供基本的操作，而Abstraction而定义的是基于这些基本操作的务方法，
+ * 也就是说Abstraction定义了基于这些基本操作的较高层次的操作
+ */
+public interface Implementor {
+	/**
+	 * 定义：示意实现抽象部分需要的某些功能
+	 */
+	void operationImpl();
+}
+```
+ConcreteImplementorA.java: 
+```Java
+package com.mutistic.structural.bridge.structure;
+import com.mutistic.utils.PrintUtil;
+/**
+ * ConcreteImplementor：
+ * 真实实现Implementor接口的对象
+ */
+public class ConcreteImplementorA implements Implementor {
+	/**
+	 * 实现抽象部分需要的某些功能的具体实现
+	 * @see com.mutistic.structural.bridge.structure.Implementor#operationImpl()
+	 */
+	@Override
+	public void operationImpl() {
+		PrintUtil.three("ConcreteImplementorA.operationImpl()", "实现抽象部分需要的某些功能的具体实现");
+	}
+}
+```
+ConcreteImplementorB.java: 
+```Java
+package com.mutistic.structural.bridge.structure;
+import com.mutistic.utils.PrintUtil;
+/**
+ * ConcreteImplementor：
+ * 真实实现Implementor接口的对象
+ */
+public class ConcreteImplementorB implements Implementor {
+	/**
+	 * 实现抽象部分需要的某些功能的具体实现
+	 * @see com.mutistic.structural.bridge.structure.Implementor#operationImpl()
+	 */
+	@Override
+	public void operationImpl() {
+		PrintUtil.three("ConcreteImplementorB.operationImpl()", "实现抽象部分需要的某些功能的具体实现");
+	}
+}
+```
+
 ---
 ### <a id="a_filter">二十一、过滤器模式[Filter Pattern]</a> <a href="#a_bridge">last</a> <a href="#a_mediator">next</a>
 [结构图](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.principle/notes/mode/structure/M14_FilterPattern.png)
