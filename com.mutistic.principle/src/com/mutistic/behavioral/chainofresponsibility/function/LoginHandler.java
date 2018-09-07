@@ -6,11 +6,11 @@ import com.mutistic.utils.PrintUtil;
 
 /**
  * @program ConcreteHandler：实现职责的类
- * @description 实现日志记录的职责
+ * @description 实现用户登录的职责，职责链入口
  * @author mutisitic
  * @date 2018年9月7日
  */
-public class LogHandler extends SaleHandler {
+public class LoginHandler extends SaleHandler {
 
 	/**
 	 * @description 具体日志记录的职责
@@ -24,7 +24,7 @@ public class LogHandler extends SaleHandler {
 	 */
 	@Override
 	public boolean sale(String user, String customer, SaleModel model) {
-		PrintUtil.two("LogHandler.sale()", new Date() +"："+ user +"用户记录销售客户"+ customer +"需要的商品"+ 
+		PrintUtil.two("LoginHandler.sale()", new Date() +"："+ user +"用户开始记录销售客户"+ customer +"需要的商品"+ 
 				(model == null ? "" : model.getGoods()) +"，数量"+ (model == null ? "" : model.getSaleNum()));
 		return this.successor.sale(user, customer, model);
 	}

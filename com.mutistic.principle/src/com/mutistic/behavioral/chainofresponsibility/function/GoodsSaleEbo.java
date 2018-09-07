@@ -23,7 +23,7 @@ public class GoodsSaleEbo {
 	public boolean sale(String user, String customer, SaleModel model) {
 		PrintUtil.two("GoodsSaleEbo.sale()", "商品销售管理的业务处理");
 		
-		LogHandler log = new LogHandler();
+		LoginHandler log = new LoginHandler();
 		CheckHandler check = new CheckHandler();
 		ValidateHandler validate = new ValidateHandler();
 		ConcreteHandler concrete = new ConcreteHandler();

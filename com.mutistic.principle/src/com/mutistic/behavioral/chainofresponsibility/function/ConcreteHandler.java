@@ -4,7 +4,7 @@ import com.mutistic.utils.PrintUtil;
 
 /**
  * @program ConcreteHandler：实现职责的类
- * @description 真正实现具体业务的职责
+ * @description 真正实现具体业务的职责，职责链结束
  * @author mutisitic
  * @date 2018年9月7日
  */
