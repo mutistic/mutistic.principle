@@ -60,7 +60,7 @@
 中介者模式[Mediator Pattern]、观察者模式[Observer Pattern]、命令模式[Command Pattern]、
 迭代器模式[Iterator Pattern]、模板模式[Template Pattern]、策略模式[Strategy Pattern]、
 状态模式[State Pattern]、备忘录模式[Memento Pattern]、解释器模式[Interpreter Pattern]、
-责任链模式[Chain of Responsibility Pattern]、访问者模式[Visitor Pattern]、空对象模式[Null Object Pattern]、
+职责链模式[Chain of Responsibility Pattern]、访问者模式[Visitor Pattern]、空对象模式[Null Object Pattern]、
 ```
 
 <a href="#a_j2ee">J2EE设计模式: </a><br/>
@@ -108,7 +108,7 @@ MVC 模式[MVC Pattern]、业务代表模式[Business Delegate Pattern]、
 32. <a href="#a_state">状态模式[State Pattern]</a>
 33. <a href="#a_memento">备忘录模式[Memento Pattern]</a>
 34. <a href="#a_interpreter">解释器模式[Interpreter Pattern]</a>
-35. <a href="#a_responsibility">责任链模式[Chain of Responsibility Pattern]</a>
+35. <a href="#a_responsibility">职责链模式[Chain of Responsibility Pattern]</a>
 36. <a href="#a_visitor">访问者模式[Visitor Pattern]</a>
 37.	<a href="#a_object">对象模式[Null Object Pattern]</a>
 38. <a href="#a_j2ee">#J2EE设计模式#</a>
@@ -3420,7 +3420,7 @@ ConcreteObserver：观察者的具体实现对象，用来接收目标的通知�
 否则会引起死循环的情况（中介者模式不处理好循环调用也可能导致死循环）
 
 7、通知顺序：从理论上说，当目标对象的状态变化后通知所有观察者的时候，顺序是不确定的，因此观察者实现的功能，不要依赖于通知的顺序，
-也就是说，多个观察者之间的功能是平行的，相互不应该有先后的依赖关系。如果需要顺序可以采用责任链模式
+也就是说，多个观察者之间的功能是平行的，相互不应该有先后的依赖关系。如果需要顺序可以采用职责链模式
 ```
 
 四、写法: 
@@ -3483,7 +3483,7 @@ ConcreteObserver：观察者的具体实现对象，用来接收目标的通知�
 1、JAVA 中已经有了对观察者模式的支持类。 
 2、避免循环通知，否则会引起死循环。 
 3、如果同步执行，某一观察者错误会导致后续的观察者通知失败，一般采用异步方式。
-4、通知观察者不建议依赖于通知的顺序。如果无法避免建议采用责任链模式
+4、通知观察者不建议依赖于通知的顺序。如果无法避免建议采用职责链模式
 ```
 
 Client.java: 
@@ -5300,9 +5300,60 @@ public class TerminalExpression extends AbstractExpression {
 ```
 
 ---
-### <a id="a_responsibility">三十一、责任链模式[Chain of Responsibility Pattern]</a> <a href="#a_interpreter">last</a> <a href="#a_visitor">next</a>
+### <a id="a_responsibility">三十一、职责链模式[Chain of Responsibility Pattern]</a> <a href="#a_interpreter">last</a> <a href="#a_visitor">next</a>
 [结构图](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.principle/notes/mode/structure/M24_ChainofResponsibilityPattern.png)
 [时序图](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.principle/notes/mode/sequence/M24_ChainofResponsibilityPattern.png)<br/>
+
+一、定义、本质、原则: 
+```
+定义: 使多个对象都有机会处理请求，从而避免请求的发送者和接收者之间的耦合美系。将这些对象连成一条链，
+并沿着这条链传递该请求，直到有一个对象处理它为止。
+本质: 
+原则: 
+```
+
+二、结构和说明: 
+```
+Handler：定义职责的接口，通常在这里定义处理请求的方法，可以在这实现后继链
+
+ConcreteHandler：实现职责的类，在这个类里面，实现对它职责范围内请求的处理，如果不处理，
+就继续转发请求给后继者。
+
+Client：职责链的客户端，向链上的具体处理者对象提交请求，让职责链负责处理
+```
+
+三、理解: 
+```
+
+1、
+```
+
+四、写法: 
+```
+```
+
+五、优点: 
+```
+```
+
+六、缺点: 
+```
+```
+
+七、使用场景: 
+```
+
+具体场景：
+```
+
+八、注意事项: 
+```
+```
+
+Client.java: 
+```Java
+```
+
 
 ---
 ### <a id="a_visitor">三十二、访问者模式[Visitor Pattern]</a> <a href="#a_responsibility">last</a> <a href="#a_object">next</a>
@@ -5395,7 +5446,7 @@ public class TerminalExpression extends AbstractExpression {
 [M21-状态模式[State Pattern]](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.principle/notes/mode/eap/M21_StatePattern.eap)<br/>
 [M22-备忘录模式[Memento Pattern]](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.principle/notes/mode/eap/M22_MementoPattern.eap)<br/>
 [M23-解释器模式[Interpreter Pattern]](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.principle/notes/mode/eap/M23_InterpreterPattern.eap)<br/>
-[M24-责任链模式[Chain of Responsibility Pattern]](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.principle/notes/mode/eap/M24_ChainofResponsibilityPattern.eap)<br/>
+[M24-职责链模式[Chain of Responsibility Pattern]](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.principle/notes/mode/eap/M24_ChainofResponsibilityPattern.eap)<br/>
 [M25-访问者模式[Visitor Pattern]](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.principle/notes/mode/eap/M25_a_visitorPattern.eap)<br/>
 [M26-空对象模式[Null Object Pattern]](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.principle/notes/mode/eap/M26_NullObjectPattern.eap)<br/>
 <a href="#a_j2ee">J2EE 设计模式[J2EE Patterns]: </a><br/>
