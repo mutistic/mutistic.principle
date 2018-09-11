@@ -110,7 +110,7 @@ MVC 模式[MVC Pattern]、业务代表模式[Business Delegate Pattern]、
 34. <a href="#a_interpreter">解释器模式[Interpreter Pattern]</a>
 35. <a href="#a_responsibility">职责链模式[Chain of Responsibility Pattern]</a>
 36. <a href="#a_visitor">访问者模式[Visitor Pattern]</a>
-37.	<a href="#a_object">对象模式[Null Object Pattern]</a>
+37.	<a href="#a_object">空对象模式[Null Object Pattern]</a>
 38. <a href="#a_j2ee">#J2EE设计模式#</a>
 39. <a href="#a_mvc">MVC 模式[MVC Pattern]</a>
 40. <a href="#a_business">业务代表模式[Business Delegate Pattern]</a>
@@ -5848,11 +5848,363 @@ public class ConcreteHandler2 extends Handler {
 
 ---
 ### <a id="a_visitor">三十二、访问者模式[Visitor Pattern]</a> <a href="#a_responsibility">last</a> <a href="#a_object">next</a>
-[结构图](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.principle/notes/mode/structure/M25_a_visitorPattern.png)
-[时序图](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.principle/notes/mode/sequence/M25_a_visitorPattern.png)<br/>
+[结构图](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.principle/notes/mode/structure/M25_VisitorPattern.png)
+[时序图](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.principle/notes/mode/sequence/M25_VisitorPattern.png)<br/>
+
+一、定义、本质、原则: 
+```
+定义: 表示一个作用域某对象结构中的各元素的操作。客户端在不改变各元素的类的前提下定义作用这些元素的新操作。
+本质: 预留通路，回调实现
+原则: 体现了单一职责原则
+```
+
+二、结构和说明: 
+```
+Visitor：访问者接口，为所有的访问者对象声明一个visit方法，用来代表为对象结构添加的功能，理论上可以代表任意的功能。
+
+ConcreteVisitor：具体访问者实现对象，实现要真正被添加到对象结构中的功能。
+
+Element：抽象的元素对象，对象结构的顶层接口，定义接受访问的操作。
+
+ConcreteElement：具体元素对象，对象结构中具体的对象，也是被访问的对象，通常会回调访问者的真实功能，
+同时开放自身的数供访问者使用
+
+ObjectStructure：对象结构，通常包含多个被访问的对象，它可以遍历这多个被访问的对象，
+也可以让访问者访问它的元素。可以是一个复合或是一个集合，如一个列表或无序集合。
+  注意：这个ObjectStructure不是指组合模式中的Component对象结构，Component对象结构是指的一系列对象的定义结构，是概念上的东西
+而ObjectStructure可以看成是对象结构中的一系列对象的一个集合，是用来辅助客户端访问这一系列对象的
+```
+
+三、理解: 
+```
+主要解决：稳定的数据结构和易变的操作耦合问题。
+如何解决：在被访问的类里面加一个对外提供接待访问者的接口。
+
+1、访问者的功能：
+  访问者模式能给一系列对象，透明的添加新功能。从而避免在护期间，对这一系列对象进行修改，
+而且还能变相实现复用访问者所具有的功能。
+  由于是针对一系列对象的操作，这也导致，如果只想给一系列对蒙中的部分对象添加功能，就会有些麻烦。
+而且要始终能保证把这一系列对象都要调用到，不管是循环也好，还是递归也好，总之要让每个对象都要被访间到。
+
+2、调用通路：
+  访问者之所以能实现“为一系列对象透明的添加新功能”，透明意味着这一系列对象是不知道被添加功能的。
+  重要的就是依靠通用方法，访问者这边说要去访问，就提供一个访问的方法，如visit方法。
+而元素接受访问，提供一个接受访问的方法，如accept方法。这两个方法并不代表任何具体的功能，只是构成一个调用的通路，
+那么真正的功能实现是在accept方法里面，回调visit的方法，从而回调到访问者的具体实现上，
+而这个访问者的具体实现的方法才是要添加的新的功能，最后在回元素的业务功能方法，实现真实的业务。
+
+3、两次分发技术：
+  访问者模式能够实现在不改变对象结构的情况下，就能给对象结构中的类增加功能，实现这个效果所使用的核心技术就是两次分发的技术
+  第一次分发：在访问者模式中，当客户端ObjectStructure的时候，会遍历ObjectStructure中所有的元素，
+调用这些元素的accept方法，让这些元素来接受访问，这是请求的第一次分发
+  第二次分发：在具体的元素对象中实现accept方法的时候，会回调访问者的visit方法，等于请求被第二次分发了，
+请求被分发给访问者来进行处理，真正实现功能的正是访问者的visit方法。
+  
+  两次分发技术使得客户端的请求不再被静态的绑定在元素对象上，这个时候真正执行什么样的功能同时取决于
+访问者类型和元素类型，就算同一种元素类型，只要访问者类型不一样，最终执行的功能也不会一样，
+这样一来，就可以在元素对象不变的情况下，通过改变访问者的类型，来改变真正执行的功能。
+  两次分发技术还有一个优点：就是可以在程序运行期间进行动态的功能组装和切换，只需要在客户端调用时，组合使用不同的访问者对象实例即可。
+  
+  从另一个层面思考，Java回调技术也有点类似于两次分发技术，客户端调用某方法，这个方法就类似于accept方法，
+传入一个接口的实现对象，这个接口的实现对象就有点像是访问者，在方法内部，会回调这个接口的方法，就类似于．
+调用访问者的visit方法，最终执行的还是接口的具体实现里面实现的功能。
+
+4、为何不在Element父类中实现回调visit方法
+  不能把回调访问者方法的调用语句放到父类，虽然看起来是相似的语句，主要是因为要传入的this本身。
+  this是代表当前的对象实例的，在具体子类中回调访问者的实现，传入具体的元素，
+就可以通过这不同的对象实例来访问不同的实例对象的数据了。
+  如果回调放在父类中，那么传递的就是父类对象的实例，是没有子对象的数据的
+```
+
+四、写法: 
+```
+1、空的访问方法：
+  并不是所有的的问方法都需要实现，由于问者模式默认的是访问对象结构中的所有元素，
+因此在实现某些功能的时候，如果不需要涉及到某些元素的访问方法，这方法可以实现成为空的，
+比如：这个访问者只想要处理组合对象，那么访问叶子对象的方法就可以为空，虽然还是需要访问所有的元素对象
+  
+  还有一种解释有条件接收访问，在元素终的accept方法里面进行判断，满足要求的接受，不满足要求的，
+就相当于空的访问方法，不做任何处理
+
+2、结合组合模式：
+  对于使用组合模式构建的组合对象结构，对外有一个统一的外观，要想添加新的功能不是很困难，
+只要在组件的接口上定义新的功能就可以了，麻烦的是这样一来，需要修改所有的子类。
+而且，每次添加一个新功能，都需要修改组件接口，然后修改所有的子类，这是相当糟糕的。
+
+  为了让组合对象结构更灵活、更容易维护和更好的扩展性，可以使用访问者模式结合组合模式来实现。
+这样在今后再进行功能改造的时候，就不需要再改动这个组合对象结构了
+
+  访问者模式和组合模式组合使用的思路：首先把组合对象结构中的功能方法分离出来，
+虽然维护组合对象结构的方法也可以分离出来，但是为了维持组合对象结构本身，这些方法还是放在组合对象结构里面；
+然后把这些功能方法分别实现成为访问者对象，通过访问者模式添加到组合的对象结构中去。
+
+3、遍历所有元素对象：
+  在访问者模式中，访问者必须要能够访问到对象结构中的每个对象，因为访问者．要为每个对象添加功能，
+为此特别在模式中定义出一个ObjectStructure来，然后由ObjectStructure来负责遍历访问一系列对象中的每个对象
+  
+  在ObjectStructure代所有的元素时，又分成两种情况。
+  3.1、一种是元素的对象结构是通过合来组织的，那么直接在Objectstructure中对集合进行迭代，对每一个元素调用accept
+  3.2、一种情况是元素的对象结构是通过组合模式来组织的，通常可以构成对象树，这种情况般就不需要在ObjectStructure中迭代了，
+而通常的做法是在组合对象的acept方法里而，递归遍历它的子元素，然后调用子元素的的accept方法
+```
+
+五、优点: 
+```
+1、更好的扩展性
+2、更好的复用性
+3、更好的灵活性
+4、分离无关行为
+```
+
+六、缺点: 
+```
+1、对象结果变化很困难
+2、破坏封装
+3、具体元素对访问者公布细节，违反了迪米特原则
+4、违反了依赖倒置原则，依赖了具体类，没有依赖抽象
+```
+
+七、使用场景: 
+```
+1、如果想对一个对象结构，实施一些依赖于对象结构中的具体类的操作，可以使用访问者模式
+
+2、如果想对一个对象结构中的各个元素，进行很多不同的而且不相关的操作，为了避免这些操作使得类变得杂乱，
+可以使用访问者模式，把这些操作分散到不同的访问者对象中去，每个访问者对象实现同一类功能。
+
+3、如果对象结构很少变动，但是需要经常给对象结构中的元素对象定义新的操作，可以使用访问者模式
+```
+
+八、注意事项: 
+```
+访问者可以对功能进行统一，可以做报表、UI、拦截器与过滤器
+```
+
+Client.java: 
+```Java
+package com.mutistic.behavioral.visitor.structure;
+import com.mutistic.utils.PrintUtil;
+/**
+ * Client：客户端
+ * 演示 访问者模式[Visitor Pattern]-结构
+ */
+public class Client {
+	public static void main(String[] args) {
+		PrintUtil.one("访问者模式[Visitor Pattern]-结构");
+		// 创建ObjectStructure对象结构
+		ObjectStructure os = new ObjectStructure();
+		// 创建被访问的具体元素
+		Element ea = new ConcreteElementA();
+		Element eb = new ConcreteElementB();
+		// 将元素添加至对象结构中
+		os.addElement(ea);
+		os.addElement(eb);
+		// 创建具体的访问者对象1
+		Visitor v1 = new ConcreteVisitor1();
+		// 调用业务处理方法
+		os.handleRequest(v1);
+		
+		// 创建具体的访问者对象
+		Visitor v2 = new ConcreteVisitor2();
+		// 调用业务处理方法
+		os.handleRequest(v2);
+	}
+}
+```
+ObjectStructure.java: 
+```Java
+package com.mutistic.behavioral.visitor.structure;
+import java.util.ArrayList;
+import java.util.List;
+import com.mutistic.utils.PrintUtil;
+/**
+ * ObjectStructure：
+ * 对象结构，通常包含多个被访问的对象，它可以遍历这多个被访问的对象，也可以让访问者访问它的元素。可以是一个复合或是一个集合，如一个列表或无序集合。
+ */
+public class ObjectStructure {
+	/**
+	 * 示意：表示对象结构，可以是一个组合结果或是集合
+	 */
+	private List<Element> eleList = new ArrayList<Element>();
+	/**
+	 * 示意：向组合对象结构添加元素（不同的对象结构有不同的构建方法）
+	 * @param element 被添加的元素
+	 */
+	public void addElement(Element element) {
+		if(null != element) {
+			eleList.add(element);
+			PrintUtil.two("addElement.addElement()：向组合对象结构添加元素（不同的对象结构有不同的构建方法）", element);
+		}
+	}
+	/**
+	 * 示意：提供给客户端操作的高层接口（元素接受具体的访问者实例）
+	 * @param visitor
+	 */
+	public void handleRequest(Visitor visitor) {
+		PrintUtil.two("ObjectStructure.handleRequest()：提供给客户端操作的高层接口", visitor);
+		for (Element element : eleList) {
+			PrintUtil.two("ObjectStructure.handleRequest()：元素接受具体的访问者实例", element);
+			element.accept(visitor);
+		}
+	}
+}
+```
+Visitor.java: 
+```Java
+package com.mutistic.behavioral.visitor.structure;
+/**
+ * Visitor：
+ * 访问者接口，为所有的访问者对象声明一个visit方法，用来代表为对象结构添加的功能，理论上可以代表任意的功能。
+ * @author mutisitic
+ * @date 2018年9月11日
+ */
+public interface Visitor {
+	/**
+	 * 定义：访问具体元素A：相当于给元素A添加访问者的功能 
+	 * @param elementA 具体元素A
+	 */
+	void visitConceteElementA(ConcreteElementA elementA);
+	/**
+	 * 定义：访问具体元素B：相当于给元素B添加访问者的功能 
+	 * @param elementB 具体元素B
+	 */
+	void visitConceteElementB(ConcreteElementB elementB);
+}
+```
+ConcreteVisitor1.java: 
+```Java
+package com.mutistic.behavioral.visitor.structure;
+import com.mutistic.utils.PrintUtil;
+/**
+ * ConcreteVisitor：
+ * 具体访问者实现对象，实现要真正被添加到对象结构中的功能。
+ */
+public class ConcreteVisitor1 implements Visitor {
+	/**
+	 * 具体的访问具体元素A：相当于给元素A添加访问者的功能 
+	 * @param elementA
+	 * @see com.mutistic.behavioral.visitor.structure.Visitor#visitConceteElementA(com.mutistic.behavioral.visitor.structure.ConcreteElementA)
+	 */
+	@Override
+	public void visitConceteElementA(ConcreteElementA elementA) {
+		PrintUtil.three("ConcreteVisitor1.visitConceteElementA()", "具体的访问具体元素A：相当于给元素A添加访问者的功能 ");
+		elementA.operation();
+	}
+	/**
+	 * 具体的访问具体元素B：相当于给元素B添加访问者的功能 
+	 * @param elementB
+	 * @see com.mutistic.behavioral.visitor.structure.Visitor#visitConceteElementB(com.mutistic.behavioral.visitor.structure.ConcreteElementB)
+	 */
+	@Override
+	public void visitConceteElementB(ConcreteElementB elementB) {
+		PrintUtil.three("ConcreteVisitor1.visitConceteElementB()", "具体的访问具体元素A：相当于给元素A添加访问者的功能 ");
+		elementB.operation();
+	}
+}
+```
+ConcreteVisitor2.java: 
+```Java
+package com.mutistic.behavioral.visitor.structure;
+import com.mutistic.utils.PrintUtil;
+/**
+ * ConcreteVisitor：
+ * 具体访问者实现对象，实现要真正被添加到对象结构中的功能。
+ */
+public class ConcreteVisitor2 implements Visitor {
+	/**
+	 * 具体的访问具体元素A：相当于给元素A添加访问者的功能 
+	 * @param elementA
+	 * @see com.mutistic.behavioral.visitor.structure.Visitor#visitConceteElementA(com.mutistic.behavioral.visitor.structure.ConcreteElementA)
+	 */
+	@Override
+	public void visitConceteElementA(ConcreteElementA elementA) {
+		PrintUtil.three("ConcreteVisitor2.visitConceteElementA()", "具体的访问具体元素A：相当于给元素A添加访问者的功能 ");
+		elementA.operation();
+	}
+	/**
+	 * 具体的访问具体元素B：相当于给元素B添加访问者的功能 
+	 * @param elementB
+	 * @see com.mutistic.behavioral.visitor.structure.Visitor#visitConceteElementB(com.mutistic.behavioral.visitor.structure.ConcreteElementB)
+	 */
+	@Override
+	public void visitConceteElementB(ConcreteElementB elementB) {
+		PrintUtil.three("ConcreteVisitor2.visitConceteElementB()", "具体的访问具体元素A：相当于给元素A添加访问者的功能 ");
+		elementB.operation();
+	}
+}
+```
+Element.java: 
+```Java
+package com.mutistic.behavioral.visitor.structure;
+/**
+ * Element：
+ * 抽象的元素对象，对象结构的顶层接口，定义接受访问的操作。
+ */
+public abstract class Element {
+	/**
+	 * 定义：接受访问者的访问 
+	 * @param visitor 具体的访问者对象
+	 */
+	public abstract void accept(Visitor visitor);
+}
+```
+ConcreteElementA.java: 
+```Java
+package com.mutistic.behavioral.visitor.structure;
+import com.mutistic.utils.PrintUtil;
+/**
+ * Element： 
+ * 抽象的元素对象，对象结构的顶层接口，定义接受访问的操作。
+ */
+public class ConcreteElementA extends Element {
+	/**
+	 * 接受访问者的具体访问，回调访问者对象的相应方法
+	 * @param visitor
+	 * @see com.mutistic.behavioral.visitor.structure.Element#accept(com.mutistic.behavioral.visitor.structure.Visitor)
+	 */
+	@Override
+	public void accept(Visitor visitor) {
+		PrintUtil.three("ConcreteElementA.accept()", "接受访问者的具体访问，回调访问者对象的相应方法");
+		visitor.visitConceteElementA(this);
+	}
+	/**
+	 * 示意：表示元素已有的功能实现 
+	 */
+	public void operation() {
+		PrintUtil.three("ConcreteElementA.operation()", "示意：表示元素已有的功能实现");
+	}
+}
+```
+ConcreteElementB.java: 
+```Java
+package com.mutistic.behavioral.visitor.structure;
+import com.mutistic.utils.PrintUtil;
+/**
+ * Element： 
+ * 抽象的元素对象，对象结构的顶层接口，定义接受访问的操作。
+ */
+public class ConcreteElementB extends Element {
+
+	/**
+	 * 接受访问者的具体访问，回调访问者对象的相应方法
+	 * @param visitor
+	 * @see com.mutistic.behavioral.visitor.structure.Element#accept(com.mutistic.behavioral.visitor.structure.Visitor)
+	 */
+	@Override
+	public void accept(Visitor visitor) {
+		PrintUtil.three("ConcreteElementB.accept()", "接受访问者的具体访问，回调访问者对象的相应方法");
+		visitor.visitConceteElementB(this);
+	}
+	/**
+	 * 示意：表示元素已有的功能实现 
+	 */
+	public void operation() {
+		PrintUtil.three("ConcreteElementB.operation()", "示意：表示元素已有的功能实现");
+	}
+}
+```
 
 ---
-### <a id="a_object">三十三、对象模式[Null Object Pattern]</a> <a href="#a_visitor">last</a> <a href="#a_mvc">next</a>
+### <a id="a_object">三十三、空对象模式[Null Object Pattern]</a> <a href="#a_visitor">last</a> <a href="#a_mvc">next</a>
 [结构图](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.principle/notes/mode/structure/M26_NullObjectPattern.png)
 [时序图](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.principle/notes/mode/sequence/M26_NullObjectPattern.png)<br/>
 
