@@ -4,7 +4,7 @@ import com.mutistic.utils.PrintUtil;
 
 /**
  * @program ConcreteImplementor：
- * @description 真实实现Implementor接口的对象
+ * @description 真正实现Implementor接口的对象
  * @author mutisitic
  * @date 2018年9月7日
  */
