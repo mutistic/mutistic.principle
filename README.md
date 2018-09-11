@@ -26,7 +26,7 @@
 
 毫无疑问，设计模式于己于他人于系统都是多赢的，设计模式使代码编制真正工程化，设计模式是软件工程的基石。
 项目中合理地运用设计模式可以完美地解决很多问题，每种模式在现实中都有相应的原理来与之对应，
-每种模式都描述了一个在我们周围不断重复发生的问题，以及该问题的核心解决方案，这也是设计模式能被广泛应用的原因
+每种模式都描述了一个在周围不断重复发生的问题，以及该问题的核心解决方案，这也是设计模式能被广泛应用的原因
 ```
 
 设计模式和面向对象设计原则: 
@@ -145,14 +145,14 @@ A: 面向对象设计原则由此而来，其规范了设计一个对象因遵�
 ```
 1.4、设计原则: 
 ```
-面向对象有诸多的设计原则，但是通常我们提到的设计原则是其中最重要的五个设计原则，
+面向对象有诸多的设计原则，但是通常提到的设计原则是其中最重要的五个设计原则，
 也是公认的面向对象设计的五大原则，也是通常所说的“S.O.L.I.D ”: 
-	1、单一职责原则告诉我们实现类要职责单一
-	2、里氏替换原则告诉我们不要破坏继承关系
-	3、依赖倒置原则告诉我们要面向接口编程
-	4、接口隔离原则告诉我们在设计接口的时候要精简单一
-	5、开闭原则告诉我们要对扩展开发，对修改关闭
-	6、迪米特法则告诉我们要降低耦合
+	1、单一职责原则告诉实现类要职责单一
+	2、里氏替换原则告诉不要破坏继承关系
+	3、依赖倒置原则告诉要面向接口编程
+	4、接口隔离原则告诉在设计接口的时候要精简单一
+	5、开闭原则告诉要对扩展开发，对修改关闭
+	6、迪米特法则告诉要降低耦合
 ```
 
 ---
@@ -253,7 +253,7 @@ OCP是面向对象设计中“可复用设计”的基石，是面向对象设�
 ```
 遵循开闭原则设计出的模块具有两个主要特征: 
 1、对于扩展是开放的（Open for extension）。这意味着模块的行为是可以扩展的。
-当应用的需求改变时，我们可以对模块进行扩展，使其具有满足那些改变的新行为。也就是说，我们可以改变模块的功能。
+当应用的需求改变时，可以对模块进行扩展，使其具有满足那些改变的新行为。也就是说，可以改变模块的功能。
 
 2、对于修改是关闭的（Closed for modification）。对模块行为进行扩展时，不必改动模块的源代码或者二进制代码。
 模块的二进制可执行版本，无论是可链接的库、DLL或者.EXE文件，都无需改动。
@@ -266,25 +266,25 @@ OCP是面向对象设计中“可复用设计”的基石，是面向对象设�
 作为系统设计的抽象层，要预见所有可能的扩展，从而使得在任何扩展情况下，系统的抽象底层不需修改；
 同时，由于可以从抽象底层导出一个或多个新的具体实现，可以改变系统的行为，因此系统设计对扩展是开放的。
 
-2、我们在软件开发的过程中，一直都是提倡需求导向的。这就要求我们在设计的时候，要非常清楚地了解用户需求，
+2、在软件开发的过程中，一直都是提倡需求导向的。这就要求在设计的时候，要非常清楚地了解用户需求，
 判断需求中包含的可能的变化，从而明确在什么情况下使用开闭原则。
 
 3、关于系统可变的部分，还有一个更具体的对可变性封装原则（Principle of Encapsulation of Variation, EVP），
 它从软件工程实现的角度对开闭原则进行了进一步的解释。
 EVP要求在做系统设计的时候，对系统所有可能发生变化的部分进行评估和分类，每一个可变的因素都单独进行封装。
 
-4、我们在实际开发过程的设计开始阶段，就要罗列出来系统所有可能的行为，并把这些行为加入到抽象底层，根本就是不可能的，
-这么去做也是不经济的。因此我们应该现实的接受修改拥抱变化，使我们的代码可以对扩展开放，对修改关闭
+4、在实际开发过程的设计开始阶段，就要罗列出来系统所有可能的行为，并把这些行为加入到抽象底层，根本就是不可能的，
+这么去做也是不经济的。因此应该现实的接受修改拥抱变化，使的代码可以对扩展开放，对修改关闭
 ```
 
 五、优点: 
 ```
 如果一个软件系统符合开闭原则的，那么从软件工程的角度来看，它至少具有这样的好处: 
-1、可复用性好: 我们可以在软件完成以后，仍然可以对软件进行扩展，加入新的功能，非常灵活。
+1、可复用性好: 可以在软件完成以后，仍然可以对软件进行扩展，加入新的功能，非常灵活。
 因此，这个软件系统就可以通过不断地增加新的组件，来满足不断变化的需求。
 
 2、可维护性好: 由于对于已有的软件系统的组件，特别是它的抽象底层不去修改，
-因此，我们不用担心软件系统中原有组件的稳定性，这就使变化中的软件系统有一定的稳定性和延续性。
+因此，不用担心软件系统中原有组件的稳定性，这就使变化中的软件系统有一定的稳定性和延续性。
 ```
 
 六、缺点: 
@@ -472,7 +472,7 @@ DbC从形式化方法中借鉴了一套确保对象行为和自身状态的方�
 接口隔离原则要求接口的方法尽量少。
 
 9.2、从接口隔离原则的定义可以看出，他似乎跟SRP有许多相似之处。 
-是的其实ISP和SRP都是强调职责的单一性， 接口隔离原则告诉我们在定义接口的时候要根据职责定义“较小”的接口，
+是的其实ISP和SRP都是强调职责的单一性， 接口隔离原则告诉在定义接口的时候要根据职责定义“较小”的接口，
 不要定义“高大全”的接口。
 
 也就是说接口要尽可能的职责单一，这样更容易复用，暴露给客户端的方法更具有“针对性”， 比如定义一个接口包括一堆访问数据库的方法， 有
@@ -505,7 +505,7 @@ DbC从形式化方法中借鉴了一套确保对象行为和自身状态的方�
 四、原理: 
 ```
 依赖倒置原则的本质就是通过抽象(接口或抽象类)使各个类或模块的实现彼此独立，不互相影响，实现模块间的松耦合。
-我们在项目中使用这个原则要遵循下面的规则: 
+在项目中使用这个原则要遵循下面的规则: 
 1、每个类尽量都有接口或者抽象类，或者抽象类和接口两都具备
 2、变量的表面类型尽量是接口或者抽象类
 3、任何类都不应该从具体类派生
@@ -530,7 +530,7 @@ DbC从形式化方法中借鉴了一套确保对象行为和自身状态的方�
 对象的依赖关系有三种方式来传递: 
 构造函数传递依赖对象: 在类中通过构造函数声明依赖对象，按照依赖注入的说法，这种方式叫做构造函数注入
 Setter方法传递依赖对象: 在类中通过Setter方法声明依赖关系，依照依赖注入的说法，这是Setter依赖注入
-接口声明依赖: 在接口的方法中声明依赖对象，在为什么我们要符合依赖倒置原则的例子中，我们采用了接口声明依赖的方式，该方法也叫做接口注入
+接口声明依赖: 在接口的方法中声明依赖对象，在为什么要符合依赖倒置原则的例子中，采用了接口声明依赖的方式，该方法也叫做接口注入
 ```
 
 八、适用场景: 
@@ -2050,7 +2050,7 @@ RealSubject：具体的目标对象，真正实现目标接口要求的功能
 ```
 主要解决：在直接访问对象时带来的问题，比
 	如说：要访问的对象在远程的机器上。在面向对象系统中，有些对象由于某些原因（比如对象创建开销很大，或者某些操作需要安全控制，或者需要进程外的访问），
-	直接访问会给使用者或者系统结构带来很多麻烦，我们可以在访问此对象时加上一个对此对象的访问层。
+	直接访问会给使用者或者系统结构带来很多麻烦，可以在访问此对象时加上一个对此对象的访问层。
 如何解决：增加中间层。
 
 1、代理模式的功能：代理模式是通过创建一个代理对象，用这个代理对象去代表真实的对象，客户端得到这个代理对象过后，
@@ -2243,7 +2243,7 @@ Client：客户端，通过组件接口来操作组合结果里面的组件对�
 
 三、理解: 
 ```
-主要解决：它在我们树型结构的问题中，模糊了简单元素和复杂元素的概念，客户程序可以向处理简单元素一样来处理复杂元素，
+主要解决：它在树型结构的问题中，模糊了简单元素和复杂元素的概念，客户程序可以向处理简单元素一样来处理复杂元素，
 从而使得客户程序与复杂元素的内部结构解耦。
 如何解决：树枝和叶子实现统一接口，树枝内部组合该接口。
 
@@ -2515,7 +2515,7 @@ ConcreteDecorator：实际的装饰器对象，实现具体要向被装饰对象
 
 三、理解: 
 ```
-主要解决：一般的，我们为了扩展一个类经常使用继承方式实现，由于继承为类引入静态特征，并且随着扩展功能的增多，子类会很膨胀。
+主要解决：一般的，为了扩展一个类经常使用继承方式实现，由于继承为类引入静态特征，并且随着扩展功能的增多，子类会很膨胀。
 如何解决：将具体功能职责划分，同时继承装饰者模式。
 
 1、装饰模式的功能：
@@ -2801,7 +2801,7 @@ Client：享元客户端，主要的作是维持一个对flweight的引用，计
 
 三、理解: 
 ```
-主要解决：在有大量对象时，有可能会造成内存溢出，我们把其中共同的部分抽象出来，如果有相同的业务请求，
+主要解决：在有大量对象时，有可能会造成内存溢出，把其中共同的部分抽象出来，如果有相同的业务请求，
 直接返回在内存中已有的对象，避免重新创建。
 如何解决：用唯一标识码判断，如果在内存中有，则返回这个唯一标识码所标识的对象。
 
@@ -3389,6 +3389,211 @@ public class ConcreteImplementorB implements Implementor {
 [结构图](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.principle/notes/mode/structure/M14_FilterPattern.png)
 [时序图](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.principle/notes/mode/sequence/M14_FilterPattern.png)<br/>
 
+一、定义、本质: 
+```
+定义: 使用不同的标准来过滤一组对象，通过逻辑运算以解耦的方式把它们连接起来。也称标准模式（Criteria Pattern）
+本质: 结合多个标准来获得单一标准
+```
+
+二、结构和说明: 
+```
+Criteria：过滤器接口。为所有的过滤器对象声明统一的过滤接口，用来返回匹配符合条件的Subject数据集合
+
+ConcreteCriteria：具体的过滤器。持有Subject数据集合，实现具体的过滤功能，通过匹配条件来达到过滤数据的目的
+
+Subject：具体的目标对象，提供过滤器按照条件匹配数据的对象
+
+Client：客户端，使用具体的标准匹配Subject对象集合，来过滤获得单一标准的数据集合
+```
+
+三、理解: 
+```
+1、过滤器的功能：
+  在不改变目标对象结果或数据的情况下，通过事先定义好的不同的过滤器来匹配过滤出客户端需要的数据。
+  客户端需要明确知道每个过滤器的内部细节
+
+2、过滤器的平等性：
+  过滤器模式中对于一系列具体的过滤器，其地位是一样的，体现了过滤器的平等性
+  所有的过滤器在实现上也是相互独立的，相互之间是没有依赖的。
+  所以在客户端使用过滤器模式，可能需要多个过滤器才能匹配出需要的数据
+```
+
+四、写法: 
+```
+```
+
+五、优点: 
+```
+1、更好的扩展性
+2、更好的复用性
+3、逻辑运算和目标对象解耦
+```
+
+六、缺点: 
+```
+1、所有过滤器都需要对外暴露，而且客户端必须了解每种条件的区别
+2、具体的过滤器会导致增加了对象数目
+3、过多的过滤器会导致一定程度上客户端使用的复杂度
+```
+
+七、使用场景: 
+```
+1、如果需要将逻辑运算和目标对象解耦开来，可以使用过滤器模式
+2、如果需要通过结合多个标准来获得单一标准的数据，可以使用过滤器模式
+3、如果过滤数据，并且是通过多个if-else语句来选择数据，可以使用过滤器模式代替这些条件语句
+```
+
+八、注意事项: 
+```
+1、Java 8的lambda表达式和流类库会帮我们非常方便的实现过滤器模式的功能。
+2、如果一个系统的过滤器类过多，需要考虑使用混合模式或其他模式，来解决过滤器膨胀的问题
+```
+
+Client.java: 
+```Java
+package com.mutistic.structural.filter.structure;
+import java.util.ArrayList;
+import java.util.List;
+import com.mutistic.utils.PrintUtil;
+/**
+ * Client：
+ * 客户端，结合具体的标准匹配Subject对象集合，来过滤获得单一标准的数据集合，
+ */
+public class Client {
+	public static void main(String[] args) {
+		PrintUtil.one("过滤器模式[Filter Pattern]-结构");
+		// 添加Subject数据
+		List<Subject> subList = new ArrayList<Subject>();
+		subList.add(new Subject("AAA", 0));
+		subList.add(new Subject("BBB", 1));
+		subList.add(new Subject("CCC", 2));
+		subList.add(new Subject("DDD", 0));
+		// 创建具体的过滤器
+		Criteria criteriaA = new ConcreteCriteriaA();
+		PrintUtil.three("ConcreteCriteriaA过滤器过滤后的数据：", criteriaA.mettCriteria(subList));
+		// 创建具体的过滤器
+		Criteria criteriaB = new ConcreteCriteriaB();
+		PrintUtil.three("ConcreteCriteriaB过滤器过滤后的数据：", criteriaB.mettCriteria(subList));
+	}
+}
+```
+Subject.java: 
+```Java
+package com.mutistic.structural.filter.structure;
+/**
+ * Subject：
+ * 具体的目标对象，提供过滤器按照条件匹配数据的对象
+ */
+public class Subject {
+	/** 示意：属性A  */
+	private String propertyA;
+	/** 示意：属性B  */
+	private int propertyB;
+	public String getPropertyA() {
+		return propertyA;
+	}
+	public void setPropertyA(String propertyA) {
+		this.propertyA = propertyA;
+	}
+	public int getPropertyB() {
+		return propertyB;
+	}
+	public void setPropertyB(int propertyB) {
+		this.propertyB = propertyB;
+	}
+	public Subject(String propertyA, int propertyB) {
+		super();
+		this.propertyA = propertyA;
+		this.propertyB = propertyB;
+	}
+	@Override
+	public String toString() {
+		return "Subject [propertyA=" + propertyA + ", propertyB=" + propertyB + "]";
+	}
+}
+```
+Criteria.java: 
+```Java
+package com.mutistic.structural.filter.structure;
+import java.util.List;
+/**
+ * Criteria：
+ * 过滤器接口。为所有的过滤器对象声明统一的过滤接口，用来返回匹配符合条件的Subject数据集合
+ */
+public interface Criteria {
+	/**
+	 * 定义： 过滤器对象声明统一的过滤接口 
+	 * @param subList 需要过滤的数据
+	 * @return 根据条件过滤后的数据
+	 */
+	List<Subject> mettCriteria(List<Subject> subList);
+}
+```
+ConcreteCriteriaA.java: 
+```Java
+package com.mutistic.structural.filter.structure;
+import java.util.ArrayList;
+import java.util.List;
+import com.mutistic.utils.PrintUtil;
+/**
+ * ConcreteCriteria：
+ * 具体的过滤器。持有Subject数据集合，实现具体的过滤功能，通过匹配条件来达到过滤数据的目的
+ */
+public class ConcreteCriteriaA implements Criteria {
+	/**
+	 * 实现具体的过滤功能，通过匹配条件来达到过滤数据的目的 
+	 * @param subList 需要过滤的数据
+	 * @return 根据条件过滤后的数据
+	 */
+	@Override
+	public List<Subject> mettCriteria(List<Subject> subList) {
+		PrintUtil.two("ConcreteCriteriaA.mettCriteria()", "实现具体的过滤功能，通过匹配条件来达到过滤数据的目的");
+		
+		List<Subject> remove = new ArrayList<Subject>();
+		for (Subject subject : subList) {
+			if("AAA".equals(subject.getPropertyA())) {
+				remove.add(subject);
+			}
+		}
+		subList.removeAll(remove);
+		return subList;
+	}
+}
+```
+ConcreteCriteriaB.java: 
+```Java
+package com.mutistic.structural.filter.structure;
+import java.util.ArrayList;
+import java.util.List;
+import com.mutistic.utils.PrintUtil;
+/**
+ * ConcreteCriteria：
+ * 具体的过滤器。持有Subject数据集合，实现具体的过滤功能，通过匹配条件来达到过滤数据的目的
+ */
+public class ConcreteCriteriaB implements Criteria {
+	/**
+	 * 实现具体的过滤功能，通过匹配条件来达到过滤数据的目的 
+	 * @param subList 需要过滤的数据
+	 * @return 根据条件过滤后的数据
+	 */
+	@Override
+	public List<Subject> mettCriteria(List<Subject> subList) {
+		PrintUtil.two("ConcreteCriteriaB.mettCriteria()", "实现具体的过滤功能，通过匹配条件来达到过滤数据的目的");
+
+		List<Subject> remove = new ArrayList<Subject>();
+		for (Subject subject : subList) {
+			if(subject.getPropertyB() <= 0) {
+				remove.add(subject);
+			}
+		}
+		subList.removeAll(remove);
+		return subList;
+	}
+}
+```
+
+
+
 ---
 ## <a id="a_behavioral">行为型模式[Behavioral Patterns]</a> <a href="#a_structural">结构型模式</a> <a href="#a_j2ee">J2EE 设计模式</a>
 ### <a id="a_mediator">二十二、中介者模式[Mediator Pattern]</a> <a href="#a_filter">last</a> <a href="#a_observer">next</a>
@@ -3397,7 +3602,7 @@ public class ConcreteImplementorB implements Implementor {
 一、定义、本质: 
 ```
 定义: 用一个中介对象来封装一系列的对象交付。终结者是的各对象不需要显式地相互引用，
-	从而而使其耦合松散，而且可以独立的改变他们之间的交互
+	从而使其耦合松散，而且可以独立的改变他们之间的交互
 本质: 封装交互
 原则：符合迪米特原则
 ```
@@ -3420,8 +3625,8 @@ ConcreteColleague:
 
 三、理解: 
 ```
-主要解决：对象与对象之间存在大量的关联关系，这样势必会导致系统的结构变得很复杂，同时若一个对象发生改变，我们也需要跟踪与之相关联的对象，同时做出相应的处理。
-如何解决：将多个类相互耦合新城的网状结构分离为星型结构(局域网就是星型结构)。
+主要解决：对象与对象之间存在大量的关联关系，这样势必会导致系统的结构变得很复杂，同时若一个对象发生改变，也需要跟踪与之相关联的对象，同时做出相应的处理。
+如何解决：将多个类相互耦合形成的网状结构分离为星型结构(局域网就是星型结构)。
 
 1、中介者的功能: 就是封装对象之间的交互。如果一个对象的操作会引起其它相关对象的变化，或者是某个操作需要引起其它对象的后续或连带操作，
 而这个对象又不希望自己来处理这些关系，那么就可以委托给中介者，需要的时候通知中介者，由中介者完成与其他对象的交互。
@@ -3754,14 +3959,14 @@ ConcreteObserver：观察者的具体实现对象，用来接收目标的通知�
   而拉模型就不会造成这样的情况，因为拉模型下，update方法的参数是目标对象本身，这基本上是目标对象能传递的最大数据集合了，
 基本上可以适应各种情况的需要。
 
-4、Java中的观察者模式：java.util.Observable 实现了大部分我们需要的目标的功能，还有一个java.util.Observer接口，
+4、Java中的观察者模式：java.util.Observable 实现了大部分需要的目标的功能，还有一个java.util.Observer接口，
 里面定义了一个update的方法，就是观察者的接口
 
 5、Swing中的观察者模式： 
   Swing中到处都是观察者模式的身影，比如事件处理（早期的Swing事件处理用的是职责链）
   Swing组件是被观察的目标，而每个实现监听器的类就是观察者，监听器的就扣就是观察者的接口，在调用addListener方法
 的时候就相当于注册观察者。
-  当组件被点击，状态发生改变的时候，就会产生相应的通知，会调用注册的观察者的方法，就是我们说实现实现的监听器的方法
+  当组件被点击，状态发生改变的时候，就会产生相应的通知，会调用注册的观察者的方法，就是说实现实现的监听器的方法
 
 6、区别对待观察者：
   当目标通知观察者的时候是全部都通知，区别对待观察者解决的方式通常有两种：
@@ -4495,7 +4700,7 @@ ConcreteClass：具体实现类。用来实现算法骨架中的某些步骤，�
 把具体实现延迟到子类，还通过父类的定义来约束子类的行为，从而使系统能有更好的复用性和扩展性
 
 4、好莱坞原则：
-  好莱坞原则：不要给我们打电话，我们会给你打电话(don‘t call us, we‘ll call you)
+  好莱坞原则：不要给打电话，会给你打电话(don‘t call us, we‘ll call you)
   模板模式很好的体现了这一点，作为父类的模板会在需要的时候，调用子类相应的方法，也就是由父类来找子类，而不是让子类找父类
   这是一种反向的控制结构，依赖倒置
 
