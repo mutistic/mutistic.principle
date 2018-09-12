@@ -6750,8 +6750,8 @@ public class ObjectFactory {
 [时序图](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.principle/notes/mode/sequence/M34_TransferObjectPattern.png)<br/>
 
 ---
-### <a id="a_summary">模式相关总结</a> <a href="#a_transfer">last</a> <a href="#a_choose">next</a>
-### <a id="a_choose">选择模式：</a> <a href="#a_transfer">last</a> <a href="#a_summary1">next</a>
+## <a id="a_summary">模式相关总结</a> <a href="#a_transfer">last</a> <a href="#a_summary1">next</a>
+#### 选择模式：
 ```
 1、模式选择的方法：
   模式的功能：看是否能解决问题
@@ -6767,7 +6767,7 @@ public class ObjectFactory {
 4、掌握模式要从思想上、本质上、整体上去把握
 ```
 
-### <a id="a_summary1">创建型模式：</a> <a href="#a_summary2">结构型模式</a> <a href="#a_choose">选择模式</a>
+#### <a id="a_summary1">创建型模式：</a> <a href="#a_summary">last</a> <a href="#a_summary2">结构型模式</a>
 #### <a id="a_mode1">一、简单工厂模式的相关模式：</a> <a href="#a_choose">last</a> <a href="#a_mode2">next</a>
 1.1、简单工厂模式[Simple Factory Pattern]：
 ```
@@ -6902,7 +6902,7 @@ Director用用来定义整体的构建算法，把算法中某些涉及到具体
   对于复杂的组合结构，可以使用建造者模式来一步一步构建
 ```
 
-#### <a id="a_mode6">六、原型模式的相关模式：</a> <a href="#a_mode5">last</a> <a href="#a_mode8">next</a>
+#### <a id="a_mode6">六、原型模式的相关模式：</a> <a href="#a_mode5">last</a> <a href="#a_mode7">next</a>
 6.1、原型模式[Prototype Pattern]：
 ```
 定义: 用原型实例执行创建对象的种类，并通过拷贝这些原型创建新的对象
@@ -6925,8 +6925,15 @@ Director用用来定义整体的构建算法，把算法中某些涉及到具体
 那么很自然地就可以应用上原型模式，通过原型模式来得到部件的实例
 ```
 
-### <a id="a_summary2">结构型模式：</a> <a href="#a_summary1">创建型模式</a> <a href="#a_summary3">行为型模式</a>
-#### <a id="a_mode8">八、外观模式的相关模式：</a> <a href="#a_mode6">last</a> <a href="#a_mode9">next</a>
+#### <a id="a_summary2">结构型模式：</a> <a href="#a_summary1">创建型模式</a> <a href="#a_summary3">行为型模式</a>
+#### <a id="a_mode7">七、过滤器模式的相关模式：</a> <a href="#a_mode6">last</a> <a href="#a_mode8">next</a>
+7.1、过滤器模式[Filter Pattern]：
+```
+定义: 使用不同的标准来过滤一组对象，通过逻辑运算以解耦的方式把它们连接起来。也称标准模式（Criteria Pattern）
+本质: 结合多个标准来获得单一标准
+```
+
+#### <a id="a_mode8">八、外观模式的相关模式：</a> <a href="#a_mode7">last</a> <a href="#a_mode9">next</a>
 8.1、外观模式[Facade Pattern]：
 ```
 定义: 为系统中的一组接口提供一个一致的界面。Facade模式定义高层接口，这个接口使得客户端容易使用这一系统。
@@ -7208,7 +7215,7 @@ Director用用来定义整体的构建算法，把算法中某些涉及到具体
 但是有些不太适应现在新的功能对接口的需要，可以使用适配器来过行适配，使得旧的接口能够适应新的功能的需要。
 ```
 
-### <a id="a_summary3">行为型模式：</a> <a href="#a_summary2">结构型模式</a> <a href="#a_xmind">思维导图</a>
+#### <a id="a_summary3">行为型模式：</a> <a href="#a_summary2">结构型模式</a> <a href="#a_xmind">思维导图</a>
 #### <a id="a_mode15">十五、中介者模式的相关模式：</a> <a href="#a_mode14">last</a> <a href="#a_mode16">next</a>
 15.1、中介者模式[Mediator Pattern]：
 ```
@@ -7561,7 +7568,7 @@ Director用用来定义整体的构建算法，把算法中某些涉及到具体
 ```
 
 ---
-## <a id="a_xmind">[思维导图](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.principle/notes/principle) </a> <a href="#a_summary">last</a> <a href="#a_ea">next</a>
+## <a id="a_xmind">[思维导图](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.principle/notes/principle) </a> <a href="#a_summary">模式相关总结</a> <a href="#a_ea">next</a>
 [P0-面向对象设计原则: SOLID](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.principle/notes/principle/P0_SOLID.xmind)<br/>
 [P1-单一职责原则[SR: Single Responsibility Principle]](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.principle/notes/principle/P1_SRP.xmind)<br/>
 [P2-开闭原则[OCP: Open Closed Principle]](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.principle/notes/principle/P2_OCP.xmind)<br/>
