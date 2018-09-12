@@ -7,7 +7,7 @@ package com.mutistic.behavioral.nullobject.structure;
  * @date 2018年9月12日
  */
 public abstract class AbstractObject {
-	/** 示意：属性 */
+	/** 示意：可能存在的属性 */
 	protected String name;
 
 	/**
