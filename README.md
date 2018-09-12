@@ -6768,7 +6768,7 @@ public class ObjectFactory {
 ```
 
 #### <a id="a_summary1">创建型模式：</a> <a href="#a_summary">last</a> <a href="#a_summary2">结构型模式</a>
-#### <a id="a_mode1">一、简单工厂模式的相关模式：</a> <a href="#a_choose">last</a> <a href="#a_mode2">next</a>
+#### <a id="a_mode1">一、简单工厂模式的相关模式：</a> <a href="#a_summary">last</a> <a href="#a_mode2">next</a>
 1.1、简单工厂模式[Simple Factory Pattern]：
 ```
 定义: 提供一个创建对象实例的功能，无需关心其具体的实现。被创建时间的类型可以是接口、抽象类，也可以是具体的类.
