@@ -6429,8 +6429,10 @@ AbstractObject：声明协作者的接口，根据需要，为所有类共有的
 
 RealObject：定义AbstractObject的具体子类，其实例提供客户期望的有用行为
 
-NullObject：提供与AbstractObject相同的接口，以便可以用空对象替换真实对象，实现其界面，什么也不处理。究竟什么也不处理取决于客户期望的行为
-当有多种方法什么也不做的行为，可能需要多个NullObject类
+NullObject：提供与AbstractObject相同的接口，以便可以用空对象替换真实对象，实现其界面，什么也不处理。
+究竟什么也不处理取决于客户期望的行为，当有多种方法什么也不做的行为，可能需要多个NullObject类
+
+ObjectFactory：对象工厂，负责根据条件创建AbstractObject对象的具体实例：RealObject 或 NullObject
 ```
 
 三、理解: 

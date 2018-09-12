@@ -11,7 +11,7 @@ import com.mutistic.utils.PrintUtil;
 public class ObjectFactory {
 
 	/**
-	 * @description 根据name创建 AbstractObject对象
+	 * @description 根据name创建 AbstractObject对象实例
 	 * @author mutisitic
 	 * @date 2018年9月12日
 	 * @param name
