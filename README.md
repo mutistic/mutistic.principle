@@ -6536,8 +6536,173 @@ ObjectFactory：对象工厂，负责根据条件创建AbstractObject对象的�
 
 Client.java: 
 ```Java
+package com.mutistic.behavioral.nullobject.structure;
+import com.mutistic.utils.PrintUtil;
+/**
+ * Client：
+ * 空对象模式客户端，使用协作者完成具体的功能
+ */
+public class Client {
+	public static void main(String[] args) {
+		PrintUtil.one("空对象模式[Null Object Pattern]");
+		
+		AbstractObject o1 = ObjectFactory.createrFacoty("AAA"); 
+		PrintUtil.three("获取AAA对象的name：", o1.getName());
+		
+		AbstractObject o2 = ObjectFactory.createrFacoty("BBB"); 
+		PrintUtil.three("获取BBB对象的name：", o2.getName());
+		
+		AbstractObject o3 = ObjectFactory.createrFacoty("CCC"); 
+		PrintUtil.three("获取CCC对象的name：", o3.getName());
+		
+		AbstractObject o4 = ObjectFactory.createrFacoty("DDD"); 
+		PrintUtil.three("获取DDD对象的name：", o4.getName());
+	}
+}
 ```
+AbstractObject：.java: 
+```Java
+package com.mutistic.behavioral.nullobject.structure;
 
+/**
+ * AbstractObject：
+ * 声明协作者的接口，根据需要，为所有类共有的接口实现默认行为
+ */
+public abstract class AbstractObject {
+	/** 示意：可能存在的属性 */
+	protected String name;
+	/**
+	 * 定义：是否为NullObject对象
+	 * @return true：NullObject对象，false：真实对象
+	 */
+	public abstract boolean isNull();
+	/**
+	 * 定义：获取属性
+	 * @return
+	 */
+	public abstract String getName();
+	/**
+	 * 定义：设置属性
+	 * @param name
+	 */
+	public abstract void setName(String name);
+}
+```
+RealObject.java: 
+```Java
+package com.mutistic.behavioral.nullobject.structure;
+/**
+ * RealObject：
+ * 定义AbstractObject的具体子类，其实例提供客户期望的有用行为
+ */
+public class RealObject extends AbstractObject {
+	/**
+	 * 是否为NullObject对象具体方法
+	 * @return true：NullObject对象，false：真实对象
+	 */
+	@Override
+	public boolean isNull() {
+		return false;
+	}
+	/**
+	 * 获取属性具体方法
+	 * @return
+	 */
+	@Override
+	public String getName() {
+		return this.name;
+	}
+	/**
+	 * 设置属性具体方法
+	 * @param name
+	 */
+	@Override
+	public void setName(String name) {
+		this.name = name;
+	}
+}
+```
+NullObject.java: 
+```Java
+package com.mutistic.behavioral.nullobject.structure;
+import com.mutistic.utils.PrintUtil;
+/**
+ * NullObject：
+ * 提供与AbstractObject相同的接口，以便可以用空对象替换真实对象，实现其界面，什么也不处理。
+ * 究竟什么也不处理取决于客户期望的行为，当有多种方法什么也不做的行为，可能需要多个NullObject类
+ */
+public class NullObject extends AbstractObject {
+	/** 声明 单例对象 成员变量 */
+	private static NullObject intance = new NullObject();
+	/**
+	 * 私有构造函数
+	 */
+	private NullObject() {
+		super();
+	}
+	/**
+	 * 获取单例对象 
+	 * @return
+	 */
+	public static NullObject getIntance() {
+		return intance;
+	}
+	/**
+	 * 是否为NullObject对象具体方法
+	 * @return true：NullObject对象，false：真实对象
+	 */
+	@Override
+	public boolean isNull() {
+		return true;
+	}
+	/**
+	 * 获取属性具体方法
+	 * @return
+	 */
+	@Override
+	public String getName() {
+		return "Object为空，不能调用getName()方法";
+	}
+	/**
+	 * 设置属性具体方法
+	 * @param name
+	 */
+	@Override
+	public void setName(String name) {
+		PrintUtil.three("Object为空，不能调用getName()方法", name);
+	}
+}
+```
+ObjectFactory.java: 
+```Java
+package com.mutistic.behavioral.nullobject.structure;
+import com.mutistic.utils.PrintUtil;
+/**
+ * Factory：工厂对象 
+ * 创建AbstractObject对象具体实例
+ */
+public class ObjectFactory {
+	/**
+	 * 根据name创建 AbstractObject对象实例
+	 * @param name
+	 * @return 
+	 */
+	public static AbstractObject createrFacoty(String name) {
+		AbstractObject obj = null;
+		if("AAA".equals(name)) {
+			obj = new RealObject();
+		} else if("BBB".equals(name)) {
+			obj = new RealObject();
+		} else {
+			obj = NullObject.getIntance();
+		}
+		
+		PrintUtil.two("ObjectFactory.createrFacoty()：创建AbstractObject对象实例", obj);
+		obj.setName(name);
+		return obj;
+	}
+}
+```
 
 ---
 ## <a id="a_j2ee">J2EE 设计模式[J2EE Patterns]</a> <a href="#a_behavioral">行为型模式</a> <a href="#a_xmind">思维导图</a>
