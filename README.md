@@ -6838,7 +6838,8 @@ Controller：控制器，是应用程序中处理用户交互的部分。通常�
 1、需要分离数据和其表示时，可以使用MVC设计模式
 2、需要将控制逻辑和表现界面分离时，可以使用MVC设计模式
 
-具体场景：最典型的MVC就是JSP + Servlet + Javabean的模式
+具体场景：
+最典型的MVC就是JSP + Servlet + Javabean的模式
 ```
 
 八、注意事项: 
@@ -6846,11 +6847,184 @@ Controller：控制器，是应用程序中处理用户交互的部分。通常�
 MVC设计模式是MVC框架的一种抽象，MVC框架是MVC设计模式的一种具体实现
 ```
 
+Client.java：
+```java
+package com.mutistic.j2ee.mvc.structure;
+import com.mutistic.utils.PrintUtil;
+/**
+ * Client：客户端
+ * 演示 MVC 模式[MVC Pattern]-结构
+ */
+public class Client {
+	public static void main(String[] args) {
+		PrintUtil.one("MVC 模式[MVC Pattern]-结构");
+		
+		// 创建模型对象
+		Model model = new Model();
+		// 创建视图对象
+		View view = new View();
+		// 创建控制器对象
+		Controller controller = new Controller(model, view);
+		
+		// 调用控制器具体业务
+		controller.updateModelName("AAA");
+		controller.updateModelValue("111");
+		controller.showView();
+		PrintUtil.three("调用Controller获取Name属性值", controller.getModelName());
+		PrintUtil.three("调用Controller获取Value属性值", controller.getModelValue());
+	}
+}
+```
+Model.java：
+```java
+package com.mutistic.j2ee.mvc.structure;
+/**
+ * Model：
+ * 模型，是应用程序中用于处理应用程序数据逻辑的部分。通常模型对象负责在数据库中存取数据
+ */
+public class Model {
+	/** 示意：可能存在的属性  */
+	private String name;
+	/** 示意：可能存在的属性  */
+	private String value;
+	
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public String getValue() {
+		return value;
+	}
+	public void setValue(String value) {
+		this.value = value;
+	}
+}
+```
+View.java：
+```java
+package com.mutistic.j2ee.mvc.structure;
+import com.mutistic.utils.PrintUtil;
+/**
+ * View：
+ * 视图，是应用程序中处理数据显示的部分。通常视图是依据模型数据创建的
+ */
+public class View {
+	/**
+	 * 示意：处理数据的显示 
+	 * @param model
+	 */
+	public void showModel(String name, String value) {
+		PrintUtil.three("View.showModel()：处理数据的显示 ", "Model [name=" + name + ", value=" + value + "]");
+	}
+}
+```
+Controller.java：
+```java
+package com.mutistic.j2ee.mvc.structure;
+import com.mutistic.utils.PrintUtil;
+/**
+ * Controller：
+ * 控制器，是应用程序中处理用户交互的部分。通常控制器负责从视图读取数据，控制用户输入，并向模型发送数据
+ */
+public class Controller {
+	/** 持有Model模型对象 */
+	private Model model;
+	/** 持有View视图对象*/
+	private View view;
+	/**
+	 * 构造函数：注入Model和View对象
+	 * @param model 模型对象
+	 * @param view 视图对象
+	 */
+	public Controller(Model model, View view) {
+		this.model = model;
+		this.view = view;
+		
+		PrintUtil.two("Controller：构造函数：注入Model对象", model);
+		PrintUtil.three("Controller：构造函数：注入View对象", view);
+	}
+	/**
+	 * 获取Model的属性Name
+	 * @return
+	 */
+	public String getModelName() {
+		PrintUtil.two("Controller.getModelName()", "获取Model的属性Name");
+		return model.getName();
+	}
+	/**
+	 * 修改Model的属性Name
+	 * @param name
+	 */
+	public void updateModelName(String name) {
+		PrintUtil.two("Controller.updateModelName()", "修改Model的属性Name="+ name);
+		model.setName(name);
+	}
+	/**
+	 * 获取Model的属性Value
+	 * @return
+	 */
+	public String getModelValue() {
+		PrintUtil.two("Controller.getModelvalue()", "获取Model的属性Value");
+		return model.getValue();
+	}
+	/**
+	 * 修改Model的属性Value
+	 * @param value
+	 */
+	public void updateModelValue(String value) {
+		PrintUtil.two("Controller.updateModelValue()", "修改Model的属性Value="+ value);
+		model.setValue(value);
+	}
+	/**
+	 * 显示Model数据信息 
+	 */
+	public void showView() {
+		PrintUtil.two("Controller.showView()", "显示Model数据信息，转调视图相应的方法");
+		view.showModel(model.getName(), model.getValue());
+	}
+}
+```
 
 ---
 ### <a id="a_business">三十五、业务代表模式[Business Delegate Pattern]</a> <a href="#a_mvc">last</a> <a href="#a_entity">next</a>
 [结构图](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.principle/notes/mode/structure/M28_BusinessDelegatePattern.png)
 [时序图](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.principle/notes/mode/sequence/M28_BusinessDelegatePattern.png)<br/>
+一、定义、本质: 
+```
+定义: 
+本质: 
+```
+
+二、结构和说明: 
+```
+```
+
+三、理解: 
+```
+```
+
+四、写法: 
+```
+```
+
+五、优点: 
+```
+```
+
+六、缺点: 
+```
+```
+
+七、使用场景: 
+```
+具体场景：
+```
+
+八、注意事项: 
+```
+```
 
 ---
 ### <a id="a_entity">三十六、组合实体模式[Composite Entity Pattern]</a> <a href="#a_business">last</a> <a href="#a_data">next</a>
