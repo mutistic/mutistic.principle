@@ -6712,8 +6712,8 @@ public class ObjectFactory {
 ## <a id="a_j2ee">J2EE 设计模式[J2EE Patterns]</a> <a href="#a_behavioral">行为型模式</a> <a href="#a_xmind">思维导图</a>
 ### <a id="a_mvc">三十四、MVC 模式[MVC Pattern]</a> <a href="#a_object">last</a> <a href="#a_business">next</a>
 [结构图](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.principle/notes/mode/structure/M27_MVCPattern.png)
-[时序图](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.principle/notes/mode/sequence/M27_MVCPattern.png)<br/>
-[基于J2EE的MVC设计模式的研究与实现](https://www.ixueshu.com/document/767839226ad5f27b.html)
+[时序图](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.principle/notes/mode/sequence/M27_MVCPattern.png)
+[基于J2EE的MVC设计模式的研究与实现](https://www.ixueshu.com/document/767839226ad5f27b.html)<br/>
 一、定义、本质: 
 ```
 定义: M是指业务模型，V是指用户界面，C则是控制器，使用MVC的目的是将M和V的实现代码分离，从而使同一个程序可以使用不同的表现形式
@@ -6796,8 +6796,8 @@ Controller：控制器，是应用程序中处理用户交互的部分。通常�
   View 是 Model 所表示出来的图形界面，它主要用于提交 Model 的信息展示给用户。
   Controller 是 Model 和 View 之间的协调者，它的主要作用有以下几点 :
 	1、定义用户界面对用户输入的响应方式。
-	2、解释用户的输入，并命令 Model 进行相	应的操作创造相应模型。
-	3、负责将模型信息传递给 View，必要时还	要负责创建新的 View 和 Controller
+	2、解释用户的输入，并命令 Model 进行相应的操作创造相应模型。
+	3、负责将模型信息传递给 View，必要时还要负责创建新的 View 和 Controller
 ```
 
 五、优点: 
