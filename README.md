@@ -7195,6 +7195,154 @@ public class BusinessDelegate {
 [结构图](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.principle/notes/mode/structure/M29_CompositeEntityPattern.png)
 [时序图](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.principle/notes/mode/sequence/M29_CompositeEntityPattern.png)<br/>
 
+一、定义、本质: 
+```
+定义: 在EJB持久化机制中，一个组合实体是一个EJB实体bean，代表了对象的图解。当更新一个组合实体时，
+内部依赖对象beans会自动更新，因为它们是由EJB实体bean管理的。
+本质: 组合实体，自动更新
+```
+
+二、结构和说明: 
+```
+CompositeEntity：组合实体，它是主要的实体bean。它可以是粗粒的，或者可以包含一个粗粒度对象，用于持续生命周期。
+
+CoarseGrainedObject：粗粒度对象，该对象包含依赖对象。它有自己的生命周期，也能管理依赖对象的生命周期。
+
+DependentObject：依赖对象，是一个持续生命周期依赖于粗粒度对象的对象。
+
+Strategies：策略，表示如何实现组合实体。
+```
+
+Client.java
+```java
+package com.mutistic.j2ee.compositeentity.structure;
+import java.util.Arrays;
+import com.mutistic.utils.PrintUtil;
+/**
+ * Client：客户端
+ * 演示 组合实体模式[Composite Entity Pattern]-结构 
+ */
+public class Client {
+	public static void main(String[] args) {
+		PrintUtil.one("组合实体模式[Composite Entity Pattern]-结构");
+		
+		// 创建组合实体
+		CompositeEntity composite = new CompositeEntity();
+		// 调用组合实体业务setData功能
+		composite.setData("AAA", "BBB");
+		// 调用组合实体业务getData功能
+		PrintUtil.three("调用组合实体业务getData功能：", Arrays.asList(composite.getData()));
+	}
+}
+```
+DependentObjectA.java
+```java
+package com.mutistic.j2ee.compositeentity.structure;
+/**
+ * DependentObject：
+ * 依赖对象，是一个持续生命周期依赖于粗粒度对象的对象。
+ */
+public class DependentObjectA {
+	/** 定义：可能存在的属性 */
+	private String data;
+	/**
+	 * 设置属性值
+	 * @param data 需要设置的属性值
+	 */
+	public void setData(String data) { this.data = data; }
+	/**
+	 * 获取属性值
+	 * @return 属性值
+	 */
+	public String getData() { return data; }
+}
+```
+DependentObjectB.java
+```java
+package com.mutistic.j2ee.compositeentity.structure;
+/**
+ * DependentObject：
+ * 依赖对象，是一个持续生命周期依赖于粗粒度对象的对象。
+ */
+public class DependentObjectB {
+	/** 定义：可能存在的属性 */
+	private String data;
+	/**
+	 * 设置属性值
+	 * @param data 需要设置的属性值
+	 */
+	public void setData(String data) { this.data = data; }
+	/**
+	 * 获取属性值
+	 * @return 属性值
+	 */
+	public String getData() { return data; }
+}
+```
+CoarseGrainedObject.java
+```java
+package com.mutistic.j2ee.compositeentity.structure;
+import com.mutistic.utils.PrintUtil;
+/**
+ * CoarseGrainedObject：
+ * 粗粒度对象，该对象包含依赖对象。它有自己的生命周期，也能管理依赖对象的生命周期。
+ */
+public class CoarseGrainedObject {
+	/** 持有：细粒度对象A */
+	private DependentObjectA objA = new DependentObjectA();
+	/** 持有：细粒度对象B */
+	private DependentObjectB objB = new DependentObjectB();
+	/**
+	 * 设置所持有的细粒度对象的属性值
+	 * @param dataA 需要设置的细粒度对象属性值data值
+	 * @param dataB 需要设置的细粒度对象属性值data值
+	 */
+	public void setData(String dataA, String dataB) {
+		objA.setData(dataA);
+		objB.setData(dataB);
+		PrintUtil.three("CoarseGrainedObject.setData()：设置所持有的细粒度对象的属性值", "dateA = "+ dataA +"，dateB = "+ dataB);
+	}
+	/**
+	 * 获取所持有的细粒度对象的属性值 
+	 * @return 获取到的属性值
+	 */
+	public String[] getData() {
+		PrintUtil.three("CoarseGrainedObject.getData()", "获取所持有的细粒度对象的属性值");
+		return new String[] { objA.getData(), objB.getData() };
+	}
+}
+```
+CompositeEntity.java
+```java
+package com.mutistic.j2ee.compositeentity.structure;
+import com.mutistic.utils.PrintUtil;
+/**
+ * CompositeEntity：
+ * 组合实体，它是主要的实体bean。它可以是粗粒的，或者可以包含一个粗粒度对象，用于持续生命周期。
+ */
+public class CompositeEntity {
+	/** 持有：粗粒度对象*/
+	private CoarseGrainedObject object = new CoarseGrainedObject();
+	/**
+	 * 转调粗粒度对象的设置属性值功能
+	 * @param dataA 值A
+	 * @param dataB 值B
+	 */
+	public void setData(String dataA, String dataB) {
+		PrintUtil.two("CompositeEntity.setData()：转调粗粒度对象的设置属性值功能",  "dateA = "+ dataA +"，dateB = "+ dataB);
+		object.setData(dataA, dataB);
+	}
+	/**
+	 * 转调粗粒度对象的获取属性值功能
+	 * @return 获取到的属性值
+	 */
+	public String[] getData() {
+		PrintUtil.two("CompositeEntity.getData()",  "转调粗粒度对象的获取属性值功能");
+		return object.getData();
+	}
+}
+```
+
 ---
 ### <a id="a_data">三十七、数据访问对象模式[Data Access Object Pattern]</a> <a href="#a_entity">last</a> <a href="#a_front">next</a>
 [结构图](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.principle/notes/mode/structure/M30_DataAccessObjectPattern.png)
