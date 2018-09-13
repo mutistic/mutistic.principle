@@ -6999,13 +6999,15 @@ public class Controller {
 
 二、结构和说明: 
 ```
-Clinet：客户端，表示层代码可以是 JSP、Servlet 或 UI java 代码。
+Clinet：客户端，表示层代码可以是 JSP、Servlet 或 UI java 代码
 
-BusinessService：业务服务接口。实现了该业务服务的实体类，提供了实际的业务实现逻辑。
+BusinessDelegate：具体业务代表，一个为客户端实体提供的入口类，它提供了对业务服务方法的访问
 
-BusinessDelegate：具体业务代表，一个为客户端实体提供的入口类，它提供了对业务服务方法的访问。
+BusinessService：业务服务接口，提供了业务实现逻辑的统一接口
 
-LookUpService：查询服务，查找服务对象负责获取相关的业务实现，并提供业务对象对业务代表对象的访问。
+ConcreteService：具体的业务服务，业务实现逻辑的具体实现
+
+LookUpService：查询服务，查找服务对象负责获取相关的业务服务实现，并提供业务对象对业务代表对象的访问
 ```
 
 三、理解: 
@@ -7043,21 +7045,149 @@ Jave中权限正是这样实现。可控性强。
 　　Command模式主要问题是可控性不强，如果要为所有Service动态增加类似Filter等这样通用功能，如权限检查等是非常不方便的。
 ```
 
-五、优点: 
+Client.java
+```java
+package com.mutistic.j2ee.businessdelegate.structure;
+import com.mutistic.utils.PrintUtil;
+/**
+ * Clinet：
+ * 客户端，表示层代码可以是 JSP、Servlet 或 UI java 代码。
+ */
+public class Client {
+	public static void main(String[] args) {
+		PrintUtil.one("业务代表模式[Business Delegate Pattern]-结构");
+		// 创建业务代表对象
+		BusinessDelegate delegate = new BusinessDelegate();
+		
+		// 设置业务类型
+		delegate.setServiceType("A");
+		delegate.doTask();
+		
+		// 设置业务类型
+		delegate.setServiceType("B");
+		delegate.doTask();
+		
+		// 设置业务类型
+		delegate.setServiceType("C");
+		delegate.doTask();
+	}
+}
 ```
+BusinessService.java
+```java
+package com.mutistic.j2ee.businessdelegate.structure;
+/**
+ * BusinessService：
+ * 业务服务接口，提供了业务实现逻辑的统一接口
+ */
+public interface BusinessService {
+	/**
+	 * 定义：可能存在业务功能 
+	 */
+	void operation();
+}
 ```
-
-六、缺点: 
+ConcreteServiceA.java
+```java
+package com.mutistic.j2ee.businessdelegate.structure;
+import com.mutistic.utils.PrintUtil;
+/**
+ * ConcreteService：
+ * 具体的业务服务际业务实现逻辑的具体实现
+ */
+public class ConcreteServiceA implements BusinessService {
+	/**
+	 * 可能存在业务功能的具体实现
+	 * @see com.mutistic.j2ee.businessdelegate.structure.BusinessService#operation()
+	 */
+	@Override
+	public void operation() {
+		PrintUtil.three("ConcreteServiceB.operation()", "具体的业务服务，业务实现逻辑的具体实现");
+	}
+}
 ```
+ConcreteServiceB.java
+```java
+package com.mutistic.j2ee.businessdelegate.structure;
+import com.mutistic.utils.PrintUtil;
+/**
+ * ConcreteService：
+ * 具体的业务服务，业务实现逻辑的具体实现
+ */
+public class ConcreteServiceB implements BusinessService {
+	/**
+	 * 可能存在业务功能的具体实现
+	 * @see com.mutistic.j2ee.businessdelegate.structure.BusinessService#operation()
+	 */
+	@Override
+	public void operation() {
+		PrintUtil.three("ConcreteServiceB.operation()", "具体的业务服务，业务实现逻辑的具体实现");
+	}
+}
 ```
-
-七、使用场景: 
+LookUpService.java
+```java
+package com.mutistic.j2ee.businessdelegate.structure;
+import com.mutistic.utils.PrintUtil;
+/**
+ * LookUpService：
+ * 查询服务，查找服务对象负责获取相关的业务服务实现，并提供业务对象对业务代表对象的访问
+ */
+public class LookUpService {
+	/**
+	 * 根据服务类型创建具体的业务服务对象
+	 * @param serviceType 服务类型
+	 * @return 具体的业务服务对象
+	 */
+	public BusinessService creterBusinessService(String serviceType) {
+		BusinessService service = null;
+		if ("A".equals(serviceType)) {
+			service =  new ConcreteServiceA();
+		} else if ("B".equals(serviceType)) {
+			service = new ConcreteServiceB();
+		}
+		
+		PrintUtil.three("LookUpService.creterBusinessService()：根据服务类型创建具体的业务服务对象", service);
+		return service;
+	}
+}
 ```
-具体场景：
-```
-
-八、注意事项: 
-```
+BusinessDelegate.java
+```java
+package com.mutistic.j2ee.businessdelegate.structure;
+import com.mutistic.utils.PrintUtil;
+/**
+ * BusinessDelegate：
+ * 具体业务代表，一个为客户端实体提供的入口类，它提供了对业务服务方法的访问
+ */
+public class BusinessDelegate {
+	/** 持有：查询服务 */
+	private LookUpService lookupService = new LookUpService();
+	/** 持有：具体的业务服务 */
+	private BusinessService businessService;
+	/** 业务类型 */
+	private String serviceType;
+	/**
+	 * 设置业务类型
+	 * @param serviceType 业务类型
+	 */
+	public void setServiceType(String serviceType) {
+		this.serviceType = serviceType;
+		PrintUtil.two("BusinessDelegate.setServiceType()：设置业务类型 ", "serviceType = "+serviceType);
+	}
+	/**
+	 * 开始访问业务服务
+	 */
+	public void doTask() {
+		PrintUtil.two("BusinessDelegate.doTask()", "开始访问业务服务");
+		businessService = lookupService.creterBusinessService(serviceType);
+		if(businessService == null) {
+			PrintUtil.three("BusinessDelegate.doTask()", "查找服务没有查找到具体的业务服务，本业务调用结束");
+			return;
+		}
+		businessService.operation();
+	}
+}
 ```
 
 ---
