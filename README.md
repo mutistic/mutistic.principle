@@ -3,8 +3,8 @@
 [The JavaTM Tutorials：Java教程实用指南](https://docs.oracle.com/javase/tutorial/index.html)<br/>
 [JDK 10文档](https://docs.oracle.com/javase/10/index.html)
 [Java SE 10 & JDK 10：API](https://docs.oracle.com/javase/10/docs/api/overview-summary.html)<br/>
-[JVM工具接口](https://docs.oracle.com/javase/10/docs/specs/jvmti.html)
-[JNI：Java本机接口规范]（https://docs.oracle.com/javase/10/docs/specs/jni/index.html）
+[JVM工具接口](https://docs.oracle.com/javase/10/docs/specs/jvmti.html)<br/>
+[JNI：Java本机接口规范](https://docs.oracle.com/javase/10/docs/specs/jni/index.html)<br/>
 
 ## <a href="#a_design">设计原则</a>
 [思维导图](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.principle/notes/principle)<br/>
