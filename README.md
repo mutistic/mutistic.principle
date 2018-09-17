@@ -7442,10 +7442,8 @@ import com.mutistic.utils.PrintUtil;
 public class DataAccessObjectConcreteClass implements DataAccessObjectInterface {
 	/** 示意：数据集合：对应数据库 */
 	private List<ModelObject> objList = new ArrayList<ModelObject>();
-	/**
-	 * 构造函数：模拟测试数据
-	 */
-	public DataAccessObjectConcreteClass() {
+	/** 模拟测试数据 */
+	static  {
 		objList.add(new ModelObject(111, "AAA"));
 		objList.add(new ModelObject(222, "BBB"));
 	}
@@ -8160,6 +8158,136 @@ Client：客户端，可以发送请求或者发送传输对象到业务对象
 
 Client.java
 ```java
+package com.mutistic.j2ee.transferobject.structure;
+import java.util.List;
+import com.mutistic.utils.PrintUtil;
+/**
+ * Client：客户端，可以发送请求或者发送传输对象到业务对象
+ * 演示：传输对象模式[Transfer Object Pattern]-结构
+ */
+public class Client {
+	public static void main(String[] args) {
+		PrintUtil.one("传输对象模式[Transfer Object Pattern]");
+
+		// 创建数据操作接口实例
+		BusinessObject business = new BusinessObject();
+		PrintUtil.two("创建业务对象实例", business);
+
+		// 调用getAllObject()接口
+		List<TransferObject> objList = business.getAllObject();
+		for (TransferObject model : objList) {
+			PrintUtil.three("输出所有的TransferObject信息", model.toString());
+		}
+
+		// 调用updateObject()接口
+		TransferObject model = objList.get(0);
+		model.setValue("CCCC");
+		business.updateObject(model);
+		PrintUtil.three("调用updateObject()接口的数据", objList);
+
+		// 调用deleteObject()接口
+		business.deleteObject(objList.get(1));
+		PrintUtil.three("调用deleteObject()接口的数据", objList);
+	}
+}
+```
+BusinessObject.java
+```java
+package com.mutistic.j2ee.transferobject.structure;
+import java.util.ArrayList;
+import java.util.List;
+import com.mutistic.utils.PrintUtil;
+/**
+ * BusinessObject：
+ * 业务对象，为传输对象填充数据的业务服务
+ */
+public class BusinessObject {
+	/** 示意：传输对象集合，当作一个数据库*/
+	private static List<TransferObject> objList = new ArrayList<TransferObject>();
+	/** 注入测试数据  */
+	static {
+		objList.add(new TransferObject(111l, "AAA"));
+		objList.add(new TransferObject(222l, "BBB"));
+	}
+	/**
+	 * 获取所有的TransferObjectt数据 
+	 * @return
+	 */
+	public List<TransferObject> getAllObject() {
+		PrintUtil.two("BusinessObject.getAllObject()", "获取所有的TransferObject数据 ");
+		return objList;
+	}
+	/**
+	 * 根据ID获取对应的TransferObjectt
+	 * @param id
+	 * @return
+	 */
+	public TransferObject getObject(int id) {
+		PrintUtil.two("BusinessObject.getObject()：根据ID获取对应的TransferObject", id);
+		for (TransferObject model : objList) {
+			if(id == model.getId()) {
+				return model;
+			}
+		}
+		return null;
+	}
+	/**
+	 * 修改TransferObject数据
+	 * @param model
+	 */
+	public void updateObject(TransferObject object) {
+		PrintUtil.two("BusinessObject.updateObject()：修改TransferObject数据", object.toString());
+		for (TransferObject temp : objList) {
+			if(object.getId() == temp.getId()) {
+				temp.setValue(object.getValue());
+				break;
+			}
+		}
+	}
+	/**
+	 * 删除TransferObjectt数据 
+	 * @param model
+	 */
+	public void deleteObject(TransferObject object) {
+		PrintUtil.two("BusinessObject.deleteObject()：删除TransferObject数据 ", object.toString());
+		objList.remove(object);
+	}
+}
+```
+TransferObject.java
+```java
+package com.mutistic.j2ee.transferobject.structure;
+/**
+ * TransferObject：
+ * 传输对象，简单的 POJO，只有设置/获取属性的方法
+ */
+public class TransferObject {
+	/** 示意：可能存在的属性ID */
+	private long id;
+	/** 示意：可能存在的属性value */
+	private String value;
+	public TransferObject(Long id, String value) {
+		super();
+		this.id = id;
+		this.value = value;
+	}
+	@Override
+	public String toString() {
+		return "TransferObject [id=" + id + ", value=" + value + "]";
+	}
+	public Long getId() {
+		return id;
+	}
+	public void setId(Long id) {
+		this.id = id;
+	}
+	public String getValue() {
+		return value;
+	}
+	public void setValue(String value) {
+		this.value = value;
+	}
+}
 ```
 
 ---

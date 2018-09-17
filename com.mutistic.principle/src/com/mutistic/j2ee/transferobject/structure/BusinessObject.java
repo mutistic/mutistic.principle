@@ -14,9 +14,7 @@ import com.mutistic.utils.PrintUtil;
 public class BusinessObject {
 	/** 示意：传输对象集合，当作一个数据库*/
 	private static List<TransferObject> objList = new ArrayList<TransferObject>();
-	/**
-	 * 注入测试数据
-	 */
+	/** 注入测试数据 */
 	static {
 		objList.add(new TransferObject(111l, "AAA"));
 		objList.add(new TransferObject(222l, "BBB"));

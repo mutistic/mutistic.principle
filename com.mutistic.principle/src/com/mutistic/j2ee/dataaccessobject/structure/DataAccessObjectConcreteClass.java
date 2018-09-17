@@ -14,9 +14,7 @@ import com.mutistic.utils.PrintUtil;
 public class DataAccessObjectConcreteClass implements DataAccessObjectInterface {
 	/** 示意：数据集合：对应数据库 */
 	private static List<ModelObject> objList = new ArrayList<ModelObject>();
-	/**
-	 * 模拟测试数据
-	 */
+	/** 模拟测试数据 */
 	static  {
 		objList.add(new ModelObject(111, "AAA"));
 		objList.add(new ModelObject(222, "BBB"));
