@@ -6714,6 +6714,7 @@ public class ObjectFactory {
 [结构图](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.principle/notes/mode/structure/M27_MVCPattern.png)
 [时序图](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.principle/notes/mode/sequence/M27_MVCPattern.png)
 [基于J2EE的MVC设计模式的研究与实现](https://www.ixueshu.com/document/767839226ad5f27b.html)<br/>
+
 一、定义、本质: 
 ```
 定义: M是指业务模型，V是指用户界面，C则是控制器，使用MVC的目的是将M和V的实现代码分离，从而使同一个程序可以使用不同的表现形式
@@ -6991,6 +6992,7 @@ public class Controller {
 ### <a id="a_business">三十五、业务代表模式[Business Delegate Pattern]</a> <a href="#a_mvc">last</a> <a href="#a_entity">next</a>
 [结构图](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.principle/notes/mode/structure/M28_BusinessDelegatePattern.png)
 [时序图](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.principle/notes/mode/sequence/M28_BusinessDelegatePattern.png)<br/>
+
 一、定义、本质: 
 ```
 定义: 对表示层和业务层的解耦。它基本上是用来减少通信或对表示层代码中的业务层代码的远程查询功能
@@ -7536,6 +7538,7 @@ public class ModelObject {
 ### <a id="a_front">三十八、前端控制器模式[Front Controller Pattern]</a> <a href="#a_data">last</a> <a href="#a_intercepting">next</a>
 [结构图](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.principle/notes/mode/structure/M31_FrontControllerPattern.png)
 [时序图](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.principle/notes/mode/sequence/M31_FrontControllerPattern.png)<br/>
+
 一、定义、本质: 
 ```
 定义: 提供一个集中的请求处理机制，所有的请求都将由一个单一的处理程序处理。该处理程序可以做认证/授权/记录日志，或者跟踪请求，然后把请求传给相应的处理程序
@@ -7680,6 +7683,208 @@ public class ViewB {
 ### <a id="a_intercepting">三十九、拦截过滤器模式[Intercepting Filter Pattern]</a> <a href="#a_front">last</a> <a href="#a_service">next</a>
 [结构图](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.principle/notes/mode/structure/M32_InterceptingFilterPattern.png)
 [时序图](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.principle/notes/mode/sequence/M32_InterceptingFilterPattern.png)<br/>
+
+一、定义、本质: 
+```
+定义: 对应用程序的请求或响应做一些预处理/后处理。定义过滤器，并在把请求传给实际目标应用程序之前应用在请求上。
+过滤器可以做认证/授权/记录日志，或者跟踪请求，然后把请求传给相应的处理程序
+本质: 动态过滤请求
+```
+
+二、结构和说明: 
+```
+Filter：过滤器接口，定义在请求处理程序执行请求之前或之后，执行某些任务的统一接口
+
+ConcteteFilter：过滤器，实现过滤器接口，在请求处理程序执行请求之前或之后，执行某些任务功能的具体实现
+
+FilterChain：过滤器链，带有多个过滤器，并在Target上按照定义的顺序执行这些过滤器
+
+Target：目标对象，是请求处理的具体程序
+
+FilterManager：过滤管理器，管理过滤器和过滤器链
+
+Client：客户端，是向Target对象发送请求的对象
+```
+
+Client.java
+```java
+package com.mutistic.j2ee.interceptingfilter.structure;
+import com.mutistic.utils.PrintUtil;
+/**
+ * Client：客户端
+ * 演示 拦截过滤器模式[Intercepting Filter Pattern]-结构
+ */
+public class Client {
+	public static void main(String[] args) {
+		PrintUtil.one("拦截过滤器模式[Intercepting Filter Pattern]");
+		// 创建目标对象
+		Target target = new Target();
+		// 创建过滤管理器对象，注入目标对象
+		FilterManager filterManager = new FilterManager(target);
+		// 创建具体的过滤器对象
+		Filter fa = new ConcreteFilterA();
+		Filter fb = new ConcreteFilterB();
+		// 添加过滤器
+		filterManager.addFilter(fa);
+		filterManager.addFilter(fb);
+		// 转调过滤器链开始执行请求
+		filterManager.filterRequest("HOME");
+	}
+}
+```
+Target.java
+```java
+package com.mutistic.j2ee.interceptingfilter.structure;
+import com.mutistic.utils.PrintUtil;
+/**
+ * Target：
+ * 目标对象，是请求处理的具体程序
+ */
+public class Target {
+	/**
+	 * 请求处理的具体程序
+	 * @param request 具体请求
+	 */
+	public void execute(String request) {
+		PrintUtil.two("Target.execute()：目标对象，是请求处理的具体程序: ", "request = "+ request);
+	}
+}
+```
+Filter.java
+```java
+package com.mutistic.j2ee.interceptingfilter.structure;
+/**
+ * Filter：
+ * 过滤器，在请求处理程序执行请求之前或之后，执行某些任务
+ */
+public interface Filter {
+	/**
+	 * 定义：在请求处理程序执行请求之前或之后，执行某些任务的统一接口
+	 * @param request 具体请求
+	 */
+	void execute(String request);
+	
+}
+```
+ConcreteFilterA.java
+```java
+package com.mutistic.j2ee.interceptingfilter.structure;
+import com.mutistic.utils.PrintUtil;
+/**
+ * ConcteteFilter：
+ * 过滤器，实现过滤器接口，在请求处理程序执行请求之前或之后，执行某些任务功能的具体实现
+ */
+public class ConcreteFilterA implements Filter {
+	/**
+	 * 在请求处理程序执行请求之前或之后，执行某些任务功能的具体实现
+	 * @param request 具体请求
+	 * @see com.mutistic.j2ee.interceptingfilter.structure.Filter#execute(java.lang.String)
+	 */
+	public void execute(String request) {
+		PrintUtil.three("ConcreteFilterA.request()", "在请求处理程序执行请求之前或之后，执行某些任务功能的具体实现：request = " + request);
+	}
+}
+```
+ConcreteFilterB.java
+```java
+package com.mutistic.j2ee.interceptingfilter.structure;
+import com.mutistic.utils.PrintUtil;
+/**
+ * ConcteteFilter：
+ * 过滤器，实现过滤器接口，在请求处理程序执行请求之前或之后，执行某些任务功能的具体实现
+ */
+public class ConcreteFilterB implements Filter {
+	/**
+	 * 在请求处理程序执行请求之前或之后，执行某些任务功能的具体实现
+	 * @param request 具体请求
+	 * @see com.mutistic.j2ee.interceptingfilter.structure.Filter#execute(java.lang.String)
+	 */
+	public void execute(String request) {
+		PrintUtil.three("ConcreteFilterB.request()", "在请求处理程序执行请求之前或之后，执行某些任务功能的具体实现：request = " + request);
+	}
+}
+```
+FilterChain.java
+```java
+package com.mutistic.j2ee.interceptingfilter.structure;
+import java.util.ArrayList;
+import java.util.List;
+import com.mutistic.utils.PrintUtil;
+/**
+ * FilterChain：
+ * 过滤器链，带有多个过滤器，并在Target上按照定义的顺序执行这些过滤器
+ */
+public class FilterChain {
+	/** 持有：过滤器集合 */
+	private List<Filter> filterList = new ArrayList<Filter>();
+	/** 持有：目标对象 */
+	private Target target;
+	/**
+	 * 添加具体的过滤器 
+	 * @param filter
+	 */
+	public void addFilter(Filter filter) {
+		filterList.add(filter);
+		PrintUtil.three("FilterChain.addFilter()：添加具体的过滤器：", filterList);
+	}
+	/**
+	 * 执行过滤器链，转调具体的过滤器
+	 * @param request
+	 */
+	public void execute(String request) {
+		PrintUtil.three("FilterChain.execute()：执行过滤器链，转调具体的过滤器：", request);
+		for (Filter filter : filterList) {
+			filter.execute(request);
+		}
+		target.execute(request);
+	}
+	/**
+	 * 设置目标对象 
+	 * @param target 目标对象
+	 */
+	public void setTarget(Target target) {
+		this.target = target;
+		PrintUtil.three("FilterChain.setTarget()：设置目标对象 ：", target);
+	}
+}
+```
+FilterManager.java
+```java
+package com.mutistic.j2ee.interceptingfilter.structure;
+import com.mutistic.utils.PrintUtil;
+/**
+ * FilterManager：
+ * 过滤管理器，管理过滤器和过滤器链
+ */
+public class FilterManager {
+	/** 持有：过滤器链 */
+	private FilterChain filterChain = new FilterChain();
+	/**
+	 * 构造函数：注入目标对象
+	 * @param target 目标对象
+	 */
+	public FilterManager(Target target) {
+		PrintUtil.two("FilterManager：构造函数：注入目标对象：", target);
+		filterChain.setTarget(target);
+	}
+	/**
+	 * 添加过滤器
+	 * @param filter 具体的过滤器对象
+	 */
+	public void addFilter(Filter filter) {
+		PrintUtil.two("FilterManager.addFilter()：添加过滤器：", filter);
+		filterChain.addFilter(filter);
+	}
+	/**
+	 * 转调过滤器链开始执行请求
+	 * @param request 具体的请求
+	 */
+	public void filterRequest(String request) {
+		PrintUtil.two("FilterManager.filterRequest()：转调过滤器链开始执行请求：", request);
+		filterChain.execute(request);
+	}
+}
+```
 
 ---
 ### <a id="a_service">四十、服务定位器模式[Service Locator Pattern]</a> <a href="#a_intercepting">last</a> <a href="#a_transfer">next</a>
