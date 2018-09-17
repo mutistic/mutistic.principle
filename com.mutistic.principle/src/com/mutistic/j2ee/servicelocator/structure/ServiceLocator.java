@@ -28,7 +28,6 @@ public class ServiceLocator {
 			return service;
 		}
 
-		
 		Context context = new Context();
 		service = context.lookup(jndiName);
 		if(service != null) {
