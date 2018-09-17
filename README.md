@@ -7891,6 +7891,250 @@ public class FilterManager {
 [结构图](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.principle/notes/mode/structure/M33_ServiceLocatorPattern.png)
 [时序图](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.principle/notes/mode/sequence/M33_ServiceLocatorPattern.png)<br/>
 
+一、定义、本质: 
+```
+定义: 使用JNDI查询定位各种服务的时候。考虑到为某个服务查找JNDI的代价很高，服务定位器模式充分利用了缓存技术。
+在首次请求某个服务时，服务定位器在JNDI中查找服务，并缓存该服务对象。当再次请求相同的服务时，
+服务定位器会在它的缓存中查找，这样可以在很大程度上提高应用程序的性能
+本质: 缓存服务
+```
+
+二、结构和说明: 
+```
+Service：服务接口，定义处理请求的服务。对这种服务的引用可以在JNDI服务器中查找到
+
+ConcreteService：具体服务，实现服务接口，处理请求的服务的具体实现
+
+Context：初始的上下文，JNDIContext带有对要查找的服务的引用
+
+ServiceLocator：服务定位器，是通过JNDI查找和缓存服务来获取服务的单点接触
+
+Cache：缓存，存储服务的引用，以便复用它们
+
+Client：客户端，是通过ServiceLocator调用服务的对象
+```
+
+Client.java
+```java
+package com.mutistic.j2ee.servicelocator.structure;
+import com.mutistic.utils.PrintUtil;
+/**
+ * Client：客户端
+ * 演示：服务定位器模式[Service Locator Pattern]-结构
+ */
+public class Client {
+	public static void main(String[] args) {
+		PrintUtil.one("服务定位器模式[Service Locator Pattern]");
+		// 从服务定位器中获取服务
+		Service service = ServiceLocator.getService("ConcreteServiceA");
+		service.execute();
+		
+		service = ServiceLocator.getService("ConcreteServiceB");
+		service.execute();
+		
+		service = ServiceLocator.getService("ConcreteServiceA");
+		service.execute();
+		
+		service = ServiceLocator.getService("ConcreteServiceC");
+		if(service != null) {
+			service.execute();
+		} else {
+			PrintUtil.three("没有符合服务名称为ConcreteServiceC的服务，调用结束", service);
+		}
+	}
+}
+```
+Service.java
+```java
+package com.mutistic.j2ee.servicelocator.structure;
+/**
+ * Service：
+ * 服务接口，定义处理请求的服务。对这种服务的引用可以在JNDI服务器中查找到
+ */
+public interface Service {
+	/**
+	 * 定义：获取服务名称接口
+	 * @return 服务名称
+	 */
+	String getName();
+	/**
+	 * 定义：执行请求接口 
+	 */
+	void execute();
+}
+```
+ConcreteServiceA.java
+```java
+package com.mutistic.j2ee.servicelocator.structure;
+import com.mutistic.utils.PrintUtil;
+/**
+ * ConcreteService：
+ * 具体服务，实现服务接口，处理请求的服务的具体实现
+ */
+public class ConcreteServiceA implements Service {
+	/**
+	 * 获取服务名称
+	 * @return 服务名称
+	 * @see com.mutistic.j2ee.servicelocator.structure.Service#getName()
+	 */
+	@Override
+	public String getName() {
+		return "ConcreteServiceA";
+	}
+	/**
+	 * 执行具体的请求
+	 * @see com.mutistic.j2ee.servicelocator.structure.Service#execute()
+	 */
+	public void execute() {
+		PrintUtil.three("ConcreteServiceA.execute()", "执行具体的请求");
+	}
+}
+```
+ConcreteServiceB.java
+```java
+package com.mutistic.j2ee.servicelocator.structure;
+import com.mutistic.utils.PrintUtil;
+/**
+ * ConcreteService：
+ * 具体服务，实现服务接口，处理请求的服务的具体实现
+ */
+public class ConcreteServiceB implements Service {
+	/**
+	 * 获取服务名称
+	 * @return 服务名称
+	 * @see com.mutistic.j2ee.servicelocator.structure.Service#getName()
+	 */
+	@Override
+	public String getName() {
+		return "ConcreteServiceB";
+	}
+	/**
+	 * 执行具体的请求
+	 * @see com.mutistic.j2ee.servicelocator.structure.Service#execute()
+	 */
+	public void execute() {
+		PrintUtil.three("ConcreteServiceB.execute()", "执行具体的请求");
+	}
+}
+```
+Cache.java
+```java
+package com.mutistic.j2ee.servicelocator.structure;
+import java.util.ArrayList;
+import java.util.List;
+import com.mutistic.utils.PrintUtil;
+/**
+ * Cache：
+ * 缓存，存储服务的引用，以便复用它们
+ */
+public class Cache {
+	/** 持有：服务集合，作为服务缓存对象 */
+	private List<Service> serviceList = new ArrayList<Service>();
+	/**
+	 * 从缓存中获取服务
+	 * @param jndiName 服务名称
+	 * @return 具体的服务
+	 */
+	public Service getService(String jndiName) {
+		for (Service service : serviceList) {
+			if (service.getName().equals(jndiName)) {
+				PrintUtil.three("Cache.getService()：缓存中存在"+ jndiName +"服务", service);
+				return service;
+			}
+		}
+		return null;
+	}
+	/**
+	 * 添加服务到缓存中
+	 * @param service
+	 */
+	public void addService(Service service) {
+		boolean exists = false;
+		for (Service temp : serviceList) {
+			if (temp.getName().equals(temp.getName())) {
+				exists = true;
+			}
+		}
+		if (!exists) {
+			serviceList.add(service);
+			PrintUtil.three("Cache.addService()：成功添加服务到缓存中：", service);
+		} else {
+			PrintUtil.three("Cache.addService()", "缓存中已经存在该服务，无需重复添加服务");
+		}
+	}
+}
+```
+Context.java
+```java
+package com.mutistic.j2ee.servicelocator.structure;
+import com.mutistic.utils.PrintUtil;
+/**
+ * Context：
+ * 初始的上下文，JNDIContext带有对要查找的服务的引用
+ */
+public class Context {
+	/**
+	 * 查找JNDI服务功能
+	 * @param jndiName JNDI服务名称
+	 * @return 具体的服务
+	 */
+	public Service lookup(String jndiName) {
+		PrintUtil.three("InitialContext.lookup()：开始根据服务名称查找具体的服务", jndiName);
+		
+		Service service = null;
+		if (jndiName.equals("ConcreteServiceA")) {
+			service = new ConcreteServiceA();
+			PrintUtil.three("InitialContext.lookup()：开始查找JNDI服务ConcreteServiceA，并创建具体的服务对象", service);
+			return service;
+		}
+		else if (jndiName.equals("ConcreteServiceB")) {
+			service = new ConcreteServiceB();
+			PrintUtil.three("InitialContext.lookup()：开始查找JNDI服务ConcreteServiceB，并创建具体的服务对象", service);
+			return service;
+		}
+		PrintUtil.three("InitialContext.lookup()", "未查询到具体的服务，无法创建服务");
+		return service;
+	}
+}
+```
+ServiceLocator.java
+```java
+package com.mutistic.j2ee.servicelocator.structure;
+import com.mutistic.utils.PrintUtil;
+/**
+ * ServiceLocator：
+ * 服务定位器，是通过JNDI查找和缓存服务来获取服务的单点接触
+ */
+public class ServiceLocator {
+	/** 持有：缓存对象  */
+	private static Cache cache = new Cache();
+	/**
+	 * 从缓存中获取服务对象
+	 * @param jndiName 服务名称
+	 * @return 具体的服务对象
+	 */
+	public static Service getService(String jndiName) {
+		PrintUtil.two("ServiceLocator.getService()：开始从缓存中获取服务对象", jndiName);
+		
+		Service service = cache.getService(jndiName);
+		if (service != null) {
+			PrintUtil.three("ServiceLocator.getService()：成功从缓存中获取到服务镀锡", service);
+			return service;
+		}
+
+		Context context = new Context();
+		service = context.lookup(jndiName);
+		if(service != null) {
+			PrintUtil.three("ServiceLocator.getService()：缓存中不存在"+jndiName+"服务，开始创建服务", service);
+			cache.addService(service);
+		} else {
+			PrintUtil.three("ServiceLocator.getService()：没有符合服务名称为"+jndiName+"的服务", service);
+		}
+		return service;
+	}
+}
+```
+
 ---
 ### <a id="a_transfer">四十一、传输对象模式[Transfer Object Pattern]</a> <a href="#a_service">last</a> <a href="#a_summary">next</a>
 [结构图](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.principle/notes/mode/structure/M34_TransferObjectPattern.png)
