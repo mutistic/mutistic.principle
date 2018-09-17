@@ -71,6 +71,8 @@ MVC 模式[MVC Pattern]、业务代表模式[Business Delegate Pattern]、
 前端控制器模式[Front Controller Pattern]、拦截过滤器模式[Intercepting Filter Pattern]、
 服务定位器模式[Service Locator Pattern]、传输对象模式[Transfer Object Pattern]
 ```
+[Wiki Page for Design Patterns：设计模式](https://en.wikipedia.org/wiki/Software_design_pattern)<br/>
+[The JavaTM Tutorials：Java教程实用指南](https://docs.oracle.com/javase/tutorial/index.html)<br/>
 
 ---
 ### <a id="a_catalogue">目录</a>: 
