@@ -7370,8 +7370,8 @@ package com.mutistic.j2ee.dataaccessobject.structure;
 import java.util.List;
 import com.mutistic.utils.PrintUtil;
 /**
- * @program Client：客户端
- * @description 演示 数据访问对象模式[Data Access Object Pattern]-结构
+ * Client：客户端
+ * 演示 数据访问对象模式[Data Access Object Pattern]-结构
  */
 public class Client {
 	public static void main(String[] args) {
@@ -7400,28 +7400,28 @@ DataAccessObjectInterface.java
 package com.mutistic.j2ee.dataaccessobject.structure;
 import java.util.List;
 /**
- * @program DataAccessObjectInterface：
- * @description 数据访问对象接口，该接口定义了在一个模型对象上要执行的标准操作。
+ * DataAccessObjectInterface：
+ * 数据访问对象接口，该接口定义了在一个模型对象上要执行的标准操作。
  */
 public interface DataAccessObjectInterface {
 	/**
-	 * @description 定义：获取所有的ModelObject数据 
+	 * 定义：获取所有的ModelObject数据 
 	 * @return
 	 */
 	List<ModelObject> getAllModel();
 	/**
-	 * @description 定义：根据ID获取对应的ModelObject
+	 * 定义：根据ID获取对应的ModelObject
 	 * @param id
 	 * @return
 	 */
 	ModelObject getModel(long id);
 	/**
-	 * @description 定义：修改ModelObjec数据
+	 * 定义：修改ModelObjec数据
 	 * @param model
 	 */
 	void updateModel(ModelObject model);
 	/**
-	 * @description 定义：删除ModelObject数据 
+	 * 定义：删除ModelObject数据 
 	 * @param model
 	 */
 	void deleteModel(ModelObject model);
@@ -7434,8 +7434,8 @@ import java.util.ArrayList;
 import java.util.List;
 import com.mutistic.utils.PrintUtil;
 /**
- * @program DataAccessObjectConcreteClass：
- * @description 数据访问对象实体类，该类实现了数据访问对象接口。该类负责从数据源获取数据，数据源可以是数据库，也可以是 xml，或者是其他的存储机制。
+ * DataAccessObjectConcreteClass：
+ * 数据访问对象实体类，该类实现了数据访问对象接口。该类负责从数据源获取数据，数据源可以是数据库，也可以是 xml，或者是其他的存储机制。
  */
 public class DataAccessObjectConcreteClass implements DataAccessObjectInterface {
 	/** 示意：数据集合：对应数据库 */
@@ -7448,7 +7448,7 @@ public class DataAccessObjectConcreteClass implements DataAccessObjectInterface 
 		objList.add(new ModelObject(222, "BBB"));
 	}
 	/**
-	 * @description 获取所有的ModelObject数据 
+	 * 获取所有的ModelObject数据 
 	 * @return
 	 */
 	@Override
@@ -7457,7 +7457,7 @@ public class DataAccessObjectConcreteClass implements DataAccessObjectInterface 
 		return objList;
 	}
 	/**
-	 * @description 根据ID获取对应的ModelObject
+	 * 根据ID获取对应的ModelObject
 	 * @param id
 	 * @return
 	 */
@@ -7472,7 +7472,7 @@ public class DataAccessObjectConcreteClass implements DataAccessObjectInterface 
 		return null;
 	}
 	/**
-	 * @description 修改ModelObjec数据
+	 * 修改ModelObjec数据
 	 * @param model
 	 */
 	@Override
@@ -7486,7 +7486,7 @@ public class DataAccessObjectConcreteClass implements DataAccessObjectInterface 
 		}
 	}
 	/**
-	 * @description 删除ModelObject数据 
+	 * 删除ModelObject数据 
 	 * @param model
 	 */
 	@Override
@@ -7500,8 +7500,8 @@ ModelObject.java
 ```java
 package com.mutistic.j2ee.dataaccessobject.structure;
 /**
- * @program ModelObject/ValueObject：
- * @description 模型对象/数值对象，该对象是简单的POJO，包含了get/set方法来存储通过使用DAO类检索到的数据
+ * ModelObject/ValueObject：
+ * 模型对象/数值对象，该对象是简单的POJO，包含了get/set方法来存储通过使用DAO类检索到的数据
  */
 public class ModelObject {
 	/** 示意：可能存在的属性ID */
@@ -7536,6 +7536,145 @@ public class ModelObject {
 ### <a id="a_front">三十八、前端控制器模式[Front Controller Pattern]</a> <a href="#a_data">last</a> <a href="#a_intercepting">next</a>
 [结构图](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.principle/notes/mode/structure/M31_FrontControllerPattern.png)
 [时序图](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.principle/notes/mode/sequence/M31_FrontControllerPattern.png)<br/>
+一、定义、本质: 
+```
+定义: 提供一个集中的请求处理机制，所有的请求都将由一个单一的处理程序处理。该处理程序可以做认证/授权/记录日志，或者跟踪请求，然后把请求传给相应的处理程序
+本质: 集中请求，统一分发
+```
+
+二、结构和说明: 
+```
+FrontController：前端控制器、处理应用程序所有类型请求的单个处理程序，应用程序可以是基于web的应用程序，也可以是基于桌面的应用程序。
+
+Dispatcher：调度器、前端控制器可能使用一个调度器对象来调度请求到相应的具体处理程序。
+
+View：视图是为请求而创建的对象
+```
+
+Client.java
+```java
+package com.mutistic.j2ee.frontcontroller.structure;
+import com.mutistic.utils.PrintUtil;
+/**
+ * Client：客户端
+ * 演示 前端控制器模式[Front Controller Pattern]-结构
+ */
+public class Client {
+	public static void main(String[] args) {
+		PrintUtil.one("前端控制器模式[Front Controller Pattern]");
+		// 创建前端控制器对象
+		FrontController controller = new FrontController();
+		// 客户端请求，转调调度器
+		controller.dispatchRequest("A");
+		controller.dispatchRequest("B");
+		controller.dispatchRequest("C");
+	}
+}
+```
+FrontController.java
+```java
+package com.mutistic.j2ee.frontcontroller.structure;
+import com.mutistic.utils.PrintUtil;
+/**
+ * FrontController：
+ * 前端控制器、处理应用程序所有类型请求的单个处理程序，应用程序可以是基于
+ */
+public class FrontController {
+	/** 持有：调度器对象 */
+	private Dispatcher dispatcher = new Dispatcher();
+	/**
+	 * 示意：可能存在的功能：用户验证
+	 * @return
+	 */
+	private boolean isAuthenticUser() {
+		PrintUtil.three("FrontController.isAuthenticUser()", "可能存在的功能：用户验证");
+		return true;
+	}
+	/**
+	 * 示意：可能存在的功能：记录请求
+	 * @param request
+	 */
+	private void trackRequest(String request) {
+		PrintUtil.three("FrontController.trackRequest()", "可能存在的功能：记录请求：request = " + request);
+	}
+	/**
+	 * 客户端请求，转调调度器
+	 * @param request
+	 */
+	public void dispatchRequest(String request) {
+		PrintUtil.two("FrontController.dispatchRequest()", "客户端请求，转调调度器request = " + request);
+		trackRequest(request);
+
+		if (isAuthenticUser()) {
+			dispatcher.dispatch(request);
+		}
+	}
+}
+```
+Dispatcher.java
+```java
+package com.mutistic.j2ee.frontcontroller.structure;
+import com.mutistic.utils.PrintUtil;
+/**
+ * Dispatcher：
+ * 调度器、前端控制器可能使用一个调度器对象来调度请求到相应的具体处理程序。
+ */
+public class Dispatcher {
+	/** 持有：视图对象 */
+	private ViewA viewA = new ViewA();
+	/** 持有：视图对象 */
+	private ViewB viewB = new ViewB();
+	/**
+	 * 统一分发到具体的处理程序
+	 * @param request 请求
+	 */
+	public void dispatch(String request) {
+		PrintUtil.three("Dispatcher.dispatch()", "统一分发到具体的处理程序"+ request);
+		if ("A".equals(request)) {
+			viewA.show();
+		} 
+		else if ("B".equals(request)) {
+			viewB.show();
+		} else {
+			PrintUtil.three("Dispatcher.dispatch()", "没有匹配到对应的处理程序，程序结束");
+		}
+	}
+}
+```
+ViewA.java
+```java
+package com.mutistic.j2ee.frontcontroller.structure;
+import com.mutistic.utils.PrintUtil;
+/**
+ * View：
+ * 视图是为请求而创建的对象
+ */
+public class ViewA {
+	/**
+	 * 显示具体视图 
+	 */
+	public void show() {
+		PrintUtil.three("ViewA.show()", "显示具体视图 ");
+	}
+}
+```
+ViewB.java
+```java
+package com.mutistic.j2ee.frontcontroller.structure;
+import com.mutistic.utils.PrintUtil;
+/**
+ * View：
+ * 视图是为请求而创建的对象
+ */
+public class ViewB {
+	/**
+	 * 显示具体视图 
+	 */
+	public void show() {
+		PrintUtil.three("ViewB.show()", "显示具体视图 ");
+	}
+}
+```
 
 ---
 ### <a id="a_intercepting">三十九、拦截过滤器模式[Intercepting Filter Pattern]</a> <a href="#a_front">last</a> <a href="#a_service">next</a>
