@@ -1,4 +1,11 @@
 # <a id="a_top">Java设计模式</a> <a href="#a_catalogue">Catalogue</a> <a href="#a_down">Down</a>
+[Wiki Page for Design Patterns：设计模式](https://en.wikipedia.org/wiki/Software_design_pattern)<br/>
+[The JavaTM Tutorials：Java教程实用指南](https://docs.oracle.com/javase/tutorial/index.html)<br/>
+[JDK 10文档](https://docs.oracle.com/javase/10/index.html)
+[Java SE 10 & JDK 10：API](https://docs.oracle.com/javase/10/docs/api/overview-summary.html)<br/>
+[JVM工具接口](https://docs.oracle.com/javase/10/docs/specs/jvmti.html)
+[JNI：Java本机接口规范]（https://docs.oracle.com/javase/10/docs/specs/jni/index.html）
+
 ## <a href="#a_design">设计原则</a>
 [思维导图](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.principle/notes/principle)<br/>
 面向对象设计原则: SOLID<br/>
@@ -71,8 +78,6 @@ MVC 模式[MVC Pattern]、业务代表模式[Business Delegate Pattern]、
 前端控制器模式[Front Controller Pattern]、拦截过滤器模式[Intercepting Filter Pattern]、
 服务定位器模式[Service Locator Pattern]、传输对象模式[Transfer Object Pattern]
 ```
-[Wiki Page for Design Patterns：设计模式](https://en.wikipedia.org/wiki/Software_design_pattern)<br/>
-[The JavaTM Tutorials：Java教程实用指南](https://docs.oracle.com/javase/tutorial/index.html)<br/>
 
 ---
 ### <a id="a_catalogue">目录</a>: 
