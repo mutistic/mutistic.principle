@@ -13,11 +13,11 @@ import com.mutistic.utils.PrintUtil;
  */
 public class DataAccessObjectConcreteClass implements DataAccessObjectInterface {
 	/** 示意：数据集合：对应数据库 */
-	private List<ModelObject> objList = new ArrayList<ModelObject>();
+	private static List<ModelObject> objList = new ArrayList<ModelObject>();
 	/**
-	 * 构造函数：模拟测试数据
+	 * 模拟测试数据
 	 */
-	public DataAccessObjectConcreteClass() {
+	static  {
 		objList.add(new ModelObject(111, "AAA"));
 		objList.add(new ModelObject(222, "BBB"));
 	}
@@ -60,7 +60,7 @@ public class DataAccessObjectConcreteClass implements DataAccessObjectInterface 
 	 */
 	@Override
 	public void updateModel(ModelObject model) {
-		PrintUtil.two("DataAccessObjectConcreteClass.updateModel()：修改ModelObjec数据", model.toString());
+		PrintUtil.two("DataAccessObjectConcreteClass.updateModel()：修改ModelObject数据", model.toString());
 		for (ModelObject temp : objList) {
 			if(model.getId() == temp.getId()) {
 				temp.setValue(model.getValue());

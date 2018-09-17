@@ -3,7 +3,7 @@ package com.mutistic.j2ee.servicelocator.structure;
 import com.mutistic.utils.PrintUtil;
 
 /**
- * @program Client：客户端
+ * @program Client：客户端，是通过ServiceLocator调用服务的对象
  * @description 演示：服务定位器模式[Service Locator Pattern]-结构
  * @author mutisitic
  * @date 2018年9月17日

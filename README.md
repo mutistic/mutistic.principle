@@ -7919,7 +7919,7 @@ Client.java
 package com.mutistic.j2ee.servicelocator.structure;
 import com.mutistic.utils.PrintUtil;
 /**
- * Client：客户端
+ * Client：客户端，是通过ServiceLocator调用服务的对象
  * 演示：服务定位器模式[Service Locator Pattern]-结构
  */
 public class Client {
@@ -8139,6 +8139,28 @@ public class ServiceLocator {
 ### <a id="a_transfer">四十一、传输对象模式[Transfer Object Pattern]</a> <a href="#a_service">last</a> <a href="#a_summary">next</a>
 [结构图](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.principle/notes/mode/structure/M34_TransferObjectPattern.png)
 [时序图](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.principle/notes/mode/sequence/M34_TransferObjectPattern.png)<br/>
+
+一、定义、本质: 
+```
+定义: 从客户端向服务器一次性传递带有多个属性的数据。传输对象也被称为数值对象。
+传输对象是一个具有getter/setter方法的简单的POJO类，它是可序列化的，所以它可以通过网络传输。
+它没有任何的行为。服务器端的业务类通常从数据库读取数据，然后填充POJO，并把它发送到客户端或按值传递它。
+对于客户端，传输对象是只读的。客户端可以创建自己的传输对象，并把它传递给服务器，以便一次性更新数据库中的数值
+本质: 传递数据
+```
+
+二、结构和说明: 
+```
+BusinessObject：业务对象，为传输对象填充数据的业务服务
+    
+TransferObject：传输对象，简单的POJO，只有设置/获取属性的方法
+
+Client：客户端，可以发送请求或者发送传输对象到业务对象
+```
+
+Client.java
+```java
+```
 
 ---
 ## <a id="a_summary">模式相关总结</a> <a href="#a_transfer">last</a> <a href="#a_summary1">next</a>
