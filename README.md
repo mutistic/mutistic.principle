@@ -7348,6 +7348,190 @@ public class CompositeEntity {
 [结构图](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.principle/notes/mode/structure/M30_DataAccessObjectPattern.png)
 [时序图](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.principle/notes/mode/sequence/M30_DataAccessObjectPattern.png)<br/>
 
+一、定义、本质: 
+```
+定义: 把低级的数据访问 API 或操作从高级的业务服务中分离出来。
+本质: 分离数据操作接口
+```
+
+二、结构和说明: 
+```
+DataAccessObjectInterface：数据访问对象接口，该接口定义了在一个模型对象上要执行的标准操作。
+
+DataAccessObjectConcreteClass：数据访问对象实体类，该类实现了数据访问对象接口。该类负责从数据源获取数据，
+数据源可以是数据库，也可以是 xml，或者是其他的存储机制。
+
+ModelObject/ValueObject：模型对象/数值对象，该对象是简单的POJO，包含了get/set方法来存储通过使用DAO类检索到的数据
+```
+
+Client.java
+```java
+package com.mutistic.j2ee.dataaccessobject.structure;
+import java.util.List;
+import com.mutistic.utils.PrintUtil;
+/**
+ * @program Client：客户端
+ * @description 演示 数据访问对象模式[Data Access Object Pattern]-结构
+ */
+public class Client {
+	public static void main(String[] args) {
+		PrintUtil.one("数据访问对象模式[Data Access Object Pattern]");
+		// 创建数据操作接口实例
+		DataAccessObjectInterface dao = new DataAccessObjectConcreteClass();
+		PrintUtil.two("创建数据操作接口实例", dao);
+		// 调用getAllModel()接口
+		List<ModelObject> modelList = dao.getAllModel();
+		for (ModelObject model : modelList) {
+			PrintUtil.three("输出所有的ModelObject信息", model.toString());
+		}
+		// 调用updateModel()接口
+		ModelObject model = modelList.get(0);
+		model.setValue("CCCC");
+		dao.updateModel(model);
+		PrintUtil.three("调用updateModel()接口的数据", modelList);
+		// 调用deleteModel()接口
+		dao.deleteModel(modelList.get(1));
+		PrintUtil.three("调用deleteModel()接口的数据", modelList);
+	}
+}
+```
+DataAccessObjectInterface.java
+```java
+package com.mutistic.j2ee.dataaccessobject.structure;
+import java.util.List;
+/**
+ * @program DataAccessObjectInterface：
+ * @description 数据访问对象接口，该接口定义了在一个模型对象上要执行的标准操作。
+ */
+public interface DataAccessObjectInterface {
+	/**
+	 * @description 定义：获取所有的ModelObject数据 
+	 * @return
+	 */
+	List<ModelObject> getAllModel();
+	/**
+	 * @description 定义：根据ID获取对应的ModelObject
+	 * @param id
+	 * @return
+	 */
+	ModelObject getModel(long id);
+	/**
+	 * @description 定义：修改ModelObjec数据
+	 * @param model
+	 */
+	void updateModel(ModelObject model);
+	/**
+	 * @description 定义：删除ModelObject数据 
+	 * @param model
+	 */
+	void deleteModel(ModelObject model);
+}
+```
+DataAccessObjectConcreteClass.java
+```java
+package com.mutistic.j2ee.dataaccessobject.structure;
+import java.util.ArrayList;
+import java.util.List;
+import com.mutistic.utils.PrintUtil;
+/**
+ * @program DataAccessObjectConcreteClass：
+ * @description 数据访问对象实体类，该类实现了数据访问对象接口。该类负责从数据源获取数据，数据源可以是数据库，也可以是 xml，或者是其他的存储机制。
+ */
+public class DataAccessObjectConcreteClass implements DataAccessObjectInterface {
+	/** 示意：数据集合：对应数据库 */
+	private List<ModelObject> objList = new ArrayList<ModelObject>();
+	/**
+	 * 构造函数：模拟测试数据
+	 */
+	public DataAccessObjectConcreteClass() {
+		objList.add(new ModelObject(111, "AAA"));
+		objList.add(new ModelObject(222, "BBB"));
+	}
+	/**
+	 * @description 获取所有的ModelObject数据 
+	 * @return
+	 */
+	@Override
+	public List<ModelObject> getAllModel() {
+		PrintUtil.two("DataAccessObjectConcreteClass.getAllModel()", "获取所有的ModelObject数据 ");
+		return objList;
+	}
+	/**
+	 * @description 根据ID获取对应的ModelObject
+	 * @param id
+	 * @return
+	 */
+	@Override
+	public ModelObject getModel(long id) {
+		PrintUtil.two("DataAccessObjectConcreteClass.getModel()：根据ID获取对应的ModelObject", id);
+		for (ModelObject model : objList) {
+			if(id == model.getId()) {
+				return model;
+			}
+		}
+		return null;
+	}
+	/**
+	 * @description 修改ModelObjec数据
+	 * @param model
+	 */
+	@Override
+	public void updateModel(ModelObject model) {
+		PrintUtil.two("DataAccessObjectConcreteClass.updateModel()：修改ModelObjec数据", model.toString());
+		for (ModelObject temp : objList) {
+			if(model.getId() == temp.getId()) {
+				temp.setValue(model.getValue());
+				break;
+			}
+		}
+	}
+	/**
+	 * @description 删除ModelObject数据 
+	 * @param model
+	 */
+	@Override
+	public void deleteModel(ModelObject model) {
+		PrintUtil.two("DataAccessObjectConcreteClass.updateModel()：删除ModelObject数据 ", model.toString());
+		objList.remove(model);
+	}
+}
+```
+ModelObject.java
+```java
+package com.mutistic.j2ee.dataaccessobject.structure;
+/**
+ * @program ModelObject/ValueObject：
+ * @description 模型对象/数值对象，该对象是简单的POJO，包含了get/set方法来存储通过使用DAO类检索到的数据
+ */
+public class ModelObject {
+	/** 示意：可能存在的属性ID */
+	private long id;
+	/** 示意：可能存在的属性value */
+	private String value;
+	public long getId() {
+		return id;
+	}
+	public void setId(long id) {
+		this.id = id;
+	}
+	public String getValue() {
+		return value;
+	}
+	public void setValue(String value) {
+		this.value = value;
+	}
+	public ModelObject(long id, String value) {
+		super();
+		this.id = id;
+		this.value = value;
+	}
+	@Override
+	public String toString() {
+		return "ModelObject [id=" + id + ", value=" + value + "]";
+	}
+}
+```
+
 ---
 ### <a id="a_front">三十八、前端控制器模式[Front Controller Pattern]</a> <a href="#a_data">last</a> <a href="#a_intercepting">next</a>
 [结构图](https://github.com/mutistic/mutistic.exercise/blob/master/com.mutistic.principle/notes/mode/structure/M31_FrontControllerPattern.png)
